@@ -1,0 +1,24 @@
+/*
+ * Fonts and text colours behind the typography variants in @shared/ui-toolkit/typography.
+ * Font files are loaded in the root route's head; only the families are named here.
+ */
+
+@theme {
+    --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    --color-background: oklch(1 0 0);
+    --color-foreground: oklch(0.145 0 0);
+    --color-muted: oklch(0.4 0 0);
+    --color-subtle: oklch(0.556 0 0);
+    --color-accent: oklch(0.55 0.2 264);
+    --color-positive: oklch(0.6 0.15 150);
+    --color-negative: oklch(0.577 0.245 27.325);
+}
+
+@layer base {
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+    }
+}

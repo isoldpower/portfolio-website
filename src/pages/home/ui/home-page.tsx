@@ -1,27 +1,27 @@
-import { getRouteApi, useRouter } from "@tanstack/react-router";
-import { useCallback } from "react";
+import { getRouteApi } from "@tanstack/react-router";
 
-import { updateCount } from "../api/count.ts";
+import { UnorderedList } from "@shared/lib/components";
+import { PageTitle } from "@shared/ui-toolkit/typography";
+import { ProtectEmptyPreviews } from "@features/project";
+import { ProjectPreviewCard } from "@widgets/project-preview-card";
 
 
 const routeApi = getRouteApi("/");
 
 function HomePage() {
-    const router = useRouter();
-    const count = routeApi.useLoaderData();
-
-    const handleIncrement = useCallback(() => {
-        updateCount({ data: 1 })
-            .then(() => router.invalidate())
-            .catch((error: unknown) => {
-                console.error("Count Update Error:", error);
-            });
-    }, [router]);
+    const { projects } = routeApi.useLoaderData();
 
     return (
-        <button type="button" onClick={handleIncrement}>
-            Add 1 to {count}?
-        </button>
+        <>
+            <PageTitle className="mb-4">Projects</PageTitle>
+            <ProtectEmptyPreviews previews={projects}>
+                <UnorderedList className="grid grid-cols-3 gap-4">
+                    {projects.map((project) => (
+                        <ProjectPreviewCard key={project._id} project={project} />
+                    ))}
+                </UnorderedList>
+            </ProtectEmptyPreviews>
+        </>
     );
 }
 

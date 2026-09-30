@@ -1,7 +1,7 @@
 import { HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-
-import { WebsiteProviders } from "@app/providers";
+import { WebsiteProviders } from "./providers";
+import { GlobalLayout } from "./global-layout.tsx";
 
 import type { PropsWithChildren } from "react";
 
@@ -24,7 +24,9 @@ function RootLayout() {
     return (
         <RootDocument>
             <WebsiteProviders>
-                <Outlet />
+                <GlobalLayout>
+                    <Outlet />
+                </GlobalLayout>
             </WebsiteProviders>
             {import.meta.env.DEV ? (
                 <TanStackRouterDevtools initialIsOpen={false} position="bottom-left" />

@@ -1,8 +1,10 @@
-import { getCount } from "../api/count.ts";
+import { listProjectsPreviews } from "@features/project";
 
 
 async function homePageLoader() {
-    return await getCount();
+    const projects = await listProjectsPreviews({ order: "desc" });
+
+    return { projects };
 }
 
 export { homePageLoader };

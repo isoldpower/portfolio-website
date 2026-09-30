@@ -1,6 +1,8 @@
 import { useRouter, useMatch, rootRouteId } from "@tanstack/react-router";
 import { useCallback } from "react";
 
+import { BodyText } from "@shared/ui-toolkit/typography";
+
 import type { PropsWithChildren } from "react";
 
 
@@ -24,9 +26,9 @@ export function DefaultNotFoundBoundary({
 
     return (
         <div className="min-w-0 flex-1 p-4 flex flex-col items-center justify-center gap-6">
-            <p className="text-lg lg:text-2xl text-muted-foreground font-normal">
+            <BodyText size="lg">
                 {children ?? "The page you are looking for doesn't exist"}
-            </p>
+            </BodyText>
             {!isRoot && (
                 <button
                     className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
