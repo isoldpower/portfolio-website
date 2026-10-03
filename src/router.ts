@@ -1,7 +1,7 @@
 import { createRouter } from "@tanstack/react-router";
 
-import { DefaultNotFoundBoundary, DefaultCatchBoundary } from "@app/default-fx";
 import { routeTree } from "@app/routes/routeTree.gen.ts";
+import { DefaultNotFoundBoundary, DefaultCatchBoundary } from "@shared/ui-toolkit/default-fx";
 
 export function getRouter() {
     return createRouter({

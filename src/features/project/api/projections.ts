@@ -1,8 +1,3 @@
-/*
- * GROQ projection pieces shared by project queries. Field names are renamed to
- * camelCase here, so snake_case CMS names never reach the components.
- */
-
 const technologyProjection = "{ _id, title, \"iconUrl\": icon_url }";
 
 const sourceRepoProjection = `{
@@ -22,10 +17,6 @@ const commonProjectFields = [
     `"extraTech": coalesce(extra_tech[]->${technologyProjection}, [])`,
 ];
 
-/*
- * Only the fields of the document's current kind are returned: switching kind in the
- * Studio leaves the old kind's values behind in the document.
- */
 const kindSpecificFields = [
     `kind == "terminal" => {
         "wasmRepo": wasm_repo,
@@ -33,7 +24,6 @@ const kindSpecificFields = [
         "jsArtifact": js_artifact,
         "wasmArtifact": wasm_artifact
     }`,
-    // The access key itself is never selected; the page only needs to know one is set.
     `kind == "web" => {
         "deployUrl": deploy_url,
         "earlyAccess": defined(access_key) && access_key != "",

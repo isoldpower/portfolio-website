@@ -18,7 +18,6 @@ type GetProjectBySlugResponse = ProjectDetails | null;
 const getProjectBySlug = async ({
     slug
 }: GetProjectBySlugOptions): Promise<GetProjectBySlugResponse> => {
-    // The slug comes from the URL, so it goes in as a parameter, never into the query text.
     const sourceChunk = "*[_type == \"project\" && slug.current == $slug][0]";
     const requestedFields = [
         ...commonProjectFields,

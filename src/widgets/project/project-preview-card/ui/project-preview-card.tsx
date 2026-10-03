@@ -1,5 +1,5 @@
 import { ProjectNavigation } from "@entities/project";
-import { NavigateToProject } from "@features/project";
+import { NavigateToProject } from "@features/project/navigation";
 import { CardTitle } from "@shared/ui-toolkit/typography";
 
 import type { ProjectPreview } from "@entities/project";

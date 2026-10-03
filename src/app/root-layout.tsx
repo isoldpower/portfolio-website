@@ -1,7 +1,8 @@
 import { HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import { WebsiteProviders } from "./providers";
+
 import { GlobalLayout } from "./global-layout.tsx";
+import { WebsiteProviders } from "./providers";
 
 import type { PropsWithChildren } from "react";
 

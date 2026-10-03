@@ -4,8 +4,8 @@ import { cn } from "@shared/lib/utilities";
 
 import { textClass } from "../variants";
 
-import type { HTMLAttributes } from "react";
 import type { TextClassOptions } from "../variants";
+import type { HTMLAttributes } from "react";
 
 
 type TextElement =

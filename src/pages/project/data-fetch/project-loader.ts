@@ -1,23 +1,26 @@
 import { notFound } from "@tanstack/react-router";
 
-import { getProjectBySlug } from "@features/project";
+import { getProjectBySlug } from "@features/project/api";
 
-import type { ProjectDetails } from "@entities/project";
+import type { ProjectPageData } from "../types.ts";
 
 
 interface ProjectLoaderParams {
-    slug: string;
+    params: {
+        slug: string;
+    }
 }
 
-async function projectPageLoader({ slug }: ProjectLoaderParams): Promise<ProjectDetails> {
-    const project = await getProjectBySlug({ slug });
+async function projectPageLoader({ params }: ProjectLoaderParams): Promise<ProjectPageData> {
+    const project = await getProjectBySlug({
+        slug: params.slug
+    });
 
     if (project === null) {
-        // eslint-disable-next-line @typescript-eslint/only-throw-error
         throw notFound();
     }
 
-    return project;
+    return { project };
 }
 
 export { projectPageLoader };

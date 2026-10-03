@@ -1,4 +1,4 @@
-import { listProjectsPreviews } from "@features/project";
+import { listProjectsPreviews } from "@features/project/api";
 
 
 async function homePageLoader() {
