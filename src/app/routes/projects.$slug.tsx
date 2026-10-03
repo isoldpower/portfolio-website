@@ -1,6 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { projectHeadLoader, ProjectPage, projectPageLoader } from "@pages/project";
+import {
+    projectHeadersLoader,
+    projectHeadLoader,
+    ProjectPage,
+    projectPageLoader
+} from "@pages/project";
 
 import { createPageElement } from "../page-utility.tsx";
 
@@ -13,4 +18,5 @@ export const Route = createFileRoute("/projects/$slug")({
     component: ProjectPageElement,
     loader: projectPageLoader,
     head: projectHeadLoader,
+    headers: projectHeadersLoader,
 });

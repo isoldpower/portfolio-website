@@ -1,5 +1,7 @@
 import { createImageUrlBuilder } from "@sanity/image-url";
 
+import { proxiedImageUrl } from "@shared/lib/utilities";
+
 import { sanityClient } from "./client.ts";
 
 import type { SanityImageSource, ImageUrlBuilder } from "@sanity/image-url";
@@ -14,7 +16,7 @@ function getImageBuilder(source: SanityImageSource): ImageUrlBuilder {
 function buildImageUrl(source: SanityImageSource): string {
     const image = getImageBuilder(source);
 
-    return image.url();
+    return proxiedImageUrl(image.url());
 }
 
 export { buildImageUrl, getImageBuilder };

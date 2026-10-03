@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { HomePage, homePageLoader } from "@pages/home";
+import { homeHeadersLoader, HomePage, homePageLoader } from "@pages/home";
 
 import { createPageElement } from "../page-utility.tsx";
 
@@ -12,4 +12,5 @@ const HomePageElement: FC = createPageElement("/", HomePage);
 export const Route = createFileRoute("/")({
     component: HomePageElement,
     loader: homePageLoader,
+    headers: homeHeadersLoader,
 });

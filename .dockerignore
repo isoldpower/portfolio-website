@@ -1,0 +1,16 @@
+.git
+.github
+.idea
+.vscode
+.tanstack
+node_modules
+.output
+dist
+dist-ssr
+coverage
+.env
+.env.*
+!.env.sample
+*.log
+Dockerfile
+.dockerignore

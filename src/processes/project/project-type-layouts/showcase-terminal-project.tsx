@@ -1,3 +1,5 @@
+import { TerminalProjectShell } from "@widgets/project/terminal-project-shell";
+
 import type { FC } from "react";
 import type { TerminalProject } from "@entities/project";
 
@@ -10,7 +12,10 @@ const ShowcaseTerminalProject: FC<ShowcaseTerminalProjectProps> = ({
     project
 }) => {
     return (
-        <div>Terminal Project: {project.title}</div>
+        <div>
+            Terminal Project: {project.title}
+            <TerminalProjectShell project={project} />
+        </div>
     );
 }
 

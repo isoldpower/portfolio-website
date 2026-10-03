@@ -1,6 +1,7 @@
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
+import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 
 import type { UserConfig } from "vite";
@@ -9,7 +10,7 @@ import type { UserConfig } from "vite";
 export default defineConfig({
     envPrefix: [ "CLIENT_" ],
     server: {
-        port: 3000,
+        port: 3000
     },
     resolve: {
         tsconfigPaths: true,
@@ -24,6 +25,7 @@ export default defineConfig({
             }
         }),
         tailwindcss(),
+        nitro({ preset: "node-server" }),
         react()
     ],
 } satisfies UserConfig);

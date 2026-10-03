@@ -15,7 +15,7 @@ function NavigateToProject({
     children
 }: NavigateToProjectProps) {
     return (
-        <Link to="/projects/$slug" params={{ slug }} className={className}>
+        <Link to="/projects/$slug" reloadDocument={true} params={{ slug }} className={className}>
             {children}
         </Link>
     );

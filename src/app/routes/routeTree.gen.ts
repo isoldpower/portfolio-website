@@ -10,11 +10,20 @@
 
 import { Route as rootRouteImport } from './__root'
 import { Route as IndexRouteImport } from './index'
+import { Route as HealthzRouteImport } from './healthz'
 import { Route as ProjectsSlugRouteImport } from './projects.$slug'
+import { Route as serverProxyImagesSplatRouteImport } from './(server-proxy)/images.$'
+import { Route as serverProxyRemoteImagesHostSplatRouteImport } from './(server-proxy)/remote-images.$host.$'
+import { Route as serverProxyWasmOwnerRepoTagArtifactRouteImport } from './(server-proxy)/wasm.$owner.$repo.$tag.$artifact'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HealthzRoute = HealthzRouteImport.update({
+  id: '/healthz',
+  path: '/healthz',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
@@ -22,31 +31,83 @@ const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   path: '/projects/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const serverProxyImagesSplatRoute = serverProxyImagesSplatRouteImport.update({
+  id: '/(server-proxy)/images/$',
+  path: '/images/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const serverProxyRemoteImagesHostSplatRoute =
+  serverProxyRemoteImagesHostSplatRouteImport.update({
+    id: '/(server-proxy)/remote-images/$host/$',
+    path: '/remote-images/$host/$',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const serverProxyWasmOwnerRepoTagArtifactRoute =
+  serverProxyWasmOwnerRepoTagArtifactRouteImport.update({
+    id: '/(server-proxy)/wasm/$owner/$repo/$tag/$artifact',
+    path: '/wasm/$owner/$repo/$tag/$artifact',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/healthz': typeof HealthzRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/images/$': typeof serverProxyImagesSplatRoute
+  '/remote-images/$host/$': typeof serverProxyRemoteImagesHostSplatRoute
+  '/wasm/$owner/$repo/$tag/$artifact': typeof serverProxyWasmOwnerRepoTagArtifactRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/healthz': typeof HealthzRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/images/$': typeof serverProxyImagesSplatRoute
+  '/remote-images/$host/$': typeof serverProxyRemoteImagesHostSplatRoute
+  '/wasm/$owner/$repo/$tag/$artifact': typeof serverProxyWasmOwnerRepoTagArtifactRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/healthz': typeof HealthzRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/(server-proxy)/images/$': typeof serverProxyImagesSplatRoute
+  '/(server-proxy)/remote-images/$host/$': typeof serverProxyRemoteImagesHostSplatRoute
+  '/(server-proxy)/wasm/$owner/$repo/$tag/$artifact': typeof serverProxyWasmOwnerRepoTagArtifactRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects/$slug'
+  fullPaths:
+    | '/'
+    | '/healthz'
+    | '/projects/$slug'
+    | '/images/$'
+    | '/remote-images/$host/$'
+    | '/wasm/$owner/$repo/$tag/$artifact'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects/$slug'
-  id: '__root__' | '/' | '/projects/$slug'
+  to:
+    | '/'
+    | '/healthz'
+    | '/projects/$slug'
+    | '/images/$'
+    | '/remote-images/$host/$'
+    | '/wasm/$owner/$repo/$tag/$artifact'
+  id:
+    | '__root__'
+    | '/'
+    | '/healthz'
+    | '/projects/$slug'
+    | '/(server-proxy)/images/$'
+    | '/(server-proxy)/remote-images/$host/$'
+    | '/(server-proxy)/wasm/$owner/$repo/$tag/$artifact'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HealthzRoute: typeof HealthzRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
+  serverProxyImagesSplatRoute: typeof serverProxyImagesSplatRoute
+  serverProxyRemoteImagesHostSplatRoute: typeof serverProxyRemoteImagesHostSplatRoute
+  serverProxyWasmOwnerRepoTagArtifactRoute: typeof serverProxyWasmOwnerRepoTagArtifactRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +119,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/healthz': {
+      id: '/healthz'
+      path: '/healthz'
+      fullPath: '/healthz'
+      preLoaderRoute: typeof HealthzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/$slug': {
       id: '/projects/$slug'
       path: '/projects/$slug'
@@ -65,12 +133,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(server-proxy)/images/$': {
+      id: '/(server-proxy)/images/$'
+      path: '/images/$'
+      fullPath: '/images/$'
+      preLoaderRoute: typeof serverProxyImagesSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(server-proxy)/remote-images/$host/$': {
+      id: '/(server-proxy)/remote-images/$host/$'
+      path: '/remote-images/$host/$'
+      fullPath: '/remote-images/$host/$'
+      preLoaderRoute: typeof serverProxyRemoteImagesHostSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(server-proxy)/wasm/$owner/$repo/$tag/$artifact': {
+      id: '/(server-proxy)/wasm/$owner/$repo/$tag/$artifact'
+      path: '/wasm/$owner/$repo/$tag/$artifact'
+      fullPath: '/wasm/$owner/$repo/$tag/$artifact'
+      preLoaderRoute: typeof serverProxyWasmOwnerRepoTagArtifactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HealthzRoute: HealthzRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
+  serverProxyImagesSplatRoute: serverProxyImagesSplatRoute,
+  serverProxyRemoteImagesHostSplatRoute: serverProxyRemoteImagesHostSplatRoute,
+  serverProxyWasmOwnerRepoTagArtifactRoute:
+    serverProxyWasmOwnerRepoTagArtifactRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

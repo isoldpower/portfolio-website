@@ -1,8 +1,3 @@
-/*
- * Fonts and text colours behind the typography variants in @shared/ui-toolkit/typography.
- * Font files are loaded in the root route's head; only the families are named here.
- */
-
 @theme {
     --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
     --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;

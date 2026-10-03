@@ -1,3 +1,5 @@
+import { proxiedImageUrl } from "@shared/lib/utilities";
+
 import type { ImgHTMLAttributes } from "react";
 
 
@@ -17,7 +19,7 @@ function ImageIcon({
 }: ImageIconProps) {
     return (
         <img
-            src={src}
+            src={proxiedImageUrl(src)}
             alt={title}
             title={title}
             width={size}
