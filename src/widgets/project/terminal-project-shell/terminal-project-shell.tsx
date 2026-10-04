@@ -20,7 +20,7 @@ const TerminalProjectShell: FC<TerminalProjectShellProps> = ({
             autoResize
             autoFocus
             terminalRuntime="ftxui"
-            className="h-100"
+            className="min-h-120 h-[80dvh]"
             {...terminalBindings}
         />
     );
