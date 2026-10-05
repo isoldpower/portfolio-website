@@ -25,7 +25,7 @@ const useTerminalAdapter = (
     }, [controller, runtime, source, registry]);
 
     useEffect(() => {
-        return controller.stop;
+        return controller.dispose;
     }, [controller]);
 
     return controller.bindings;

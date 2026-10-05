@@ -2,7 +2,7 @@ import { useMemo } from "react";
 
 import { BodyText } from "@shared/ui-toolkit/typography";
 
-import type { ProjectPreview } from "@entities/project";
+import type { ProjectPreview } from "@entities/project/model";
 import type { ReactNode } from "react";
 
 

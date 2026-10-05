@@ -1,8 +1,8 @@
-import { ProjectNavigation } from "@entities/project";
+import { ProjectNavigation } from "@entities/project/project-kind";
 import { NavigateToProject } from "@features/project/navigation";
 import { CardTitle } from "@shared/ui-toolkit/typography";
 
-import type { ProjectPreview } from "@entities/project";
+import type { ProjectPreview } from "@entities/project/model";
 
 
 interface ProjectPreviewCardProps {

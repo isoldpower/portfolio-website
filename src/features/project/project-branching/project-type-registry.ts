@@ -1,7 +1,7 @@
 import { UnknownProjectTypeError } from "./unknown-project-type-error.ts";
 
 import type { BranchingSchema } from "./types.ts";
-import type { ProjectDetails } from "@entities/project";
+import type { ProjectDetails } from "@entities/project/model";
 import type { FC, PropsWithChildren } from "react";
 
 

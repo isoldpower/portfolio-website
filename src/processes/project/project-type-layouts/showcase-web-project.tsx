@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import type { WebProject } from "@entities/project";
+import type { WebProject } from "@entities/project/model";
 
 
 interface ShowcaseWebProjectProps {

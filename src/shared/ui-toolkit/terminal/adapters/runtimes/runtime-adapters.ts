@@ -22,8 +22,8 @@ function startCliSession(terminal: TerminalSurface, source: TerminalProgramSourc
     return new CliSession(terminal, source).start();
 }
 
-const ftxuiAdapter: TerminalAdapter = { start: startFtxuiSession };
-const ncursesAdapter: TerminalAdapter = { start: startNcursesSession };
+const ftxuiAdapter: TerminalAdapter = { start: startFtxuiSession, virtualKeyboard: false };
+const ncursesAdapter: TerminalAdapter = { start: startNcursesSession, virtualKeyboard: false };
 const cliAdapter: TerminalAdapter = { start: startCliSession };
 
 export { ftxuiAdapter, ncursesAdapter, cliAdapter };

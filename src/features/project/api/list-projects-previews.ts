@@ -2,7 +2,7 @@ import { sanityClient } from "@app/sanity-cms";
 
 import { commonProjectFields } from "./projections.ts";
 
-import type { ProjectPreview } from "@entities/project";
+import type { ProjectPreview } from "@entities/project/model";
 
 
 interface ListProjectsPreviewsOptions {

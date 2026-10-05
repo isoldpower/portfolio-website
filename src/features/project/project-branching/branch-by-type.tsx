@@ -2,7 +2,7 @@ import { useMemo, useRef } from "react";
 import { ProjectTypeRegistry } from "./project-type-registry.ts";
 
 import type { BranchingSchema } from "./types.ts";
-import type { ProjectDetails } from "@entities/project";
+import type { ProjectDetails } from "@entities/project/model";
 import type { FC, ReactNode } from "react";
 
 

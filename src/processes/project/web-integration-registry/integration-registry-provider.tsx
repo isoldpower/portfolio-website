@@ -1,7 +1,7 @@
 import { Fragment as FragmentComponent, useMemo } from "react";
 import { useIntegrationRegistry } from "./use-integration-registry.tsx";
 
-import type { WebProject } from "@entities/project";
+import type { WebProject } from "@entities/project/model";
 import type { FC, ReactNode } from "react";
 
 

@@ -136,9 +136,10 @@ return (
    - `locateFile`, which points the `.wasm` request at `wasmSource`,
    - `preRun`, where the session wires stdin/stdout (`attach`),
    - `onExit`, which prints that the program finished.
-4. Keys typed in wterm go `onData` → `session.input` → `InputQueue`, which the program reads byte by byte.
+4. Keys typed in wterm go `onData` → `session.input` → `InputQueue`, which the program reads byte by byte. `LetterKeyForwarder` steps in first: when a plain letter key (no Ctrl/Alt/Meta, not mid-IME) produces a non-ASCII character, as on a Russian or Greek layout, the program gets the key's Latin letter by physical position instead (`event.code`, Shift keeps the case). Latin layouts such as AZERTY or Dvorak are left alone.
 5. The program writes bytes; the session turns them into `terminal.write` calls (per frame or per animation frame).
 6. Size changes go `onResize` → `session.resize` → whatever the runtime uses to learn its size.
+   Scrolling goes through `ScrollForwarder` while the program has SGR mouse tracking on: wheel, touchpad and finger drags (with flick momentum) are added up per axis and turned into one SGR wheel report (`64`–`67`) per 3 cells of travel, aimed at the cell where scrolling began, then fed to `onData`. wterm alone sends one report per wheel event whatever its size and ignores touch. With tracking off, wterm scrolls its scrollback as usual.
 7. When the program exits (`onExit`), aborts (`onAbort`) or is interrupted, the session reports `isFinished` and the terminal asks for Enter. Pressing it clears the screen and the controller starts a fresh session on the same terminal; the factory is called again, so the program gets a new runtime (`EXIT_RUNTIME` has already shut the old one's threads down).
 8. On unmount the controller calls `session.stop()`. Emscripten has no teardown, so stopping cuts the program off from the terminal; its workers live until the page goes away.
 
@@ -155,7 +156,7 @@ return (
 
 ## 8. Writing an adapter
 
-An adapter is anything with `start(terminal, source)` that returns a session:
+An adapter is anything with `start(terminal, source)` that returns a session. It may also set `virtualKeyboard: false` (as `ftxui` and `ncurses` do) so that tapping the terminal on a touch device does not open the on-screen keyboard: the controller sets `inputmode="none"` on wterm's input on every launch, while hardware keyboards keep working. It defaults to `true`, which suits line-based programs such as `cli`.
 
 ```ts
 interface TerminalAdapterSession {

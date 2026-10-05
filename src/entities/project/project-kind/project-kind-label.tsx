@@ -1,7 +1,6 @@
 import { Overline } from "@shared/ui-toolkit/typography";
-
 import { resolveKindLabel } from "../visual-map";
-import { ProjectKindIcon } from "./project-kind-icon.tsx";
+import { ProjectKindIcon } from "../icons";
 
 import type { ProjectKind } from "../model/types.ts";
 

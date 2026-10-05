@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import type { EmbeddedProject } from "@entities/project";
+import type { EmbeddedProject } from "@entities/project/model";
 
 
 interface ShowcaseEmbeddedProjectProps {

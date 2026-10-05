@@ -10,6 +10,7 @@ export type { TerminalAdapterTarget } from "./lib/TerminalAdapterController.ts";
 export type {
     TerminalRuntime,
     TerminalProgramSource,
+    TerminalMouseModes,
     TerminalSurface,
     TerminalAdapterSession,
     TerminalAdapter,

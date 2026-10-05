@@ -1,4 +1,4 @@
-import type { EmbeddedProject, TerminalProject, WebProject } from "@entities/project";
+import type { EmbeddedProject, TerminalProject, WebProject } from "@entities/project/model";
 import type { FC, PropsWithChildren } from "react";
 
 

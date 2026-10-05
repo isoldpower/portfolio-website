@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import type { TerminalProject } from "@entities/project";
+import type { TerminalProject } from "@entities/project/model";
 
 
 const RELEASE_PROXY_PREFIX = "/wasm";

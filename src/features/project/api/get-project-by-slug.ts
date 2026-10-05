@@ -6,7 +6,7 @@ import {
     sourceRepoProjection
 } from "./projections.ts";
 
-import type { ProjectDetails } from "@entities/project";
+import type { ProjectDetails } from "@entities/project/model";
 
 
 interface GetProjectBySlugOptions {

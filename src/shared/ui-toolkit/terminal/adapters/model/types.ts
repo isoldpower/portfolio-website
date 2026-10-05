@@ -5,9 +5,17 @@ interface TerminalProgramSource {
     wasmSource: string;
 }
 
+interface TerminalMouseModes {
+    mouseTracking?(): number;
+    mouseEncoding?(): string | null;
+    mouseSgr?(): boolean;
+}
+
 interface TerminalSurface {
     readonly cols: number;
     readonly rows: number;
+    readonly element: HTMLElement;
+    readonly bridge: TerminalMouseModes | null;
     write(data: string | Uint8Array): void;
 }
 
@@ -19,6 +27,7 @@ interface TerminalAdapterSession {
 }
 
 interface TerminalAdapter {
+    readonly virtualKeyboard?: boolean;
     start(terminal: TerminalSurface, source: TerminalProgramSource): TerminalAdapterSession;
 }
 
@@ -33,6 +42,7 @@ interface TerminalAdapterBindings {
 export type {
     TerminalRuntime,
     TerminalProgramSource,
+    TerminalMouseModes,
     TerminalSurface,
     TerminalAdapterSession,
     TerminalAdapter,
