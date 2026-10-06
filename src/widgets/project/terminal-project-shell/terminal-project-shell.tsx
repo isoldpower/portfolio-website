@@ -21,9 +21,9 @@ const TerminalProjectShell: FC<TerminalProjectShellProps> = ({
     const terminalBindings = useTerminalAdapter("ftxui", sources);
 
     return (
-        <div id={shellId} className="flex h-[90dvh] flex-col gap-2 py-[5dvh] mb-20">
+        <div id={shellId} className="relative h-dvh flex flex-col gap-2 py-2">
             <MobileOnly>
-                <LockScreen focusTargetId={shellId}>
+                <LockScreen focusTargetId={shellId} className="sticky top-0 p-2 border bg-white z-10">
                     {(locked) => locked
                         ? <LabeledLockIcon>Unlock</LabeledLockIcon>
                         : <LabeledUnlockIcon>Lock</LabeledUnlockIcon>
