@@ -1,0 +1,1 @@
+export { useIntegratedUrl } from './use-integrated-url.ts';

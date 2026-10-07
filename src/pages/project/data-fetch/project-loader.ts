@@ -1,18 +1,23 @@
 import { notFound } from "@tanstack/react-router";
 
-import { getProjectBySlug } from "@features/project/api";
+import { getProjectBySlug, mapProjectDetails } from "@features/project/api";
 
 import type { ProjectPageData } from "../types.ts";
+import type { ProjectApiServers } from "@features/project/api";
 
 
 interface ProjectLoaderParams {
     params: {
         slug: string;
-    }
+    };
+    context: {
+        apiServers: ProjectApiServers;
+    };
 }
 
-async function projectPageLoader({ params }: ProjectLoaderParams): Promise<ProjectPageData> {
+async function projectPageLoader({ params, context }: ProjectLoaderParams): Promise<ProjectPageData> {
     const project = await getProjectBySlug({
+        client: context.apiServers.projectApi,
         slug: params.slug
     });
 
@@ -20,7 +25,9 @@ async function projectPageLoader({ params }: ProjectLoaderParams): Promise<Proje
         throw notFound();
     }
 
-    return { project };
+    return {
+        project: mapProjectDetails(project),
+    };
 }
 
 export { projectPageLoader };

@@ -2,11 +2,11 @@ import { createImageUrlBuilder } from "@sanity/image-url";
 
 import { proxiedImageUrl } from "@shared/lib/utilities";
 
-import { sanityClient } from "./client.ts";
+import { sanityConfigOf } from "../providers/api-servers";
 
 import type { SanityImageSource, ImageUrlBuilder } from "@sanity/image-url";
 
-const builder = createImageUrlBuilder(sanityClient);
+const builder = createImageUrlBuilder(sanityConfigOf(import.meta.env));
 
 
 function getImageBuilder(source: SanityImageSource): ImageUrlBuilder {

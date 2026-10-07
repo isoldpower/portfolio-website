@@ -1,23 +1,23 @@
-import { sanityClient } from "@app/sanity-cms";
+import { commonProjectFields } from "../request-templates.ts";
 
-import { commonProjectFields } from "./projections.ts";
-
-import type { ProjectPreview } from "@entities/project/model";
+import type { ProjectApiClient, ProjectPreviewDto } from "../types.ts";
 
 
 interface ListProjectsPreviewsOptions {
+    client: ProjectApiClient;
     order?: "asc" | "desc";
 }
 
-type ListProjectsPreviewsResponse = ProjectPreview[];
+type ListProjectsPreviewsResponse = ProjectPreviewDto[];
 
 const listProjectsPreviews = async ({
+    client,
     order = "desc"
-}: ListProjectsPreviewsOptions = {}): Promise<ListProjectsPreviewsResponse> => {
+}: ListProjectsPreviewsOptions): Promise<ListProjectsPreviewsResponse> => {
     const sourceChunk = "*[_type == \"project\" && defined(slug.current)]";
     const orderChunk = `order(_createdAt ${order})`;
 
-    return sanityClient.fetch<ListProjectsPreviewsResponse>(
+    return client.fetch<ListProjectsPreviewsResponse>(
         `${sourceChunk}|${orderChunk}{${commonProjectFields.join(", ")}}`
     );
 };

@@ -1,8 +1,10 @@
-import { createRootRoute } from "@tanstack/react-router";
+import { createRootRouteWithContext } from "@tanstack/react-router";
 
 import mainCss from "@app/style/globals.css?url";
 
 import { RootLayout } from "../root-layout.tsx";
+
+import type { RouterContext } from "../router-context.ts";
 
 
 const fontsCss = "https://fonts.googleapis.com/css2"
@@ -12,7 +14,7 @@ const fontsCss = "https://fonts.googleapis.com/css2"
     + "&display=swap";
 
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<RouterContext>()({
     component: RootLayout,
     head: () => ({
         meta: [

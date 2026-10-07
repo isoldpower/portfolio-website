@@ -1,31 +1,31 @@
-import { sanityClient } from "@app/sanity-cms";
-
 import {
     commonProjectFields,
     kindSpecificFields,
     sourceRepoProjection
-} from "./projections.ts";
+} from "../request-templates.ts";
 
-import type { ProjectDetails } from "@entities/project/model";
+import type { ProjectApiClient, ProjectDetailsDto } from "../types.ts";
 
 
 interface GetProjectBySlugOptions {
+    client: ProjectApiClient;
     slug: string;
 }
 
-type GetProjectBySlugResponse = ProjectDetails | null;
+type GetProjectBySlugResponse = ProjectDetailsDto | null;
 
 const getProjectBySlug = async ({
+    client,
     slug
 }: GetProjectBySlugOptions): Promise<GetProjectBySlugResponse> => {
     const sourceChunk = "*[_type == \"project\" && slug.current == $slug][0]";
     const requestedFields = [
         ...commonProjectFields,
-        `"sourceRepos": coalesce(source_repos[]->${sourceRepoProjection}, [])`,
+        `"source_repos": source_repos[]->${sourceRepoProjection}`,
         ...kindSpecificFields,
     ];
 
-    return sanityClient.fetch<GetProjectBySlugResponse>(
+    return client.fetch<GetProjectBySlugResponse>(
         `${sourceChunk}{${requestedFields.join(", ")}}`,
         { slug }
     );

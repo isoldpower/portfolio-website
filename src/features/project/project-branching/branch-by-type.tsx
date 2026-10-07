@@ -9,7 +9,7 @@ import type { FC, ReactNode } from "react";
 interface BranchProjectByTypeProps {
     schema: BranchingSchema;
     project: ProjectDetails;
-    children: ReactNode;
+    children?: ReactNode;
 }
 
 const BranchByType: FC<BranchProjectByTypeProps> = ({

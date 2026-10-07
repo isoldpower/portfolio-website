@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { FinanceInfraVisualization } from "@widgets/project/finance-infra-visualization";
+
 import { IntegrationRegistry } from "./IntegrationRegistry.ts";
 
 import type { IntegrationEntries } from "./IntegrationRegistry.ts";
@@ -15,12 +15,10 @@ function buildIntegrationRegistry(entries: IntegrationEntries = {}): Integration
     return registry;
 }
 
-function useIntegrationRegistry() {
-    const integrations = useRef(buildIntegrationRegistry({
-        "power-finance": FinanceInfraVisualization
-    }));
+function useIntegrationRegistry(entries: IntegrationEntries): IntegrationRegistry {
+    const integrations = useRef(buildIntegrationRegistry(entries));
 
     return integrations.current;
 }
 
-export { useIntegrationRegistry };
+export { buildIntegrationRegistry, useIntegrationRegistry };

@@ -4,28 +4,45 @@ import {
     ShowcaseTerminalProject,
     ShowcaseWebProject
 } from "@processes/project/project-type-layouts";
-import { IntegrationRegistryProvider } from "@processes/project/web-integration-registry";
+import {
+    IntegrationProviderWrapper
+} from "@processes/integration/web-integration-provider";
 
 import type { BranchingSchema } from "@features/project/project-branching";
 
 
 const useBranchingSchema = (): BranchingSchema => {
     const branchingSchema = useRef<BranchingSchema>({
-        terminal: (project) => function TerminalShowcase() {
+        terminal: (project) => function TerminalShowcase({
+            children,
+        }) {
             return (
-                <ShowcaseTerminalProject project={project} />
+                <>
+                    <ShowcaseTerminalProject project={project} />
+                    {children}
+                </>
             );
         },
-        web: (project) => function WebShowcase() {
+        web: (project) => function WebShowcase({
+            children
+        }) {
             return (
-                <IntegrationRegistryProvider project={project}>
-                    <ShowcaseWebProject project={project} />
-                </IntegrationRegistryProvider>
+                <>
+                    <IntegrationProviderWrapper project={project}>
+                        <ShowcaseWebProject project={project} />
+                    </IntegrationProviderWrapper>
+                    {children}
+                </>
             );
         },
-        embedded: (project) => function EmbeddedShowcase() {
+        embedded: (project) => function EmbeddedShowcase({
+            children
+        }) {
             return (
-                <ShowcaseEmbeddedProject project={project} />
+                <>
+                    <ShowcaseEmbeddedProject project={project} />
+                    {children}
+                </>
             );
         },
     });

@@ -1,10 +1,22 @@
-import { listProjectsPreviews } from "@features/project/api";
+import { listProjectsPreviews, mapProjectPreview } from "@features/project/api";
+
+import type { ProjectApiServers } from "@features/project/api";
 
 
-async function homePageLoader() {
-    const projects = await listProjectsPreviews({ order: "desc" });
+interface HomeLoaderParams {
+    context: {
+        apiServers: ProjectApiServers;
+    };
+}
 
-    return { projects };
+async function homePageLoader({ context }: HomeLoaderParams) {
+    const projects = await listProjectsPreviews({
+        client: context.apiServers.projectApi,
+        order: "desc"
+    });
+
+    return { projects: projects.map(mapProjectPreview) };
 }
 
 export { homePageLoader };
+export type { HomeLoaderParams };

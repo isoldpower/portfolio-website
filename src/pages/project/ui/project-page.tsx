@@ -11,9 +11,14 @@ const ProjectPage: ClientLayoutPage<ProjectPageData> = ({
     const branching = useBranchingSchema();
 
     return (
-        <BranchByType project={project} schema={branching}>
-            <div>Hello world</div>
-        </BranchByType>
+        <div className="flex flex-row">
+            <aside className="flex-1/4 border-r-2 h-dvh border-gray-300">
+                This is sidebar
+            </aside>
+            <section className="flex-3/4 p-4">
+                <BranchByType project={project} schema={branching} />
+            </section>
+        </div>
     );
 }
 
