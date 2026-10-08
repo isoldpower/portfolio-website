@@ -1,3 +1,4 @@
+import { FinanceProjectApiContext } from "@features/integration/api";
 import { ProjectApiContext } from "@features/project/api";
 
 import type { ApiServers } from "./api-servers";
@@ -15,7 +16,9 @@ const ApiProvider: FC<ApiProviderProps> = ({
 }) => {
     return (
         <ProjectApiContext value={servers.projectApi}>
-            {children}
+            <FinanceProjectApiContext value={servers.financeProjectApi}>
+                {children}
+            </FinanceProjectApiContext>
         </ProjectApiContext>
     );
 };

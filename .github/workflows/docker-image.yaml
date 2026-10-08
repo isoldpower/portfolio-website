@@ -49,5 +49,6 @@ jobs:
             CLIENT_SANITY_DATASET=${{ vars.CLIENT_SANITY_DATASET }}
             CLIENT_SANITY_API_VERSION=${{ vars.CLIENT_SANITY_API_VERSION }}
             CLIENT_SANITY_USE_CDN=${{ vars.CLIENT_SANITY_USE_CDN }}
+            CLIENT_FINANCE_API_BASE_URL=${{ vars.CLIENT_FINANCE_API_BASE_URL }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

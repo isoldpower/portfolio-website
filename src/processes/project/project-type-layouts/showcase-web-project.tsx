@@ -1,5 +1,5 @@
-import { useId } from "react";
 import { WebProjectFrame } from "@widgets/project/web-project-frame";
+import { useDemoContext } from "@features/integration/web-demo-context";
 
 import type { FC } from "react";
 import type { WebProject } from "@entities/project/model";
@@ -12,7 +12,7 @@ interface ShowcaseWebProjectProps {
 const ShowcaseWebProject: FC<ShowcaseWebProjectProps> = ({
     project
 }) => {
-    const demoId = useId();
+    const { demoId } = useDemoContext();
 
     return (
         <WebProjectFrame
