@@ -1,10 +1,7 @@
 import type { FinanceInfraAnchor, FinanceInfraAnchorRegistry } from "@entities/integration/model";
 import type { RefCallback } from "react";
+import type { AnchorListener, AnchorSnapshot } from "./types";
 
-
-type AnchorSnapshot = ReadonlyMap<string, FinanceInfraAnchor>;
-
-type AnchorListener = () => void;
 
 const EMPTY_SNAPSHOT: AnchorSnapshot = new Map();
 
@@ -43,9 +40,13 @@ class NodeAnchorRegistry implements FinanceInfraAnchorRegistry {
         };
     };
 
-    readonly getSnapshot = (): AnchorSnapshot => this.#snapshot;
+    readonly getSnapshot = (): AnchorSnapshot => {
+        return this.#snapshot;
+    }
 
-    readonly getServerSnapshot = (): AnchorSnapshot => EMPTY_SNAPSHOT;
+    readonly getServerSnapshot = (): AnchorSnapshot => {
+        return EMPTY_SNAPSHOT;
+    }
 
     refFor(id: string): RefCallback<HTMLElement> {
         const existing = this.#refs.get(id);
@@ -54,7 +55,9 @@ class NodeAnchorRegistry implements FinanceInfraAnchorRegistry {
             return existing;
         }
 
-        const ref: RefCallback<HTMLElement> = (element) => this.#attachNode(id, element);
+        const ref: RefCallback<HTMLElement> = (element) => {
+            return this.#attachNode(id, element);
+        }
 
         this.#refs.set(id, ref);
 
@@ -162,4 +165,3 @@ class NodeAnchorRegistry implements FinanceInfraAnchorRegistry {
 }
 
 export { NodeAnchorRegistry };
-export type { AnchorSnapshot };

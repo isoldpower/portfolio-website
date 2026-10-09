@@ -11,7 +11,11 @@ interface FinanceInfraSectionCoreLanesProps {
 const FinanceInfraSectionCoreLanes: FC<FinanceInfraSectionCoreLanesProps> = ({ children }) => {
     const { layout } = useFinanceInfraCanvas();
 
-    return layout.core.map(children);
+    return (
+        <div className="flex min-w-0 flex-1 flex-col gap-3">
+            {layout.core.map(children)}
+        </div>
+    );
 };
 
 FinanceInfraSectionCoreLanes.displayName = "FinanceInfraSectionCoreLanes";

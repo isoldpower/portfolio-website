@@ -1,0 +1,4 @@
+const SANDBOX_HEADER = "X-Sandbox";
+const SANDBOX_QUERY_PARAM = "sandbox";
+
+export { SANDBOX_HEADER, SANDBOX_QUERY_PARAM };

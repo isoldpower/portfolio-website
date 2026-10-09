@@ -10,7 +10,7 @@ import { useFinanceProjectTopology } from "@features/integration/finance-tracing
 import {
     CoreLane,
     DataChannelNode,
-    DataConnectorNode,
+    EdgeLane,
     WebClientTopologyNode,
 } from "@widgets/integration/finance-infra-visualization";
 import { FinanceInfraCanvasProvider } from "@widgets/integration/finance-canvas-provider";
@@ -54,21 +54,23 @@ const FinanceInfraVisualization: FC<PropsWithChildren> = ({
                                     <FinanceInfraCanvasSection.Title>
                                         Services & storage
                                     </FinanceInfraCanvasSection.Title>
-                                    <FinanceInfraCanvasSection.CoreLanes>
-                                        {(lane) => (
-                                            <CoreLane key={lane.id} lane={lane} />
-                                        )}
-                                    </FinanceInfraCanvasSection.CoreLanes>
+                                    <FinanceInfraCanvasSection.CoreRow>
+                                        <FinanceInfraCanvasSection.EdgeLane>
+                                            {(lane) => (
+                                                <EdgeLane lane={lane} />
+                                            )}
+                                        </FinanceInfraCanvasSection.EdgeLane>
+                                        <FinanceInfraCanvasSection.CoreLanes>
+                                            {(lane) => (
+                                                <CoreLane key={lane.id} lane={lane} />
+                                            )}
+                                        </FinanceInfraCanvasSection.CoreLanes>
+                                    </FinanceInfraCanvasSection.CoreRow>
                                 </FinanceInfraCanvasSection>
                             </FinanceInfraCanvasShell.Column>
                             <FinanceInfraCanvasShell.Column divided>
                                 <FinanceInfraCanvasSection section="streaming">
                                     <FinanceInfraCanvasSection.Title>Kafka</FinanceInfraCanvasSection.Title>
-                                    <FinanceInfraCanvasSection.StreamingConnectors>
-                                        {(node) => (
-                                            <DataConnectorNode key={node.id} node={node} />
-                                        )}
-                                    </FinanceInfraCanvasSection.StreamingConnectors>
                                     <FinanceInfraCanvasSection.StreamingChannels>
                                         {(channel) => (
                                             <DataChannelNode key={channel.id} channel={channel} />

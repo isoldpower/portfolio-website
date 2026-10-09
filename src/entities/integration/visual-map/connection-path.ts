@@ -59,12 +59,16 @@ function sidesBetween(
         return ["right", "left"];
     } else if (rightOf(to) <= from.x) {
         return ["left", "right"];
+    } else if (from.y + from.height <= to.y) {
+        return ["bottom", "top"];
+    } else if (to.y + to.height <= from.y) {
+        return ["top", "bottom"];
     }
 
     return ["right", "right"];
 }
 
-function reachOf(from: FinanceInfraPort, to: FinanceInfraPort): number {
+function fallbackReachOf(from: FinanceInfraPort, to: FinanceInfraPort): number {
     const distance = Math.hypot(to.x - from.x, to.y - from.y);
 
     return Math.min(
@@ -73,12 +77,36 @@ function reachOf(from: FinanceInfraPort, to: FinanceInfraPort): number {
     );
 }
 
+function isHorizontal(port: FinanceInfraPort): boolean {
+    return port.directionX !== 0;
+}
+
+function reachOf(port: FinanceInfraPort, other: FinanceInfraPort, fallback: number): number {
+    const ahead = isHorizontal(port)
+        ? (other.x - port.x) * port.directionX
+        : (other.y - port.y) * port.directionY;
+
+    if (ahead <= 0) {
+        return fallback;
+    }
+
+    return isHorizontal(port) === isHorizontal(other)
+        ? ahead / 2
+        : ahead;
+}
+
+function controlOf(port: FinanceInfraPort, reach: number): [number, number] {
+    return [port.x + port.directionX * reach, port.y + port.directionY * reach];
+}
+
 function portPath(from: FinanceInfraPort, to: FinanceInfraPort): string {
-    const reach = reachOf(from, to);
+    const fallback = fallbackReachOf(from, to);
+    const [fromControlX, fromControlY] = controlOf(from, reachOf(from, to, fallback));
+    const [toControlX, toControlY] = controlOf(to, reachOf(to, from, fallback));
     const points = [
         from.x, from.y,
-        from.x + from.directionX * reach, from.y + from.directionY * reach,
-        to.x + to.directionX * reach, to.y + to.directionY * reach,
+        fromControlX, fromControlY,
+        toControlX, toControlY,
         to.x, to.y,
     ].map(String);
 

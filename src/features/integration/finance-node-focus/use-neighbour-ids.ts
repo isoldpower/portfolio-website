@@ -10,22 +10,18 @@ interface UseNeighbourIdsParams {
 
 const useNeighbourIds = ({ connections, nodeId }: UseNeighbourIdsParams): ReadonlySet<string> => {
     const collectNeighbourIds = useCallback(() => {
-        const ids = new Set<string>();
-
-        for (const connection of connections) {
+        return new Set(connections.flatMap((connection) => {
             if (connection.from === nodeId) {
-                ids.add(connection.to);
+                return [connection.to];
             }
 
-            if (connection.to === nodeId) {
-                ids.add(connection.from);
-            }
-        }
-
-        return ids;
+            return connection.to === nodeId ? [connection.from] : [];
+        }));
     }, [connections, nodeId]);
 
-    return useMemo(() => collectNeighbourIds(), [collectNeighbourIds]);
+    return useMemo(() => {
+        return collectNeighbourIds();
+    }, [collectNeighbourIds]);
 };
 
 export { useNeighbourIds };

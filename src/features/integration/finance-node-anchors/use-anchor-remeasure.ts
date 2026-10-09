@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
 
-import type { NodeAnchorRegistry } from "./lib/NodeAnchorRegistry.ts";
+import type { NodeAnchorRegistry } from "./NodeAnchorRegistry.ts";
 
 
 interface UseAnchorRemeasureParams {

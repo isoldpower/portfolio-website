@@ -1,4 +1,4 @@
-import type { FinanceTopicPortSide } from "@entities/integration/model";
+import type { FinanceTopicDirection } from "@entities/integration/model";
 
 
 interface ChannelDraft {
@@ -6,13 +6,13 @@ interface ChannelDraft {
     top: number;
     width: number;
     height: number;
-    inflow: FinanceTopicPortSide;
+    direction: FinanceTopicDirection;
+    connectionCount: number;
 }
 
 interface ChannelDrafts {
     sectionTop: number;
-    shared: ChannelDraft[];
-    dedicated: ChannelDraft[];
+    channels: ChannelDraft[];
 }
 
 interface ChannelColumn {
@@ -22,5 +22,8 @@ interface ChannelColumn {
 }
 
 type ChannelPublishers = ReadonlyMap<string, string[]>;
+type ChannelConsumers = ReadonlyMap<string, string[]>;
+type ChannelDirections = ReadonlyMap<string, FinanceTopicDirection>;
 
-export type { ChannelDraft, ChannelDrafts, ChannelColumn, ChannelPublishers };
+
+export type { ChannelDraft, ChannelDrafts, ChannelColumn, ChannelPublishers, ChannelConsumers, ChannelDirections };

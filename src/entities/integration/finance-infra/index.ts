@@ -3,6 +3,7 @@ export { FinanceInfraCanvasEdgeLayer } from "./finance-infra-canvas-edge-layer.t
 export { FinanceInfraCanvasEdge } from "./finance-infra-canvas-edge.tsx";
 export { FinanceInfraCanvasSection } from "./finance-infra-canvas-section.tsx";
 export { FinanceInfraCanvasLane } from "./finance-infra-canvas-lane.tsx";
+export { FinanceInfraCanvasGateway } from "./finance-infra-canvas-gateway.tsx";
 export { FinanceInfraCanvasNode } from "./finance-infra-canvas-node.tsx";
 export { FinanceInfraCanvasTopicChannel } from "./finance-infra-canvas-topic-channel.tsx";
 export { FinanceInfraCanvasContext } from "./context/finance-infra-canvas-context.ts";
@@ -15,12 +16,19 @@ export type { FinanceInfraCanvasSectionProps } from "./finance-infra-canvas-sect
 export type { FinanceInfraSectionTitleProps } from "./section/finance-infra-section-title.tsx";
 export type { FinanceInfraSectionClientNodesProps } from "./section/finance-infra-section-client-nodes.tsx";
 export type { FinanceInfraSectionCoreLanesProps } from "./section/finance-infra-section-core-lanes.tsx";
-export type { FinanceInfraSectionStreamingConnectorsProps } from "./section/finance-infra-section-streaming-connectors.tsx";
+export type { FinanceInfraSectionCoreRowProps } from "./section/finance-infra-section-core-row.tsx";
+export type { FinanceInfraSectionEdgeLaneProps } from "./section/finance-infra-section-edge-lane.tsx";
 export type { FinanceInfraSectionStreamingChannelsProps } from "./section/finance-infra-section-streaming-channels.tsx";
 export type { FinanceInfraCanvasLaneProps } from "./finance-infra-canvas-lane.tsx";
 export type { FinanceInfraLaneTitleProps } from "./lane/finance-infra-lane-title.tsx";
 export type { FinanceInfraLaneColumnsProps } from "./lane/finance-infra-lane-columns.tsx";
 export type { FinanceInfraLaneColumnProps } from "./lane/finance-infra-lane-column.tsx";
+export type { FinanceInfraLaneExternalProps } from "./lane/finance-infra-lane-external.tsx";
+export type { FinanceInfraCanvasGatewayProps } from "./finance-infra-canvas-gateway.tsx";
+export type { FinanceInfraGatewayTitleProps } from "./gateway/finance-infra-gateway-title.tsx";
+export type { FinanceInfraGatewayBodyProps } from "./gateway/finance-infra-gateway-body.tsx";
+export type { FinanceInfraGatewayNodesProps } from "./gateway/finance-infra-gateway-nodes.tsx";
+export type { FinanceInfraGatewayExternalProps } from "./gateway/finance-infra-gateway-external.tsx";
 export type { FinanceInfraCanvasNodeProps } from "./finance-infra-canvas-node.tsx";
 export type { FinanceInfraNodeIconProps } from "./node/finance-infra-node-icon.tsx";
 export type { FinanceInfraNodeDetailsProps } from "./node/finance-infra-node-details.tsx";

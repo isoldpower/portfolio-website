@@ -12,8 +12,7 @@ const NO_DRAFTS: ChannelDraft[] = [];
 
 const useChannelPlacements = (params: UseChannelDraftsParams): FinanceInfraChannelPlacements => {
     const drafts = useChannelDrafts(params);
-    const sharedColumns = useChannelColumns(drafts?.shared ?? NO_DRAFTS);
-    const dedicatedColumns = useChannelColumns(drafts?.dedicated ?? NO_DRAFTS);
+    const columns = useChannelColumns(drafts?.channels ?? NO_DRAFTS);
 
     const placeColumns = useCallback(() => {
         const placements = new Map<string, FinanceChannelPlacement>();
@@ -23,13 +22,13 @@ const useChannelPlacements = (params: UseChannelDraftsParams): FinanceInfraChann
         }
 
         let offsetX = 0;
-
-        for (const column of [...sharedColumns, ...dedicatedColumns]) {
+        for (const column of columns) {
             for (const draft of column.drafts) {
                 placements.set(draft.channelId, {
                     x: offsetX,
                     y: draft.top - drafts.sectionTop,
-                    inflow: draft.inflow,
+                    direction: draft.direction,
+                    inflow: draft.direction === "top-to-bottom" ? "top" : "bottom",
                 });
             }
 
@@ -37,9 +36,11 @@ const useChannelPlacements = (params: UseChannelDraftsParams): FinanceInfraChann
         }
 
         return placements;
-    }, [drafts, sharedColumns, dedicatedColumns]);
+    }, [drafts, columns]);
 
-    return useMemo(() => placeColumns(), [placeColumns]);
+    return useMemo(() => {
+        return placeColumns();
+    }, [placeColumns]);
 };
 
 export { useChannelPlacements };

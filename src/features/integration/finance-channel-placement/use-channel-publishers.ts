@@ -19,17 +19,16 @@ const useChannelPublishers = ({ channels, connections }: UseChannelPublishersPar
             })
             .map((connection) => connection.from);
     }, [connections]);
+
     const collectPublishers = useCallback(() => {
-        const publishers = new Map<string, string[]>();
-
-        for (const channel of channels) {
-            publishers.set(channel.id, publisherIdsOf(channel));
-        }
-
-        return publishers;
+        return new Map(channels.map((channel) => {
+            return [channel.id, publisherIdsOf(channel)];
+        }));
     }, [channels, publisherIdsOf]);
 
-    return useMemo(() => collectPublishers(), [collectPublishers]);
+    return useMemo(() => {
+        return collectPublishers();
+    }, [collectPublishers]);
 };
 
 export { useChannelPublishers };

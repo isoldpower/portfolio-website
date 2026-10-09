@@ -5,22 +5,17 @@ import type { FinanceInfraStreamingLayout, FinanceTopologyNode } from "@entities
 
 
 const useStreamingLayout = (nodes: FinanceTopologyNode[]): FinanceInfraStreamingLayout => {
-    const connectors = useMemo(() => {
-        return nodes.filter((node) => {
-            return node.type === "connector";
-        });
-    }, [nodes]);
     const topics = useMemo(() => {
         return nodes.filter((node) => {
             return node.type === "topic";
         })
     }, [nodes]);
+
     const channels = useTopicChannels(topics);
 
     return useMemo(() => ({
-        connectors,
         channels
-    }), [connectors, channels]);
+    }), [channels]);
 };
 
 export { useStreamingLayout };

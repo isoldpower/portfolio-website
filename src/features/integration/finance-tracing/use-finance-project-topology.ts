@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { financeTopologyQueryOptions, useFinanceProjectApiClient } from "../api";
-import { withoutTelemetryConnections } from "./lib/topology-filters.ts";
+import { useTelemetryFilter } from "./use-telemetry-filter.ts";
 
 import type { FinanceTopology } from "@entities/integration/model";
 import type { UseQueryResult } from "@tanstack/react-query";
@@ -14,10 +14,13 @@ function useFinanceProjectTopology({
     includeTelemetry = false
 }: UseFinanceProjectTopologyOptions = {}): UseQueryResult<FinanceTopology> {
     const client = useFinanceProjectApiClient();
+    const telemetryFilter = useTelemetryFilter();
 
     return useQuery({
         ...financeTopologyQueryOptions(client),
-        select: includeTelemetry ? undefined : withoutTelemetryConnections,
+        select: includeTelemetry
+            ? undefined
+            : telemetryFilter,
     });
 }
 

@@ -19,7 +19,10 @@ interface UseNodeFocusReturn {
 const useNodeFocus = (connections: FinanceTopologyConnection[]): UseNodeFocusReturn => {
     const [focusedNodeId, setFocusedNodeId] = useState<string | null>(null);
     const focusHandlers = useFocusHandlers(setFocusedNodeId);
-    const neighbourIds = useNeighbourIds({ connections, nodeId: focusedNodeId });
+    const neighbourIds = useNeighbourIds({
+        connections,
+        nodeId: focusedNodeId,
+    });
 
     const nodeEmphasisOf = useCallback((nodeId: string): FinanceInfraEmphasis => {
         if (focusedNodeId === null) {

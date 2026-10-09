@@ -13,16 +13,26 @@ const CoreLane: LaneRenderer = ({ lane }) => {
             </FinanceInfraCanvasLane.Title>
             <FinanceInfraCanvasLane.Columns>
                 <FinanceInfraCanvasLane.Column>
-                    {lane.primary.map((node) => (
+                    {lane.services.map((node) => (
                         <LaneServiceNode key={node.id} node={node} />
                     ))}
                 </FinanceInfraCanvasLane.Column>
                 <FinanceInfraCanvasLane.Column>
-                    {lane.secondary.map((node) => (
+                    {lane.storages.map((node) => (
+                        <LaneServiceNode key={node.id} node={node} />
+                    ))}
+                </FinanceInfraCanvasLane.Column>
+                <FinanceInfraCanvasLane.Column>
+                    {lane.messaging.map((node) => (
                         <LaneServiceNode key={node.id} node={node} />
                     ))}
                 </FinanceInfraCanvasLane.Column>
             </FinanceInfraCanvasLane.Columns>
+            <FinanceInfraCanvasLane.External nodes={lane.external}>
+                {(node) => (
+                    <LaneServiceNode key={node.id} node={node} />
+                )}
+            </FinanceInfraCanvasLane.External>
         </FinanceInfraCanvasLane>
     );
 };

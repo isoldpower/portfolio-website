@@ -15,20 +15,18 @@ interface UseTopicInflowsParams {
 
 const useTopicInflows = ({ channels, placements }: UseTopicInflowsParams): TopicInflowLookup => {
     const collectInflows = useCallback(() => {
-        const inflows = new Map<string, FinanceTopicPortSide>();
+        return new Map(channels.flatMap((channel) => {
+            const inflow: FinanceTopicPortSide = placements.get(channel.id)?.inflow ?? "top";
 
-        for (const channel of channels) {
-            const inflow = placements.get(channel.id)?.inflow ?? "top";
-
-            for (const topic of channel.topics) {
-                inflows.set(topic.id, inflow);
-            }
-        }
-
-        return inflows;
+            return channel.topics.map((topic) => {
+                return [topic.id, inflow] as const;
+            });
+        }));
     }, [channels, placements]);
 
-    return useMemo(() => collectInflows(), [collectInflows]);
+    return useMemo(() => {
+        return collectInflows();
+    }, [collectInflows]);
 };
 
 export { useTopicInflows };

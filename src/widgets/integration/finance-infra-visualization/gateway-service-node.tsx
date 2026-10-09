@@ -3,9 +3,9 @@ import { FinanceInfraCanvasNode } from "@entities/integration/finance-infra";
 import type { NodeRenderer } from "./types.ts";
 
 
-const DataConnectorNode: NodeRenderer = ({ node }) => {
+const GatewayServiceNode: NodeRenderer = ({ node }) => {
     return (
-        <FinanceInfraCanvasNode node={node}>
+        <FinanceInfraCanvasNode node={node} vertical>
             <FinanceInfraCanvasNode.Icon type={node.type} />
             <FinanceInfraCanvasNode.Details>
                 <FinanceInfraCanvasNode.Name>
@@ -20,4 +20,4 @@ const DataConnectorNode: NodeRenderer = ({ node }) => {
 };
 
 
-export { DataConnectorNode };
+export { GatewayServiceNode };

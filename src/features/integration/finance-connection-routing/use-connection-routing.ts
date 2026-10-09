@@ -27,20 +27,24 @@ const useConnectionRouting = ({
     const topicInflows = useTopicInflows({ channels, placements });
 
     const routeConnections = useCallback(() => {
-        const routed: FinanceInfraRoutedConnection[] = [];
-
-        for (const connection of connections) {
+        return connections.flatMap((connection): FinanceInfraRoutedConnection[] => {
             const path = routeConnection(connection, anchors, topicInflows);
 
-            if (path !== null) {
-                routed.push({ key: `${connection.from}->${connection.to}:${connection.kind}`, connection, path });
+            if (path === null) {
+                return [];
             }
-        }
 
-        return routed;
+            return [{
+                key: `${connection.from}->${connection.to}:${connection.kind}`,
+                connection,
+                path
+            }];
+        });
     }, [connections, anchors, topicInflows]);
 
-    return useMemo(() => routeConnections(), [routeConnections]);
+    return useMemo(() => {
+        return routeConnections();
+    }, [routeConnections]);
 };
 
 export { useConnectionRouting };

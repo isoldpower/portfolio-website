@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { STORAGE_TYPES } from "./node-types.ts";
 
 import type {
+    FinanceInfraLaneSlotId,
     FinanceInfraLaneLayout,
     FinanceTopologyGroup,
     FinanceTopologyNode
@@ -11,9 +12,22 @@ import type {
 interface UseCoreLanesParams {
     groups: FinanceTopologyGroup[];
     nodes: FinanceTopologyNode[];
+    kafkaLinkedIds: ReadonlySet<string>;
 }
 
-const useCoreLanes = ({ groups, nodes }: UseCoreLanesParams): FinanceInfraLaneLayout[] => {
+const useCoreLanes = ({ groups, nodes, kafkaLinkedIds }: UseCoreLanesParams): FinanceInfraLaneLayout[] => {
+    const slotOf = useCallback((node: FinanceTopologyNode): FinanceInfraLaneSlotId => {
+        if (node.type === "external") {
+            return "external";
+        } else if (kafkaLinkedIds.has(node.id)) {
+            return "messaging";
+        }
+
+        return STORAGE_TYPES.has(node.type)
+            ? "storages"
+            : "services";
+    }, [kafkaLinkedIds]);
+
     const groupNodes = useCallback(() => {
         const grouped = new Map<string, FinanceTopologyNode[]>();
 
@@ -26,32 +40,38 @@ const useCoreLanes = ({ groups, nodes }: UseCoreLanesParams): FinanceInfraLaneLa
 
         return grouped;
     }, [nodes]);
-    const nodesByGroup = useMemo(() => groupNodes(), [groupNodes]);
+
+    const nodesByGroup = useMemo(() => {
+        return groupNodes();
+    }, [groupNodes]);
+
+    const nodesInSlot = (
+        nodesOfGroup: FinanceTopologyNode[],
+        slot: FinanceInfraLaneSlotId
+    ) => {
+        return nodesOfGroup.filter((node) => {
+            return slotOf(node) === slot;
+        });
+    };
 
     const buildLanes = useCallback(() => {
-        const laneLayouts: FinanceInfraLaneLayout[] = [];
-
-        for (const group of groups) {
+        return groups.flatMap((group): FinanceInfraLaneLayout[] => {
             const nodesOfGroup = nodesByGroup.get(group.id);
 
-            if (nodesOfGroup !== undefined) {
-                laneLayouts.push({
-                    id: group.id,
-                    title: group.name,
-                    primary: nodesOfGroup.filter((node) => {
-                        return !STORAGE_TYPES.has(node.type);
-                    }),
-                    secondary: nodesOfGroup.filter((node) => {
-                        return STORAGE_TYPES.has(node.type);
-                    }),
-                });
-            }
-        }
+            return nodesOfGroup !== undefined ? [{
+                id: group.id,
+                title: group.name,
+                services: nodesInSlot(nodesOfGroup, "services"),
+                storages: nodesInSlot(nodesOfGroup, "storages"),
+                messaging: nodesInSlot(nodesOfGroup, "messaging"),
+                external: nodesInSlot(nodesOfGroup, "external"),
+            }] : [];
+        });
+    }, [groups, nodesByGroup, slotOf]);
 
-        return laneLayouts;
-    }, [groups, nodesByGroup]);
-
-    return useMemo(() => buildLanes(), [buildLanes]);
+    return useMemo(() => {
+        return buildLanes();
+    }, [buildLanes]);
 };
 
 export { useCoreLanes };

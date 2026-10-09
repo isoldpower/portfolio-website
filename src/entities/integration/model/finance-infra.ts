@@ -11,12 +11,16 @@ type FinanceInfraPortSide = "left" | "right" | "top" | "bottom";
 
 type FinanceTopicPortSide = Extract<FinanceInfraPortSide, "top" | "bottom">;
 
-interface FinanceInfraLaneLayout {
+type FinanceTopicDirection = "top-to-bottom" | "bottom-to-top";
+
+type FinanceInfraLaneColumnId = "services" | "storages" | "messaging";
+
+type FinanceInfraLaneSlotId = FinanceInfraLaneColumnId | "external";
+
+type FinanceInfraLaneLayout = {
     id: string;
     title: string;
-    primary: FinanceTopologyNode[];
-    secondary: FinanceTopologyNode[];
-}
+} & Record<FinanceInfraLaneSlotId, FinanceTopologyNode[]>;
 
 interface FinanceTopicChannel {
     id: string;
@@ -25,12 +29,12 @@ interface FinanceTopicChannel {
 }
 
 interface FinanceInfraStreamingLayout {
-    connectors: FinanceTopologyNode[];
     channels: FinanceTopicChannel[];
 }
 
 interface FinanceInfraLayout {
     client: FinanceTopologyNode[];
+    edge: FinanceInfraLaneLayout | undefined;
     core: FinanceInfraLaneLayout[];
     streaming: FinanceInfraStreamingLayout;
 }
@@ -52,6 +56,7 @@ interface FinanceInfraPort {
 interface FinanceChannelPlacement {
     x: number;
     y: number;
+    direction: FinanceTopicDirection;
     inflow: FinanceTopicPortSide;
 }
 
@@ -61,6 +66,9 @@ export type {
     FinanceConnectionTone,
     FinanceInfraPortSide,
     FinanceTopicPortSide,
+    FinanceTopicDirection,
+    FinanceInfraLaneColumnId,
+    FinanceInfraLaneSlotId,
     FinanceInfraLaneLayout,
     FinanceTopicChannel,
     FinanceInfraStreamingLayout,

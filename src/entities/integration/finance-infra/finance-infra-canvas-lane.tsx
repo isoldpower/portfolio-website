@@ -1,9 +1,11 @@
 import { FinanceInfraLaneColumn } from "./lane/finance-infra-lane-column.tsx";
 import { FinanceInfraLaneColumns } from "./lane/finance-infra-lane-columns.tsx";
+import { FinanceInfraLaneExternal } from "./lane/finance-infra-lane-external.tsx";
 import { FinanceInfraLaneTitle } from "./lane/finance-infra-lane-title.tsx";
 
 import type { FinanceInfraLaneColumnProps } from "./lane/finance-infra-lane-column.tsx";
 import type { FinanceInfraLaneColumnsProps } from "./lane/finance-infra-lane-columns.tsx";
+import type { FinanceInfraLaneExternalProps } from "./lane/finance-infra-lane-external.tsx";
 import type { FinanceInfraLaneTitleProps } from "./lane/finance-infra-lane-title.tsx";
 import type { FC, ReactNode } from "react";
 
@@ -16,6 +18,7 @@ type FinanceInfraCanvasLaneObject = FC<FinanceInfraCanvasLaneProps> & {
     Title: FC<FinanceInfraLaneTitleProps>;
     Columns: FC<FinanceInfraLaneColumnsProps>;
     Column: FC<FinanceInfraLaneColumnProps>;
+    External: FC<FinanceInfraLaneExternalProps>;
 };
 
 const FinanceInfraCanvasLane: FinanceInfraCanvasLaneObject = ({ children }) => (
@@ -27,6 +30,7 @@ const FinanceInfraCanvasLane: FinanceInfraCanvasLaneObject = ({ children }) => (
 FinanceInfraCanvasLane.Title = FinanceInfraLaneTitle;
 FinanceInfraCanvasLane.Columns = FinanceInfraLaneColumns;
 FinanceInfraCanvasLane.Column = FinanceInfraLaneColumn;
+FinanceInfraCanvasLane.External = FinanceInfraLaneExternal;
 FinanceInfraCanvasLane.displayName = "FinanceInfraCanvasLane";
 
 export { FinanceInfraCanvasLane };

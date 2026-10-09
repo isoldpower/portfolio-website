@@ -5,6 +5,7 @@ import { useChannelPlacements } from "@features/integration/finance-channel-plac
 import { useConnectionRouting } from "@features/integration/finance-connection-routing";
 import { useAnchorRemeasure, useNodeAnchors } from "@features/integration/finance-node-anchors";
 import { useNodeFocus } from "@features/integration/finance-node-focus";
+import { useNodeInstances } from "@features/integration/finance-node-instances";
 import { usePartitionTopology } from "@features/integration/finance-partition-topology";
 import { useMarkerPrefix } from "@features/integration/finance-topology";
 
@@ -19,16 +20,17 @@ interface FinanceInfraCanvasProviderProps {
 
 const FinanceInfraCanvasProvider: FC<FinanceInfraCanvasProviderProps> = ({ topology, children }) => {
     const markerPrefix = useMarkerPrefix();
-    const layout = usePartitionTopology(topology);
-    const focus = useNodeFocus(topology.connections);
+    const instancedTopology = useNodeInstances(topology);
+    const layout = usePartitionTopology(instancedTopology);
+    const focus = useNodeFocus(instancedTopology.connections);
     const { registry, anchors } = useNodeAnchors();
     const placements = useChannelPlacements({
         streaming: layout.streaming,
-        connections: topology.connections,
+        connections: instancedTopology.connections,
         anchors,
     });
     const routedConnections = useConnectionRouting({
-        connections: topology.connections,
+        connections: instancedTopology.connections,
         channels: layout.streaming.channels,
         anchors,
         placements,

@@ -6,7 +6,7 @@ interface FinanceInfraLaneColumnsProps {
 }
 
 const FinanceInfraLaneColumns: FC<FinanceInfraLaneColumnsProps> = ({ children }) => (
-    <div className="mt-2 grid grid-cols-2 gap-x-12 gap-y-2">
+    <div className="mt-2 grid grid-cols-3 gap-x-10 gap-y-2">
         {children}
     </div>
 );

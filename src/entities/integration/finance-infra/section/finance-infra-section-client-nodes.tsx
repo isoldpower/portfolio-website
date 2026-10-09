@@ -11,7 +11,11 @@ interface FinanceInfraSectionClientNodesProps {
 const FinanceInfraSectionClientNodes: FC<FinanceInfraSectionClientNodesProps> = ({ children }) => {
     const { layout } = useFinanceInfraCanvas();
 
-    return layout.client.map(children);
+    return (
+        <div className="flex flex-1 flex-col justify-center gap-3">
+            {layout.client.map(children)}
+        </div>
+    );
 };
 
 FinanceInfraSectionClientNodes.displayName = "FinanceInfraSectionClientNodes";

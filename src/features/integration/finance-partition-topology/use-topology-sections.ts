@@ -12,8 +12,11 @@ const useTopologySections = (nodes: FinanceTopologyNode[]): UseTopologySectionsR
             return "client";
         }
 
-        return STREAMING_TYPES.has(node.type) ? "streaming" : "core";
+        return STREAMING_TYPES.has(node.type)
+            ? "streaming"
+            : "core";
     }, []);
+
     const splitSections = useCallback(() => {
         const sections: UseTopologySectionsReturn = {
             client: [],
@@ -28,7 +31,9 @@ const useTopologySections = (nodes: FinanceTopologyNode[]): UseTopologySectionsR
         return sections;
     }, [nodes, sectionOf]);
 
-    return useMemo(() => splitSections(), [splitSections]);
+    return useMemo(() => {
+        return splitSections();
+    }, [splitSections]);
 };
 
 export { useTopologySections };

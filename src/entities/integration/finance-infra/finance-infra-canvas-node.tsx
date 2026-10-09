@@ -23,6 +23,7 @@ const EMPHASIS_CLASSES: Record<FinanceInfraEmphasis, string> = {
 interface FinanceInfraCanvasNodeProps {
     node: FinanceTopologyNode;
     children: ReactNode;
+    vertical?: boolean;
 }
 
 type FinanceInfraCanvasNodeObject = FC<FinanceInfraCanvasNodeProps> & {
@@ -32,7 +33,7 @@ type FinanceInfraCanvasNodeObject = FC<FinanceInfraCanvasNodeProps> & {
     Technology: FC<FinanceInfraNodeTechnologyProps>;
 };
 
-const FinanceInfraCanvasNode: FinanceInfraCanvasNodeObject = ({ node, children }) => {
+const FinanceInfraCanvasNode: FinanceInfraCanvasNodeObject = ({ node, children, vertical = false }) => {
     const { emphasis, ...bindings } = useCanvasNode(node.id);
 
     return (
@@ -45,6 +46,7 @@ const FinanceInfraCanvasNode: FinanceInfraCanvasNodeObject = ({ node, children }
                 "relative z-10 flex min-w-0 items-center gap-2 rounded-md border bg-background px-2 py-1.5",
                 "outline-none transition-[opacity,border-color,box-shadow] duration-200",
                 "focus-visible:ring-2 focus-visible:ring-accent/40",
+                vertical && "px-1.5 py-2 [writing-mode:vertical-rl] [&_svg]:rotate-90",
                 EMPHASIS_CLASSES[emphasis]
             )}
             {...bindings}
