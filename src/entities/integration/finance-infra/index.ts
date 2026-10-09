@@ -1,45 +1,31 @@
-export { FinanceInfraShell } from "./ui/finance-infra-shell.tsx";
-export { FinanceInfraSection } from "./ui/finance-infra-section.tsx";
-export { FinanceInfraLane } from "./ui/finance-infra-lane.tsx";
-export { FinanceInfraNode } from "./ui/finance-infra-node.tsx";
-export { FinanceInfraTopic } from "./ui/finance-infra-topic.tsx";
-export { FinanceInfraTopicChannel } from "./ui/finance-infra-topic-channel.tsx";
-export { FinanceInfraEdgeLayer } from "./ui/finance-infra-edge-layer.tsx";
-export { FinanceInfraEdge } from "./ui/finance-infra-edge.tsx";
-export {
-    partitionTopology,
-    sectionOf,
-    isStorage,
-    portOf,
-    portPath,
-    sideFacing,
-    sidesBetween,
-    routeConnection,
-    placeChannels,
-    groupTopicChannels
-} from "./lib";
-export { resolveNodeIcon, resolveConnectionTone } from "./visual-map";
+export { FinanceInfraCanvasShell } from "./finance-infra-canvas-shell.tsx";
+export { FinanceInfraCanvasEdgeLayer } from "./finance-infra-canvas-edge-layer.tsx";
+export { FinanceInfraCanvasEdge } from "./finance-infra-canvas-edge.tsx";
+export { FinanceInfraCanvasSection } from "./finance-infra-canvas-section.tsx";
+export { FinanceInfraCanvasLane } from "./finance-infra-canvas-lane.tsx";
+export { FinanceInfraCanvasNode } from "./finance-infra-canvas-node.tsx";
+export { FinanceInfraCanvasTopicChannel } from "./finance-infra-canvas-topic-channel.tsx";
+export { FinanceInfraCanvasContext } from "./context/finance-infra-canvas-context.ts";
 
-export type { FinanceInfraShellProps } from "./ui/finance-infra-shell.tsx";
-export type { FinanceInfraSectionProps } from "./ui/finance-infra-section.tsx";
-export type { FinanceInfraLaneProps } from "./ui/finance-infra-lane.tsx";
-export type { FinanceInfraNodeProps } from "./ui/finance-infra-node.tsx";
-export type { FinanceInfraTopicProps } from "./ui/finance-infra-topic.tsx";
-export type { FinanceInfraTopicChannelProps } from "./ui/finance-infra-topic-channel.tsx";
-export type { FinanceInfraEdgeLayerProps } from "./ui/finance-infra-edge-layer.tsx";
-export type { FinanceInfraEdgeProps } from "./ui/finance-infra-edge.tsx";
-export type { AnchorLookup, TopicInflowLookup, ChannelPlacementInput } from "./lib";
-export type {
-    FinanceInfraSectionId,
-    FinanceInfraEmphasis,
-    FinanceConnectionTone,
-    FinanceInfraPortSide,
-    FinanceTopicPortSide,
-    FinanceInfraLaneLayout,
-    FinanceTopicChannel,
-    FinanceInfraStreamingLayout,
-    FinanceInfraLayout,
-    FinanceInfraAnchor,
-    FinanceInfraPort,
-    FinanceChannelPlacement
-} from "./model";
+export type { FinanceInfraCanvasShellProps } from "./finance-infra-canvas-shell.tsx";
+export type { FinanceInfraShellColumnProps } from "./shell/finance-infra-shell-column.tsx";
+export type { FinanceInfraCanvasEdgeLayerProps } from "./finance-infra-canvas-edge-layer.tsx";
+export type { FinanceInfraCanvasEdgeProps } from "./finance-infra-canvas-edge.tsx";
+export type { FinanceInfraCanvasSectionProps } from "./finance-infra-canvas-section.tsx";
+export type { FinanceInfraSectionTitleProps } from "./section/finance-infra-section-title.tsx";
+export type { FinanceInfraSectionClientNodesProps } from "./section/finance-infra-section-client-nodes.tsx";
+export type { FinanceInfraSectionCoreLanesProps } from "./section/finance-infra-section-core-lanes.tsx";
+export type { FinanceInfraSectionStreamingConnectorsProps } from "./section/finance-infra-section-streaming-connectors.tsx";
+export type { FinanceInfraSectionStreamingChannelsProps } from "./section/finance-infra-section-streaming-channels.tsx";
+export type { FinanceInfraCanvasLaneProps } from "./finance-infra-canvas-lane.tsx";
+export type { FinanceInfraLaneTitleProps } from "./lane/finance-infra-lane-title.tsx";
+export type { FinanceInfraLaneColumnsProps } from "./lane/finance-infra-lane-columns.tsx";
+export type { FinanceInfraLaneColumnProps } from "./lane/finance-infra-lane-column.tsx";
+export type { FinanceInfraCanvasNodeProps } from "./finance-infra-canvas-node.tsx";
+export type { FinanceInfraNodeIconProps } from "./node/finance-infra-node-icon.tsx";
+export type { FinanceInfraNodeDetailsProps } from "./node/finance-infra-node-details.tsx";
+export type { FinanceInfraNodeNameProps } from "./node/finance-infra-node-name.tsx";
+export type { FinanceInfraNodeTechnologyProps } from "./node/finance-infra-node-technology.tsx";
+export type { FinanceInfraCanvasTopicChannelProps } from "./finance-infra-canvas-topic-channel.tsx";
+export type { FinanceInfraChannelTopicProps } from "./topic-channel/finance-infra-channel-topic.tsx";
+export type { FinanceInfraChannelTopicNameProps } from "./topic-channel/finance-infra-channel-topic-name.tsx";

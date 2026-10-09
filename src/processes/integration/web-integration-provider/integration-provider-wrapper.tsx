@@ -1,26 +1,27 @@
 import { IntegrationRegistryProvider } from "@features/integration/web-integration-registry";
-import { FinanceInfraVisualization } from "@widgets/integration/finance-infra-visualization";
 
-import type { WebProject } from "@entities/project/model";
+import type { ProjectDetails } from "@entities/project/model";
 import type { IntegrationEntries } from "@features/integration/web-integration-registry";
 import type { FC, ReactNode } from "react";
 
 
-const WEB_INTEGRATIONS: IntegrationEntries = {
-    "power-finance": FinanceInfraVisualization,
-};
-
 interface IntegrationProviderWrapperProps {
     children: ReactNode;
-    project: WebProject;
+    project: ProjectDetails;
+    integrations: IntegrationEntries;
 }
 
 const IntegrationProviderWrapper: FC<IntegrationProviderWrapperProps> = ({
     children,
-    project
+    project,
+    integrations,
 }) => {
+    if (project.kind !== 'web') {
+        return null;
+    }
+
     return (
-        <IntegrationRegistryProvider project={project} integrations={WEB_INTEGRATIONS}>
+        <IntegrationRegistryProvider project={project} integrations={integrations}>
             {children}
         </IntegrationRegistryProvider>
     );

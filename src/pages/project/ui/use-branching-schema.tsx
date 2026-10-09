@@ -4,11 +4,9 @@ import {
     ShowcaseTerminalProject,
     ShowcaseWebProject
 } from "@processes/project/project-type-layouts";
-import {
-    IntegrationProviderWrapper
-} from "@processes/integration/web-integration-provider";
 
 import type { BranchingSchema } from "@features/project/project-branching";
+import {WebIntegrationWrapper} from "@features/integration/web-integration-registry";
 
 
 const useBranchingSchema = (): BranchingSchema => {
@@ -24,15 +22,13 @@ const useBranchingSchema = (): BranchingSchema => {
             );
         },
         web: (project) => function WebShowcase({
-            children
+            children,
         }) {
             return (
-                <>
-                    <IntegrationProviderWrapper project={project}>
-                        <ShowcaseWebProject project={project} />
-                    </IntegrationProviderWrapper>
+                <WebIntegrationWrapper>
+                    <ShowcaseWebProject project={project} />
                     {children}
-                </>
+                </WebIntegrationWrapper>
             );
         },
         embedded: (project) => function EmbeddedShowcase({

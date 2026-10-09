@@ -10,7 +10,7 @@
 
 import { Route as rootRouteImport } from './__root'
 import { Route as IndexRouteImport } from './index'
-import { Route as HealthzRouteImport } from './healthz'
+import { Route as serverRoutesHealthzRouteImport } from './(server-routes)/healthz'
 import { Route as ProjectsSlugRouteImport } from './projects.$slug'
 import { Route as serverProxyImagesSplatRouteImport } from './(server-proxy)/images.$'
 import { Route as serverProxyRemoteImagesHostSplatRouteImport } from './(server-proxy)/remote-images.$host.$'
@@ -21,8 +21,8 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HealthzRoute = HealthzRouteImport.update({
-  id: '/healthz',
+const serverRoutesHealthzRoute = serverRoutesHealthzRouteImport.update({
+  id: '/(server-routes)/healthz',
   path: '/healthz',
   getParentRoute: () => rootRouteImport,
 } as any)
@@ -51,7 +51,7 @@ const serverProxyWasmOwnerRepoTagArtifactRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/healthz': typeof HealthzRoute
+  '/healthz': typeof serverRoutesHealthzRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/images/$': typeof serverProxyImagesSplatRoute
   '/remote-images/$host/$': typeof serverProxyRemoteImagesHostSplatRoute
@@ -59,7 +59,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/healthz': typeof HealthzRoute
+  '/healthz': typeof serverRoutesHealthzRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/images/$': typeof serverProxyImagesSplatRoute
   '/remote-images/$host/$': typeof serverProxyRemoteImagesHostSplatRoute
@@ -68,7 +68,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/healthz': typeof HealthzRoute
+  '/(server-routes)/healthz': typeof serverRoutesHealthzRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/(server-proxy)/images/$': typeof serverProxyImagesSplatRoute
   '/(server-proxy)/remote-images/$host/$': typeof serverProxyRemoteImagesHostSplatRoute
@@ -94,7 +94,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/healthz'
+    | '/(server-routes)/healthz'
     | '/projects/$slug'
     | '/(server-proxy)/images/$'
     | '/(server-proxy)/remote-images/$host/$'
@@ -103,7 +103,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  HealthzRoute: typeof HealthzRoute
+  serverRoutesHealthzRoute: typeof serverRoutesHealthzRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
   serverProxyImagesSplatRoute: typeof serverProxyImagesSplatRoute
   serverProxyRemoteImagesHostSplatRoute: typeof serverProxyRemoteImagesHostSplatRoute
@@ -119,11 +119,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/healthz': {
-      id: '/healthz'
+    '/(server-routes)/healthz': {
+      id: '/(server-routes)/healthz'
       path: '/healthz'
       fullPath: '/healthz'
-      preLoaderRoute: typeof HealthzRouteImport
+      preLoaderRoute: typeof serverRoutesHealthzRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/$slug': {
@@ -159,7 +159,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  HealthzRoute: HealthzRoute,
+  serverRoutesHealthzRoute: serverRoutesHealthzRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
   serverProxyImagesSplatRoute: serverProxyImagesSplatRoute,
   serverProxyRemoteImagesHostSplatRoute: serverProxyRemoteImagesHostSplatRoute,
