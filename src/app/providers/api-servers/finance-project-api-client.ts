@@ -1,11 +1,15 @@
 import { FinanceProjectApiClient } from "@features/integration/api";
+import { createAxiosInstance } from "@shared/api";
 
 
 function createFinanceProjectApiClient(envVariables: ImportMetaEnv): FinanceProjectApiClient {
-    return new FinanceProjectApiClient({
+    const sandbox = envVariables.CLIENT_API_SANDBOX;
+    const axiosInstance = createAxiosInstance({
         baseUrl: envVariables.CLIENT_FINANCE_API_BASE_URL,
-        sandbox: envVariables.CLIENT_API_SANDBOX,
+        sandbox,
     });
+
+    return new FinanceProjectApiClient(axiosInstance, { sandbox });
 }
 
 export { createFinanceProjectApiClient };

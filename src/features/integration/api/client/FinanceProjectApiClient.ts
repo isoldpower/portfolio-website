@@ -1,62 +1,44 @@
-import { FinanceProjectApiError } from "./FinanceProjectApiError.ts";
+import { request } from "@shared/api";
+
 import { FinanceTraceStream } from "./FinanceTraceStream.ts";
 import { INTEGRATION_API_PATHS } from "../paths.ts";
-import { SANDBOX_HEADER, SANDBOX_QUERY_PARAM } from '../config.ts';
+import { SANDBOX_QUERY_PARAM, SESSION_QUERY_PARAM } from "../config.ts";
 
+import type { AxiosInstance } from "axios";
 import type { FinanceTopologyDto } from "../types.ts";
 
 
 interface FinanceProjectApiClientOptions {
-    baseUrl: string;
     sandbox?: string;
 }
 
 class FinanceProjectApiClient {
-    readonly #baseUrl: string;
+    readonly #axiosInstance: AxiosInstance;
     readonly #sandbox: string | undefined;
 
-    constructor({ baseUrl, sandbox }: FinanceProjectApiClientOptions) {
-        this.#baseUrl = baseUrl;
+    constructor(axiosInstance: AxiosInstance, { sandbox }: FinanceProjectApiClientOptions = {}) {
+        this.#axiosInstance = axiosInstance;
         this.#sandbox = sandbox === "" ? undefined : sandbox;
     }
 
-    async getTopology(signal?: AbortSignal): Promise<FinanceTopologyDto> {
-        const response = await fetch(
-            this.#urlOf(INTEGRATION_API_PATHS.topology),
-            { signal, headers: this.#headers() }
-        );
-
-        if (!response.ok) {
-            throw new FinanceProjectApiError(
-                INTEGRATION_API_PATHS.topology,
-                response.status
-            );
-        }
-
-        return await response.json() as FinanceTopologyDto;
+    getTopology(signal?: AbortSignal): Promise<FinanceTopologyDto> {
+        return request<FinanceTopologyDto>(this.#axiosInstance, {
+            method: "GET",
+            url: INTEGRATION_API_PATHS.topology,
+            signal,
+        });
     }
 
     streamTraces(session: string, signal?: AbortSignal): FinanceTraceStream {
-        const url = this.#urlOf(INTEGRATION_API_PATHS.stream);
-        url.searchParams.set("session", session);
-
-        if (this.#sandbox !== undefined) {
-            url.searchParams.set(SANDBOX_QUERY_PARAM, this.#sandbox);
-        }
+        const url = new URL(this.#axiosInstance.getUri({
+            url: INTEGRATION_API_PATHS.stream,
+            params: {
+                [SESSION_QUERY_PARAM]: session,
+                [SANDBOX_QUERY_PARAM]: this.#sandbox,
+            },
+        }));
 
         return new FinanceTraceStream(url, session, signal);
-    }
-
-    #headers(): HeadersInit {
-        return this.#sandbox
-            ? { [SANDBOX_HEADER]: this.#sandbox }
-            : {};
-    }
-
-    #urlOf(path: string): URL {
-        return new URL(
-            `${this.#baseUrl.replace(/\/+$/, "")}${path}`
-        );
     }
 }
 

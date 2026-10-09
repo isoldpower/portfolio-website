@@ -1,5 +1,4 @@
 export { FinanceProjectApiClient } from "./client/FinanceProjectApiClient.ts";
-export { FinanceProjectApiError } from "./client/FinanceProjectApiError.ts";
 export { FinanceTraceStream } from "./client/FinanceTraceStream.ts";
 export { FinanceTraceStreamError } from "./client/FinanceTraceStreamError.ts";
 export { FinanceProjectApiContext } from "./context/finance-project-api-context.ts";
