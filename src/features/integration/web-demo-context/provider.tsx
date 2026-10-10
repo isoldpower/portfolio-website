@@ -1,4 +1,6 @@
-import { createContext, useId, useMemo } from "react";
+import { createContext, useMemo, useSyncExternalStore } from "react";
+
+import { demoSessionStore } from "./DemoSessionStore.ts";
 
 import type { FC, ReactNode } from "react";
 import type { DemoContextPayload } from "./types.ts";
@@ -11,11 +13,15 @@ interface DemoContextProviderProps {
 }
 
 const DemoContextProvider: FC<DemoContextProviderProps> = ({ children }) => {
-    const demoId = useId();
+    const demoSession = useSyncExternalStore(
+        demoSessionStore.subscribe,
+        demoSessionStore.getSnapshot,
+        demoSessionStore.getServerSnapshot
+    );
 
     const contextValue = useMemo<DemoContextPayload>(() => ({
-        demoId
-    }), [demoId]);
+        demoSession
+    }), [demoSession]);
 
     return (
         <DemoContext value={contextValue}>

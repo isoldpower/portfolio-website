@@ -11,8 +11,12 @@ function ExternalLinkIcon({ size = 14, className }: IconProps) {
     return <Icons.ArrowUpRight size={size} className={className} aria-hidden />;
 }
 
+function ArrowDownIcon({ size = 14, className }: IconProps) {
+    return <Icons.ArrowDown size={size} className={className} aria-hidden />;
+}
+
 function ChevronRightIcon({ size = 14, className }: IconProps) {
     return <Icons.ChevronRight size={size} className={className} aria-hidden />;
 }
 
-export { BackIcon, ExternalLinkIcon, ChevronRightIcon };
+export { ArrowDownIcon, BackIcon, ExternalLinkIcon, ChevronRightIcon };

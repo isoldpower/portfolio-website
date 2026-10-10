@@ -1,6 +1,9 @@
 export { FinanceInfraCanvasShell } from "./finance-infra-canvas-shell.tsx";
 export { FinanceInfraCanvasEdgeLayer } from "./finance-infra-canvas-edge-layer.tsx";
 export { FinanceInfraCanvasEdge } from "./finance-infra-canvas-edge.tsx";
+export { FinanceInfraCanvasTraceStatus } from "./finance-infra-canvas-trace-status.tsx";
+export { FinanceInfraCanvasTraceSelector } from "./finance-infra-canvas-trace-selector.tsx";
+export { FinanceInfraCanvasTraceDrawer } from "./finance-infra-canvas-trace-drawer.tsx";
 export { FinanceInfraCanvasSection } from "./finance-infra-canvas-section.tsx";
 export { FinanceInfraCanvasLane } from "./finance-infra-canvas-lane.tsx";
 export { FinanceInfraCanvasGateway } from "./finance-infra-canvas-gateway.tsx";
@@ -12,6 +15,18 @@ export type { FinanceInfraCanvasShellProps } from "./finance-infra-canvas-shell.
 export type { FinanceInfraShellColumnProps } from "./shell/finance-infra-shell-column.tsx";
 export type { FinanceInfraCanvasEdgeLayerProps } from "./finance-infra-canvas-edge-layer.tsx";
 export type { FinanceInfraCanvasEdgeProps } from "./finance-infra-canvas-edge.tsx";
+export type { FinanceInfraEdgePayload } from "./edge/finance-infra-edge-context.ts";
+export type { FinanceInfraCanvasTraceStatusProps } from "./finance-infra-canvas-trace-status.tsx";
+export type { FinanceInfraTraceStatusBodyProps } from "./trace-status/finance-infra-trace-status-body.tsx";
+export type { FinanceInfraTraceStatusHeadlineProps } from "./trace-status/finance-infra-trace-status-headline.tsx";
+export type { FinanceInfraCanvasTraceSelectorProps } from "./finance-infra-canvas-trace-selector.tsx";
+export type { FinanceInfraTraceSelectorRowProps } from "./trace-selector/finance-infra-trace-selector-row.tsx";
+export type { FinanceInfraTraceSelectorTracesProps } from "./trace-selector/finance-infra-trace-selector-traces.tsx";
+export type { FinanceInfraTraceSelectorChipProps } from "./trace-selector/finance-infra-trace-selector-chip.tsx";
+export type { FinanceInfraTraceSelectorChipRouteProps } from "./trace-selector/finance-infra-trace-selector-chip-route.tsx";
+export type { FinanceInfraTraceSelectorChipMetaProps } from "./trace-selector/finance-infra-trace-selector-chip-meta.tsx";
+export type { FinanceInfraCanvasTraceDrawerProps } from "./finance-infra-canvas-trace-drawer.tsx";
+export type { FinanceInfraTraceDrawerHintProps } from "./trace-drawer/finance-infra-trace-drawer-hint.tsx";
 export type { FinanceInfraCanvasSectionProps } from "./finance-infra-canvas-section.tsx";
 export type { FinanceInfraSectionTitleProps } from "./section/finance-infra-section-title.tsx";
 export type { FinanceInfraSectionClientNodesProps } from "./section/finance-infra-section-client-nodes.tsx";

@@ -1,15 +1,9 @@
-import type { FinanceDemoSpan } from "@entities/integration/model";
+import type { FinanceTraceRecords } from "../traces";
 
-
-interface FinanceServiceHit {
-    service: string;
-    hitCount: number;
-    lastSpan: FinanceDemoSpan;
-}
 
 interface FinanceTraceStreamSnapshot {
     isOpen: boolean;
-    serviceHits: ReadonlyMap<string, FinanceServiceHit>;
+    traces: FinanceTraceRecords;
 }
 
-export type { FinanceServiceHit, FinanceTraceStreamSnapshot };
+export type { FinanceTraceStreamSnapshot };

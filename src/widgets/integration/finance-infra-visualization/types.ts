@@ -1,5 +1,6 @@
 import type {
     FinanceInfraLaneLayout,
+    FinanceInfraRoutedConnection,
     FinanceTopicChannel,
     FinanceTopologyNode,
 } from "@entities/integration/model";
@@ -25,7 +26,24 @@ interface ChannelRendererProps {
 
 type ChannelRenderer = FC<ChannelRendererProps>;
 
+interface EdgeRendererProps {
+    connection: FinanceInfraRoutedConnection;
+}
+
+type EdgeRenderer = FC<EdgeRendererProps>;
+
+interface TraceDrawerRendererProps {
+    isHidden: boolean;
+    onReveal: () => void;
+}
+
+type TraceDrawerRenderer = FC<TraceDrawerRendererProps>;
+
 export type {
+    EdgeRendererProps,
+    EdgeRenderer,
+    TraceDrawerRendererProps,
+    TraceDrawerRenderer,
     NodeRendererProps,
     NodeRenderer,
     LaneRendererProps,

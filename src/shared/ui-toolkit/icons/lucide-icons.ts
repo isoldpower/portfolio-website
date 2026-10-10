@@ -5,6 +5,7 @@
 import {
     Activity,
     AlertTriangle,
+    ArrowDown,
     ArrowLeft,
     ArrowUpRight,
     BookLock,
@@ -35,6 +36,7 @@ import type { LucideProps } from "lucide-react";
 const Icons = {
     Activity,
     AlertTriangle,
+    ArrowDown,
     ArrowLeft,
     ArrowUpRight,
     BookLock,

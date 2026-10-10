@@ -1,4 +1,5 @@
 import { mapFinanceSpan } from "../mappers.ts";
+import { appendTraceSpan, retainTraceRecords } from "../traces";
 
 import type { FinanceTraceEventDto } from "../types.ts";
 import type { FinanceTraceStreamSnapshot } from "./types.ts";
@@ -6,7 +7,7 @@ import type { FinanceTraceStreamSnapshot } from "./types.ts";
 
 const INITIAL_TRACE_STREAM: FinanceTraceStreamSnapshot = {
     isOpen: false,
-    serviceHits: new Map(),
+    traces: new Map(),
 };
 
 function reduceTraceEvent(
@@ -14,20 +15,20 @@ function reduceTraceEvent(
     event: FinanceTraceEventDto
 ): FinanceTraceStreamSnapshot {
     if (event.type === "open") {
-        return snapshot.isOpen ? snapshot : { ...snapshot, isOpen: true };
+        return snapshot.isOpen
+            ? snapshot
+            : { ...snapshot, isOpen: true };
     }
 
     const span = mapFinanceSpan(event.span);
-    const previousHit = snapshot.serviceHits.get(span.service);
-    const serviceHits = new Map(snapshot.serviceHits);
+    const traces = new Map(snapshot.traces);
+    const record = appendTraceSpan(traces.get(span.traceId), span);
 
-    serviceHits.set(span.service, {
-        service: span.service,
-        hitCount: (previousHit?.hitCount ?? 0) + 1,
-        lastSpan: span,
-    });
+    traces.delete(span.traceId);
+    traces.set(span.traceId, record);
+    retainTraceRecords(traces);
 
-    return { ...snapshot, serviceHits };
+    return { ...snapshot, traces };
 }
 
 export { INITIAL_TRACE_STREAM, reduceTraceEvent };

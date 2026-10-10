@@ -1,44 +1,53 @@
-import { markerIdOf, resolveConnectionTone, resolveToneColorClass } from "@entities/integration/visual-map";
-import { cn } from "@shared/lib/utilities";
+import { useMemo } from "react";
+
+import { resolveConnectionTone, resolveToneColorClass } from "@entities/integration/visual-map";
 
 import { useFinanceInfraCanvas } from "./context/use-finance-infra-canvas.ts";
+import { FinanceInfraEdgeContext } from "./edge/finance-infra-edge-context.ts";
+import { FinanceInfraEdgePath } from "./edge/finance-infra-edge-path.tsx";
+import { FinanceInfraEdgePulse } from "./edge/finance-infra-edge-pulse.tsx";
 
-import type { FinanceInfraEmphasis, FinanceInfraRoutedConnection } from "@entities/integration/model";
-import type { FC } from "react";
+import type { FinanceInfraEdgePayload } from "./edge/finance-infra-edge-context.ts";
+import type { FinanceInfraRoutedConnection } from "@entities/integration/model";
+import type { FC, ReactNode } from "react";
 
-
-const EMPHASIS_CLASSES: Record<FinanceInfraEmphasis, string> = {
-    default: "opacity-35",
-    active: "opacity-100",
-    muted: "opacity-[0.07]",
-};
 
 interface FinanceInfraCanvasEdgeProps {
     connection: FinanceInfraRoutedConnection;
+    children: ReactNode;
 }
 
-const FinanceInfraCanvasEdge: FC<FinanceInfraCanvasEdgeProps> = ({ connection }) => {
-    const { markerPrefix, connectionEmphasisOf } = useFinanceInfraCanvas();
-    const { kind } = connection.connection;
-    const tone = resolveConnectionTone(kind);
+type FinanceInfraCanvasEdgeObject = FC<FinanceInfraCanvasEdgeProps> & {
+    Path: FC;
+    Pulse: FC;
+};
+
+const FinanceInfraCanvasEdge: FinanceInfraCanvasEdgeObject = ({ connection, children }) => {
+    const { markerPrefix, connectionEmphasisOf, connectionPulseOf } = useFinanceInfraCanvas();
+    const tone = resolveConnectionTone(connection.connection.kind);
     const emphasis = connectionEmphasisOf(connection.connection);
+    const pulse = connectionPulseOf(connection.connection);
+
+    const edgeContext = useMemo<FinanceInfraEdgePayload>(() => ({
+        connection,
+        tone,
+        emphasis,
+        pulse,
+        markerPrefix,
+    }), [connection, tone, emphasis, pulse, markerPrefix]);
 
     return (
-        <path
-            d={connection.path}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={emphasis === "active" ? 1.75 : 1.25}
-            strokeDasharray={kind === "cdc" || kind === "push" ? "4 3" : undefined}
-            markerEnd={`url(#${markerIdOf(markerPrefix, tone)})`}
-            className={cn(
-                "transition-opacity duration-200",
-                resolveToneColorClass(tone),
-                EMPHASIS_CLASSES[emphasis]
-            )}
-        />
+        <FinanceInfraEdgeContext value={edgeContext}>
+            <g className={resolveToneColorClass(tone)}>
+                {children}
+            </g>
+        </FinanceInfraEdgeContext>
     );
 };
+
+FinanceInfraCanvasEdge.Path = FinanceInfraEdgePath;
+FinanceInfraCanvasEdge.Pulse = FinanceInfraEdgePulse;
+FinanceInfraCanvasEdge.displayName = "FinanceInfraCanvasEdge";
 
 export { FinanceInfraCanvasEdge };
 export type { FinanceInfraCanvasEdgeProps };

@@ -37,4 +37,12 @@ export type {
     FinanceInfraFocusHandlers,
     FinanceInfraCanvasPayload
 } from "./finance-infra-canvas.ts";
+export type {
+    FinanceTraceKind,
+    FinanceTraceStatus,
+    FinanceRequestHop,
+    FinanceTraceSummary,
+    FinanceRequestFlow,
+    FinanceInfraEdgePulse
+} from "./request-flow.ts";
 export { STREAMING_SECTION_ANCHOR } from "./constants.ts";

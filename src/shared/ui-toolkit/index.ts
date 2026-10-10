@@ -1,4 +1,4 @@
 export * from "./typography";
 export * from "./icons";
 export * from "./default-fx";
-export * from './terminal';
+export * from './terminal';export * from "./disclosure";

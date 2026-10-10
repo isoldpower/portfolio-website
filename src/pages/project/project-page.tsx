@@ -18,7 +18,7 @@ const ProjectPage: ClientLayoutPage<ProjectPageData> = ({
                 <aside className="flex-1/4 border-r-2 h-dvh sticky left-0 top-0 bottom-0 border-gray-300">
                     This is sidebar
                 </aside>
-                <section className="flex-3/4 p-4">
+                <section className="flex-3/4 min-w-0 p-4">
                     <BranchByType
                         project={project}
                         schema={branching}

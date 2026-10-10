@@ -16,4 +16,5 @@ export type {
     FinanceTraceEventDto
 } from "./types.ts";
 export type { FinanceProjectApiClientOptions } from "./client/FinanceProjectApiClient.ts";
-export type { FinanceServiceHit, FinanceTraceStreamSnapshot } from "./queries/types.ts";
+export type { FinanceTraceStreamSnapshot } from "./queries/types.ts";
+export type { FinanceTraceRecord, FinanceTraceRecords } from "./traces";

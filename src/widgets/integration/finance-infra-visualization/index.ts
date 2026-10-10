@@ -4,3 +4,7 @@ export { EdgeLane } from './edge-lane.tsx';
 export { GatewayServiceNode } from './gateway-service-node.tsx';
 export { LaneServiceNode } from './lane-service-node.tsx';
 export { WebClientTopologyNode } from './web-client-node.tsx';
+export { FlowEdge } from './flow-edge.tsx';
+export { TraceDrawerBar } from './trace-drawer-bar.tsx';
+export { TraceSelectorBar } from './trace-selector-bar.tsx';
+export { TraceStatusLine } from './trace-status-line.tsx';

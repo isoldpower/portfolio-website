@@ -4,3 +4,4 @@ export { markerIdOf } from "./marker-id.ts";
 export { routeConnection } from "./route-connection.ts";
 
 export type { AnchorLookup, TopicInflowLookup } from "./route-connection.ts";
+export { resolveTraceStatusDotClass } from "./trace-status-tone.ts";

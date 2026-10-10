@@ -19,7 +19,7 @@ function useIntegratedUrl<T extends object>({
         }
 
         return sourceUrl.toString();
-    }, [params]);
+    }, [url, params]);
 }
 
 export { useIntegratedUrl };

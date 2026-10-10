@@ -1,4 +1,5 @@
 import type { FinanceChannelPlacement, FinanceInfraEmphasis, FinanceInfraLayout } from "./finance-infra.ts";
+import type { FinanceInfraEdgePulse, FinanceRequestFlow } from "./request-flow.ts";
 import type { FinanceTopologyConnection } from "./types.ts";
 import type { FocusEventHandler, PointerEventHandler, RefCallback } from "react";
 
@@ -29,6 +30,8 @@ interface FinanceInfraCanvasPayload {
     focusHandlers: FinanceInfraFocusHandlers;
     nodeEmphasisOf: (nodeId: string) => FinanceInfraEmphasis;
     connectionEmphasisOf: (connection: FinanceTopologyConnection) => FinanceInfraEmphasis;
+    connectionPulseOf: (connection: FinanceTopologyConnection) => FinanceInfraEdgePulse | null;
+    flow: FinanceRequestFlow;
     markerPrefix: string;
     placements: FinanceInfraChannelPlacements;
     routedConnections: FinanceInfraRoutedConnection[];

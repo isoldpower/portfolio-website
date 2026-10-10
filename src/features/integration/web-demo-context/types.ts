@@ -1,5 +1,5 @@
 interface DemoContextPayload {
-    demoId: string;
+    demoSession: string | null;
 }
 
 export type { DemoContextPayload };
