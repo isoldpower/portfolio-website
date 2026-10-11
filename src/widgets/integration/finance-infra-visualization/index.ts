@@ -8,3 +8,4 @@ export { FlowEdge } from './flow-edge.tsx';
 export { TraceDrawerBar } from './trace-drawer-bar.tsx';
 export { TraceSelectorBar } from './trace-selector-bar.tsx';
 export { TraceStatusLine } from './trace-status-line.tsx';
+export { TraceDeliveryNote } from './trace-delivery-note.tsx';

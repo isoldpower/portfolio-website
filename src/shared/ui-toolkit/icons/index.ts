@@ -1,6 +1,6 @@
 export { Icons } from "./lucide-icons.ts";
 export { ArrowDownIcon, BackIcon, ExternalLinkIcon, ChevronRightIcon } from "./ui/navigation-icons.tsx";
-export { CheckIcon, CopyIcon, LockIcon, AlertIcon } from "./ui/status-icons.tsx";
+export { CheckIcon, CopyIcon, LockIcon, AlertIcon, InfoIcon } from "./ui/status-icons.tsx";
 export { TerminalIcon, GlobeIcon, ChipIcon, PlayIcon } from "./ui/media-icons.tsx";
 export { GithubIcon } from "./ui/github-icon.tsx";
 export { ImageIcon } from "./ui/image-icon.tsx";

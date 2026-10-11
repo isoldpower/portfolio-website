@@ -1,3 +1,14 @@
 const DEMO_SESSION_FRAME_PARAM = "demo_session";
 
-export { DEMO_SESSION_FRAME_PARAM };
+const DEMO_SESSION_STORAGE_KEY = "portfolio:demo-session";
+
+const DEMO_SESSION_TTL_MS = 24 * 60 * 60 * 1000;
+
+const DEMO_SESSION_ID_PATTERN = /^[A-Za-z0-9_-]{16,64}$/;
+
+export {
+    DEMO_SESSION_FRAME_PARAM,
+    DEMO_SESSION_ID_PATTERN,
+    DEMO_SESSION_STORAGE_KEY,
+    DEMO_SESSION_TTL_MS,
+};

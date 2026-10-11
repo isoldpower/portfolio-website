@@ -13,6 +13,7 @@ import {
     DataChannelNode,
     EdgeLane,
     FlowEdge,
+    TraceDeliveryNote,
     TraceDrawerBar,
     TraceSelectorBar,
     TraceStatusLine,
@@ -36,9 +37,12 @@ const FinanceInfraVisualization: FC<PropsWithChildren> = ({
                 {(protectedTopology) => (
                     <FinanceInfraCanvasProvider topology={protectedTopology}>
                         <Disclosure ref={panelRef} className="mt-4">
-                            <Disclosure.Trigger ref={triggerRef}>
-                                <TraceStatusLine />
-                            </Disclosure.Trigger>
+                            <Disclosure.Header>
+                                <Disclosure.Trigger ref={triggerRef}>
+                                    <TraceStatusLine />
+                                </Disclosure.Trigger>
+                                <TraceDeliveryNote />
+                            </Disclosure.Header>
                             <Disclosure.Content>
                                 <TraceSelectorBar />
                                 <FinanceInfraCanvasShell>

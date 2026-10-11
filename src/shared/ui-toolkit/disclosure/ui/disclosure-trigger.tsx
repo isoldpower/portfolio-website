@@ -13,7 +13,7 @@ const DisclosureTrigger: FC<DisclosureTriggerProps> = ({ className, children, ..
     return (
         <Collapsible.Trigger
             className={cn(
-                "group flex w-full cursor-pointer items-center justify-between gap-3 px-4 py-3 text-left",
+                "group flex w-full min-w-0 cursor-pointer items-center justify-between gap-3 px-4 py-3 text-left",
                 "rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-accent/40",
                 className
             )}
