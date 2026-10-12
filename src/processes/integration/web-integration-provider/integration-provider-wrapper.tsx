@@ -17,7 +17,7 @@ const IntegrationProviderWrapper: FC<IntegrationProviderWrapperProps> = ({
     integrations,
 }) => {
     if (project.kind !== 'web') {
-        return null;
+        return children;
     }
 
     return (
