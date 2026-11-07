@@ -2,6 +2,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { useRouteContext } from "@tanstack/react-router";
 
 import { ApiProvider } from "./api-provider.tsx";
+import { InternationalizationProvider } from "./i18n";
 
 import type { PropsWithChildren } from "react";
 
@@ -9,14 +10,16 @@ import type { PropsWithChildren } from "react";
 function WebsiteProviders({
     children
 }: PropsWithChildren<object>) {
-    const { apiServers, queryClient } = useRouteContext({ from: "__root__" });
+    const { apiServers, queryClient, locale } = useRouteContext({ from: "__root__" });
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <ApiProvider servers={apiServers}>
-                {children}
-            </ApiProvider>
-        </QueryClientProvider>
+        <InternationalizationProvider locale={locale}>
+            <QueryClientProvider client={queryClient}>
+                <ApiProvider servers={apiServers}>
+                    {children}
+                </ApiProvider>
+            </QueryClientProvider>
+        </InternationalizationProvider>
     );
 }
 

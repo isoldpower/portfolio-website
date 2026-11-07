@@ -13,7 +13,7 @@ const HomePage: ClientLayoutPage<HomePageData> = ({
     return (
         <>
             <PageTitle className="mb-4">
-                Projects
+                _t(home.projects_list)
             </PageTitle>
             <ProtectEmptyPreviews previews={projects}>
                 <UnorderedList className="grid grid-cols-3 gap-4">

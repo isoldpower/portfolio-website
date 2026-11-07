@@ -1,11 +1,16 @@
+import { SiteHeader } from "@widgets/site/site-header";
+
 import type { PropsWithChildren } from "react";
 
 
 function GlobalLayout({ children }: Readonly<PropsWithChildren<object>>) {
     return (
-        <main>
-            {children}
-        </main>
+        <>
+            <SiteHeader />
+            <main>
+                {children}
+            </main>
+        </>
     );
 }
 

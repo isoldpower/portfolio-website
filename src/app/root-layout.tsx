@@ -1,4 +1,4 @@
-import { HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import { HeadContent, Outlet, Scripts, useRouteContext } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import { GlobalLayout } from "./global-layout.tsx";
@@ -8,8 +8,10 @@ import type { PropsWithChildren } from "react";
 
 
 function RootDocument({ children }: Readonly<PropsWithChildren<object>>) {
+    const { locale } = useRouteContext({ from: "__root__" });
+
     return (
-        <html>
+        <html lang={locale}>
         <head>
             <HeadContent />
         </head>

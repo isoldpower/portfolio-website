@@ -1,9 +1,9 @@
 import { createElement } from "react";
-
+import { useTranslatedChildren } from "@shared/lib/hooks";
 import { cn } from "@shared/lib/utilities";
-
 import { textClass } from "../variants";
 
+import type { UseTranslatedChildrenParams } from "@shared/lib/hooks";
 import type { TextClassOptions } from "../variants";
 import type { HTMLAttributes } from "react";
 
@@ -29,6 +29,7 @@ type TextProps = HTMLAttributes<HTMLElement> & TextClassOptions & {
     as?: TextElement;
     htmlFor?: string;
     dateTime?: string;
+    values?: UseTranslatedChildrenParams["values"];
 };
 
 function Text({
@@ -43,8 +44,11 @@ function Text({
     truncate,
     className,
     children,
+    values,
     ...props
 }: TextProps) {
+    const translatedChildren = useTranslatedChildren({ children, values });
+
     return createElement(
         as,
         {
@@ -54,7 +58,7 @@ function Text({
             ),
             ...props,
         },
-        children
+        translatedChildren
     );
 }
 

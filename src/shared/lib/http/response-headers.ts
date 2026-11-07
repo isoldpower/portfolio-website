@@ -2,6 +2,7 @@ type ResponseHeaders = Record<string, string>;
 
 const PAGE_CACHE_HEADERS: ResponseHeaders = {
     "Cache-Control": "public, max-age=0, s-maxage=60, stale-while-revalidate=600",
+    "Vary": "Cookie, Accept-Language",
 };
 
 const CROSS_ORIGIN_ISOLATION_HEADERS: ResponseHeaders = {

@@ -1,10 +1,11 @@
 import { createRootRouteWithContext } from "@tanstack/react-router";
 
+import { resolveLocale } from "@app/providers/i18n";
+import { RootLayout } from "@app/root-layout.tsx";
 import mainCss from "@app/style/globals.css?url";
+import { TRANSLATION_RESOURCES } from "@shared/lib/i18n";
 
-import { RootLayout } from "../root-layout.tsx";
-
-import type { RouterContext } from "../router-context.ts";
+import type { RouterContext } from "@app/router-context.ts";
 
 
 const fontsCss = "https://fonts.googleapis.com/css2"
@@ -16,11 +17,14 @@ const fontsCss = "https://fonts.googleapis.com/css2"
 
 export const Route = createRootRouteWithContext<RouterContext>()({
     component: RootLayout,
-    head: () => ({
+    beforeLoad: () => ({
+        locale: resolveLocale()
+    }),
+    head: ({ match }) => ({
         meta: [
             { charSet: "utf-8" },
             { name: "viewport", content: "width=device-width, initial-scale=1" },
-            { title: "Portfolio" },
+            { title: TRANSLATION_RESOURCES[match.context.locale].translation.meta.title },
         ],
         links: [
             { rel: "preconnect", href: "https://fonts.googleapis.com" },
