@@ -18,7 +18,7 @@ const useAsciiLayout = (grid: AsciiGrid | null, cell: number): UseAsciiLayoutRet
 
     const createCells = useCallback(({ columns, rows, width, height }: AsciiGrid): AsciiCell[] => {
         const sampleWidth = columns * SUPERSAMPLE;
-        const originX = (width - columns * cell) / 2 + cell / 2;
+        const originX = width - columns * cell + cell / 2;
         const originY = (height - rows * cell) / 2 + cell / 2;
         const columnIndices = Array.from({ length: columns }, (_, index) => {
             return index;

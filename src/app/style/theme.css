@@ -1,5 +1,6 @@
 @theme {
     --breakpoint-*: initial;
+    --breakpoint-sm: 40rem;
     --breakpoint-md: 50.625rem;
     --breakpoint-lg: 75rem;
 
@@ -12,9 +13,9 @@
     --color-background: #161a22;
     --color-surface: #141d2f;
     --color-surface-raised: #1b2435;
-    --color-foreground: #7b8cb0;
-    --color-muted: color-mix(in srgb, #7b8cb0 70%, transparent);
-    --color-subtle: color-mix(in srgb, #7b8cb0 55%, transparent);
+    --color-foreground: #94a7cf;
+    --color-muted: color-mix(in srgb, #94a7cf 70%, transparent);
+    --color-subtle: color-mix(in srgb, #94a7cf 55%, transparent);
     --color-accent: #6699ff;
     --color-highlight: #78a5ff;
     --color-external: #9fbaff;
@@ -31,7 +32,7 @@
     --spacing-margin: var(--media-margin);
     --spacing-header: 50px;
 
-    --text-shadow-hero: -0.01em 0.01em 0 #333dad, -0.02em 0.02em 0 #333dad, -0.03em 0.03em 0 #333dad, -0.04em 0.04em 0 #333dad, -0.05em 0.05em 0 #333dad, 0 0 8px #6699ff;
+    --text-shadow-hero: -1px 1px 0 #333dad, -2px 2px 0 #333dad, -3px 3px 0 #333dad, -4px 4px 0 #333dad, -5px 5px 0 #333dad, -6px 6px 0 #333dad, 0 0 24px rgba(102, 153, 255, 0.45);
     --text-shadow-glow: 0 0 8px #6699ff;
     --text-shadow-nav: -1px 0 2px #4a58f8;
     --text-shadow-soft: 0 0 10px rgba(102, 153, 255, 0.45);
@@ -88,6 +89,7 @@
     }
 
     html {
+        overflow-x: clip;
         scroll-behavior: smooth;
         scroll-padding-top: calc(var(--spacing-header) + 1.5rem);
     }

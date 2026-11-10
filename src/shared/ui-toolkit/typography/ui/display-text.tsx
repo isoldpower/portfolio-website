@@ -21,7 +21,6 @@ function DisplayText({
             as={as}
             family="display"
             size={size}
-            weight="extrabold"
             tone={tone}
             className={cn("text-shadow-hero", className)}
             {...props}

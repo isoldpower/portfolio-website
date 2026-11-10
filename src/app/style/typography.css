@@ -1,7 +1,8 @@
 @theme {
     --font-sans: "Onest", ui-sans-serif, system-ui, sans-serif;
     --font-mono: "IBM Plex Mono", Consolas, ui-monospace, monospace;
-    --font-display: "JetBrains Mono", ui-monospace, monospace;
+    --font-display: "Noto Sans Mono", ui-monospace, monospace;
+    --font-display--font-variation-settings: "wdth" 68;
 
     --text-2xs: 0.625rem;
     --text-2xs--line-height: 1.4;
@@ -27,9 +28,9 @@
     --text-5xl--line-height: 1.05;
 
     --text-hero: 7.375rem;
-    --text-hero--line-height: 0.77;
-    --text-hero--letter-spacing: -0.05em;
-    --text-hero--font-weight: 800;
+    --text-hero--line-height: 0.74;
+    --text-hero--letter-spacing: -0.01em;
+    --text-hero--font-weight: 520;
 
     --tracking-arcade: 0.25em;
 }

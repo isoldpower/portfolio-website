@@ -11,6 +11,20 @@ const en = {
         portfolio: "portfolio",
         contacts: "contacts",
     },
+    hero: {
+        kicker: "[ whoami ]",
+        first_name: "NIKITA",
+        last_name: "LAPIN",
+        roles: {
+            backend: "Backend Developer",
+            frontend: "Frontend Developer",
+            fullstack: "Fullstack Developer",
+        },
+        view_projects: "[[view_projects]]",
+        get_in_touch: "[[get_in_touch]]",
+        note_label: "// NOTE:",
+        note: "rabbit drawn in + $ @",
+    },
     locale: {
         en: "English",
         ru: "Русский",

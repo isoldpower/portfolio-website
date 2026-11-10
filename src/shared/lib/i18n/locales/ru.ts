@@ -14,6 +14,20 @@ const ru: Translation = {
         portfolio: "портфолио",
         contacts: "контакты",
     },
+    hero: {
+        kicker: "[ whoami ]",
+        first_name: "NIKITA",
+        last_name: "LAPIN",
+        roles: {
+            backend: "Backend-разработчик",
+            frontend: "Frontend-разработчик",
+            fullstack: "Fullstack-разработчик",
+        },
+        view_projects: "[[view_projects]]",
+        get_in_touch: "[[get_in_touch]]",
+        note_label: "// NOTE:",
+        note: "кролик нарисован символами + $ @",
+    },
     locale: {
         en: "English",
         ru: "Русский",

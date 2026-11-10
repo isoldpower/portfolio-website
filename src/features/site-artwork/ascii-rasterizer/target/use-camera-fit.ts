@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { Box3, Vector3 } from "three";
 
-import { SWAY_MARGIN } from "../constants.ts";
+import { RIGHT_PADDING, SWAY_MARGIN } from "../constants.ts";
 
 import type { AsciiGrid, AsciiTarget } from "../types.ts";
 import type { Object3D, OrthographicCamera } from "three";
@@ -59,9 +59,9 @@ const useCameraFit = (): UseCameraFitReturn => {
         camera: OrthographicCamera,
         { width, height }: ViewSize
     ) => {
-        const { center } = scratch;
-        camera.left = center.x - width / 2;
-        camera.right = center.x + width / 2;
+        const { bounds, size, center } = scratch;
+        camera.right = bounds.max.x + size.x * RIGHT_PADDING;
+        camera.left = camera.right - width;
         camera.top = center.y + height / 2;
         camera.bottom = center.y - height / 2;
         camera.updateProjectionMatrix();

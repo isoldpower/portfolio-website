@@ -10,8 +10,8 @@ import type { RouterContext } from "@app/router-context.ts";
 
 const fontsCss = "https://fonts.googleapis.com/css2"
     + "?family=Onest:wght@400;500;600;700;800"
-    + "&family=IBM+Plex+Mono:wght@400;700"
-    + "&family=JetBrains+Mono:wght@800"
+    + "&family=IBM+Plex+Mono:wght@400;600;700"
+    + "&family=Noto+Sans+Mono:wdth,wght@62.5..100,100..900"
     + "&display=swap";
 
 
