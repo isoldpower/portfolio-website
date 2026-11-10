@@ -1,6 +1,6 @@
-import { BranchByType } from "@features/project/project-branching";
-import { ProvidersWrapper } from "./ui/providers-wrapper.tsx";
-import { useBranchingSchema } from "./ui/use-branching-schema.tsx";
+import { BranchByType } from "@features/projects/project-branching";
+import { ProvidersWrapper } from "./wrappers/providers-wrapper.tsx";
+import { useBranchingSchema } from "./wrappers/use-branching-schema.tsx";
 import { WEB_INTEGRATIONS } from "./integrations-list.ts";
 
 import type { ClientLayoutPage } from "@shared/lib/types";

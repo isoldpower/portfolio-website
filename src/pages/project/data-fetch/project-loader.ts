@@ -1,9 +1,9 @@
 import { notFound } from "@tanstack/react-router";
 
-import { getProjectBySlug, mapProjectDetails } from "@features/project/api";
+import { getProjectBySlug, mapProjectDetails } from "@features/projects/api";
 
 import type { ProjectPageData } from "../types.ts";
-import type { ProjectApiServers } from "@features/project/api";
+import type { ProjectApiServers } from "@features/projects/api";
 
 
 interface ProjectLoaderParams {

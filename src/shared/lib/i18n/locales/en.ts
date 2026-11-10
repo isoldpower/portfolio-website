@@ -5,6 +5,12 @@ const en = {
     home: {
         projects_list: "Projects"
     },
+    navigation: {
+        about: "about",
+        experience: "experience",
+        portfolio: "portfolio",
+        contacts: "contacts",
+    },
     locale: {
         en: "English",
         ru: "Русский",

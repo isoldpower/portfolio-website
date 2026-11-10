@@ -44,14 +44,14 @@ if (EMSCRIPTEN)
 endif()
 ```
 
-| Option | Why |
-|---|---|
-| `MODULARIZE` + `EXPORT_ES6` | The adapter `import()`s the script and calls its default export with its own options. |
+| Option                          | Why                                                                                                                                          |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| `MODULARIZE` + `EXPORT_ES6`     | The adapter `import()`s the script and calls its default export with its own options.                                                        |
 | `-pthread` + `PROXY_TO_PTHREAD` | `main` runs on a worker, so a blocking event loop never freezes the page. Requires cross-origin isolation (see [4](#4-serve-the-artifacts)). |
-| `ENVIRONMENT=web,worker` | The main script is also the pthread worker script. |
-| `EXIT_RUNTIME` | `onExit` fires when `main` returns, so the terminal can say the program finished. |
-| `EXPORTED_RUNTIME_METHODS` | `FS` is required by every adapter; add `TTY` for the `ncurses` runtime. |
-| `EXPORTED_FUNCTIONS` | `_main`, plus whatever the runtime needs (`_ftxui_on_resize` for FTXUI). |
+| `ENVIRONMENT=web,worker`        | The main script is also the pthread worker script.                                                                                           |
+| `EXIT_RUNTIME`                  | `onExit` fires when `main` returns, so the terminal can say the program finished.                                                            |
+| `EXPORTED_RUNTIME_METHODS`      | `FS` is required by every adapter; add `TTY` for the `ncurses` runtime.                                                                      |
+| `EXPORTED_FUNCTIONS`            | `_main`, plus whatever the runtime needs (`_ftxui_on_resize` for FTXUI).                                                                     |
 
 Build it with the Emscripten toolchain:
 

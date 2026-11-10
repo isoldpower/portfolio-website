@@ -1,4 +1,4 @@
-import type { ProjectPreview } from "@entities/project/model";
+import type { ProjectPreview } from "@entities/projects/model";
 
 
 interface HomePageData {

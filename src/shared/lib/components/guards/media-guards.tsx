@@ -4,13 +4,12 @@ import { useCallback } from "react";
 import type { HTMLAttributes } from "react";
 
 
-type ScreenKind = "mobile" | "tablet" | "laptop" | "desktop";
+type ScreenKind = "mobile" | "tablet" | "desktop";
 
 const HIDDEN_ON_SCREEN: Record<ScreenKind, string> = {
     mobile: "max-md:hidden",
     tablet: "md:max-lg:hidden",
-    laptop: "lg:max-xl:hidden",
-    desktop: "xl:hidden",
+    desktop: "lg:hidden",
 };
 
 interface MediaGuardProps extends HTMLAttributes<HTMLDivElement> {
@@ -46,10 +45,6 @@ function TabletOnly(props: ScreenGuardProps) {
     return <MediaGuard screens={["tablet"]} {...props} />;
 }
 
-function LaptopOnly(props: ScreenGuardProps) {
-    return <MediaGuard screens={["laptop"]} {...props} />;
-}
-
 function DesktopOnly(props: ScreenGuardProps) {
     return <MediaGuard screens={["desktop"]} {...props} />;
 }
@@ -59,14 +54,13 @@ function HandheldOnly(props: ScreenGuardProps) {
 }
 
 function ComputerOnly(props: ScreenGuardProps) {
-    return <MediaGuard screens={["laptop", "desktop"]} {...props} />;
+    return <MediaGuard screens={["desktop"]} {...props} />;
 }
 
 export {
     MediaGuard,
     MobileOnly,
     TabletOnly,
-    LaptopOnly,
     DesktopOnly,
     HandheldOnly,
     ComputerOnly

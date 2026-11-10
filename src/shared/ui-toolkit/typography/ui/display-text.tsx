@@ -1,17 +1,19 @@
+import { cn } from "@shared/lib/utilities";
+
 import { Text } from "./text.tsx";
 
 import type { TextProps } from "./text.tsx";
 
 
 type DisplayTextProps = Omit<TextProps, "family" | "weight" | "uppercase"> & {
-    size?: Extract<TextProps["size"], "3xl" | "4xl" | "5xl">;
+    size?: Extract<TextProps["size"], "3xl" | "4xl" | "5xl" | "hero">;
 };
 
 function DisplayText({
     as = "p",
-    size = "5xl",
-    tracking = "tight",
-    leading = "tight",
+    size = "hero",
+    tone = "accent",
+    className,
     ...props
 }: DisplayTextProps) {
     return (
@@ -19,9 +21,9 @@ function DisplayText({
             as={as}
             family="display"
             size={size}
-            weight="bold"
-            tracking={tracking}
-            leading={leading}
+            weight="extrabold"
+            tone={tone}
+            className={cn("text-shadow-hero", className)}
             {...props}
         />
     );

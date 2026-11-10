@@ -1,6 +1,6 @@
-import { listProjectsPreviews, mapProjectPreview } from "@features/project/api";
+import { listProjectsPreviews, mapProjectPreview } from "@features/projects/api";
 
-import type { ProjectApiServers } from "@features/project/api";
+import type { ProjectApiServers } from "@features/projects/api";
 
 
 interface HomeLoaderParams {

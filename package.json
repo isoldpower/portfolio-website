@@ -12,11 +12,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/fiber": "^9.8.2",
     "@sanity/client": "^8.9.0",
     "@sanity/image-url": "^2.1.1",
     "@tanstack/react-query": "^5.104.1",
     "@tanstack/react-router": "^1.170.40",
     "@tanstack/react-start": "^1.168.59",
+    "@types/three": "^0.187.0",
     "@wterm/dom": "^0.5.4",
     "@wterm/react": "^0.5.4",
     "axios": "^1.20.0",
@@ -29,7 +31,8 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-i18next": "^17.1.13",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "three": "^0.187.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

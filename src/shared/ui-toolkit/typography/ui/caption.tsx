@@ -9,11 +9,11 @@ type CaptionProps = Omit<TextProps, "family" | "weight" | "tracking" | "uppercas
 
 function Caption({
     as = "p",
-    size = "sm",
-    tone = "subtle",
+    size = "xs",
+    tone = "default",
     ...props
 }: CaptionProps) {
-    return <Text as={as} size={size} tone={tone} {...props} />;
+    return <Text as={as} family="mono" size={size} tone={tone} {...props} />;
 }
 
 export { Caption };

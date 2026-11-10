@@ -5,8 +5,10 @@
  */
 
 const textSizeClasses = {
+    "2xs": "text-2xs",
     xs: "text-xs",
     sm: "text-sm",
+    md: "text-md",
     base: "text-base",
     lg: "text-lg",
     xl: "text-xl",
@@ -14,6 +16,7 @@ const textSizeClasses = {
     "3xl": "text-3xl",
     "4xl": "text-4xl",
     "5xl": "text-5xl",
+    hero: "text-hero",
 } as const;
 
 const textFamilyClasses = {
@@ -27,6 +30,7 @@ const textWeightClasses = {
     medium: "font-medium",
     semibold: "font-semibold",
     bold: "font-bold",
+    extrabold: "font-extrabold",
 } as const;
 
 const textToneClasses = {
@@ -35,6 +39,7 @@ const textToneClasses = {
     muted: "text-muted",
     subtle: "text-subtle",
     accent: "text-accent",
+    highlight: "text-highlight",
     positive: "text-positive",
     negative: "text-negative",
     inverted: "text-background",
@@ -46,6 +51,7 @@ const textTrackingClasses = {
     wide: "tracking-wide",
     wider: "tracking-wider",
     widest: "tracking-widest",
+    arcade: "tracking-arcade",
 } as const;
 
 const textLeadingClasses = {

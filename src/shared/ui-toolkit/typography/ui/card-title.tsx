@@ -7,9 +7,10 @@ type CardTitleProps = Omit<TextProps, "size" | "family" | "weight" | "tracking" 
 
 function CardTitle({
     as = "h3",
+    tone = "accent",
     ...props
 }: CardTitleProps) {
-    return <Text as={as} size="lg" weight="semibold" {...props} />;
+    return <Text as={as} size="xl" weight="bold" tone={tone} {...props} />;
 }
 
 export { CardTitle };

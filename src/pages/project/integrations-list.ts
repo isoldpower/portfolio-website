@@ -1,6 +1,6 @@
-import { FinanceInfraVisualization } from "@processes/integration/finance-integration";
+import { FinanceInfraVisualization } from "@processes/integrations/finance-integration";
 
-import type { IntegrationEntries } from "@features/integration/web-integration-registry";
+import type { IntegrationEntries } from "@features/integrations/web-integration-registry";
 
 
 const WEB_INTEGRATIONS: IntegrationEntries = {

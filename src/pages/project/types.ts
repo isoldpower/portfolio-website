@@ -1,4 +1,4 @@
-import type { ProjectDetails } from "@entities/project/model";
+import type { ProjectDetails } from "@entities/projects/model";
 
 
 interface ProjectPageData {

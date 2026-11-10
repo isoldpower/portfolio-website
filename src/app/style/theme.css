@@ -1,0 +1,114 @@
+@theme {
+    --breakpoint-*: initial;
+    --breakpoint-md: 50.625rem;
+    --breakpoint-lg: 75rem;
+
+    --layer-content: 0;
+    --layer-loader: 10;
+    --layer-effects: 20;
+    --layer-header: 30;
+    --layer-overlay: 40;
+
+    --color-background: #161a22;
+    --color-surface: #141d2f;
+    --color-surface-raised: #1b2435;
+    --color-foreground: #7b8cb0;
+    --color-muted: color-mix(in srgb, #7b8cb0 70%, transparent);
+    --color-subtle: color-mix(in srgb, #7b8cb0 55%, transparent);
+    --color-accent: #6699ff;
+    --color-highlight: #78a5ff;
+    --color-external: #9fbaff;
+    --color-positive: oklch(0.78 0.13 165);
+    --color-negative: oklch(0.7 0.17 25);
+
+    --color-rule: #4a59f8;
+    --color-extrude: #333dad;
+    --color-deep: #2c377a;
+    --color-grid: color-mix(in srgb, #6699ff 9.4%, transparent);
+
+
+    --spacing-gutter: var(--media-gutter);
+    --spacing-margin: var(--media-margin);
+    --spacing-header: 50px;
+
+    --text-shadow-hero: -0.01em 0.01em 0 #333dad, -0.02em 0.02em 0 #333dad, -0.03em 0.03em 0 #333dad, -0.04em 0.04em 0 #333dad, -0.05em 0.05em 0 #333dad, 0 0 8px #6699ff;
+    --text-shadow-glow: 0 0 8px #6699ff;
+    --text-shadow-nav: -1px 0 2px #4a58f8;
+    --text-shadow-soft: 0 0 10px rgba(102, 153, 255, 0.45);
+    --shadow-panel: 0 12px 40px rgba(0, 0, 0, 0.25);
+    --blur-panel: 10px;
+
+    --container-content: 60rem;
+
+    --ease-snap: cubic-bezier(0.65, 0, 0.25, 1);
+    --ease-fold: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    --animate-blink: blink 1s steps(1) infinite;
+    --animate-crt-roll: crt-roll 9s steps(120) infinite;
+
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes crt-roll {
+        from {
+            transform: translateY(-25vh);
+        }
+        to {
+            transform: translateY(125vh);
+        }
+    }
+}
+
+@theme static {
+    --color-ascii-shadow: #353eb0;
+    --color-ascii-mid: #3a6eda;
+    --color-ascii-light: #8eacf2;
+}
+
+@utility layer-* {
+    z-index: --value(--layer-*);
+}
+
+@layer base {
+    :root {
+        color-scheme: dark;
+        --media-gutter: 16px;
+        --media-margin: 16px;
+
+        @variant md {
+            --media-margin: 32px;
+        }
+
+        @variant lg {
+            --media-margin: 48px;
+        }
+    }
+
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: calc(var(--spacing-header) + 1.5rem);
+    }
+
+    body {
+        overflow-x: clip;
+        @apply bg-background text-foreground font-sans text-base antialiased;
+    }
+
+    ::selection {
+        @apply bg-accent/30 text-highlight;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
