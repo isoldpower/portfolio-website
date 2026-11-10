@@ -1,4 +1,4 @@
-import { HeroIndexLink } from "@entities/site-artwork/hero";
+import { HeroIndexTable } from "@entities/site-artwork/hero-body";
 import { FocusOutline } from "@features/site-artwork/focus-outline";
 import { LinkHover } from "@features/site-artwork/link-hover";
 import { NavigateToSection } from "@features/site-artwork/section-navigation";
@@ -24,7 +24,7 @@ function HeroGotoLink({
             <NavigateToSection section={section} className="mr-4">
                 <AnimationComposer>
                     <LinkHover />
-                    <HeroIndexLink isPrimary={isPrimary}>{label}</HeroIndexLink>
+                    <HeroIndexTable.Link isPrimary={isPrimary}>{label}</HeroIndexTable.Link>
                 </AnimationComposer>
             </NavigateToSection>
         </AnimationComposer>

@@ -1,11 +1,11 @@
 import { createContext } from "react";
 
-import type { AnimationDescriptor, AnimationRegistry } from "./types.ts";
+import type { AnimationDescriptor, AnimationRegistration } from "./types.ts";
 
 
 const NO_ANIMATIONS: readonly AnimationDescriptor[] = [];
 
-const AnimationRegistryContext = createContext<AnimationRegistry | null>(null);
+const AnimationRegistryContext = createContext<AnimationRegistration | null>(null);
 
 const InheritedAnimationsContext = createContext<readonly AnimationDescriptor[]>(NO_ANIMATIONS);
 

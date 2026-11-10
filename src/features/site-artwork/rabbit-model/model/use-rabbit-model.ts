@@ -2,17 +2,32 @@ import { useCallback, useMemo } from "react";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-import { MODEL_URL } from "../constants.ts";
+import { DOWNLOAD_PROGRESS_SHARE, MODEL_URL } from "../constants.ts";
 import { useMeshDressing } from "./use-mesh-dressing.ts";
 import { useModelNormalizer } from "./use-model-normalizer.ts";
 
 import type { Material, Object3D } from "three";
 
 
+interface UseRabbitModelParams {
+    material: Material;
+    onProgress: (progress: number) => void;
+}
+
 type UseRabbitModelReturn = Object3D;
 
-const useRabbitModel = (material: Material): UseRabbitModelReturn => {
-    const gltf = useLoader(GLTFLoader, MODEL_URL);
+const useRabbitModel = ({ material, onProgress }: UseRabbitModelParams): UseRabbitModelReturn => {
+    const reportProgress = useCallback((event: ProgressEvent) => {
+        if (event.total > 0) {
+            onProgress(DOWNLOAD_PROGRESS_SHARE * (event.loaded / event.total));
+        }
+    }, [onProgress]);
+    const gltf = useLoader(
+        GLTFLoader,
+        MODEL_URL,
+        undefined,
+        reportProgress
+    );
     const dressMeshes = useMeshDressing(material);
     const normalize = useModelNormalizer();
 
@@ -28,4 +43,4 @@ const useRabbitModel = (material: Material): UseRabbitModelReturn => {
 };
 
 export { useRabbitModel };
-export type { UseRabbitModelReturn };
+export type { UseRabbitModelParams, UseRabbitModelReturn };

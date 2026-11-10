@@ -10,18 +10,20 @@ interface AsciiRasterizerProps {
     canvas: RefObject<HTMLCanvasElement | null>;
     cell: number;
     glyphs: string;
+    onDraw: (canvas: HTMLCanvasElement) => void;
 }
 
 function AsciiRasterizer({
     canvas,
     cell,
-    glyphs
+    glyphs,
+    onDraw
 }: AsciiRasterizerProps) {
     const grid = useAsciiGrid(canvas, cell);
     const palette = useAsciiPalette(cell);
     const target = useAsciiTarget(grid);
 
-    useAsciiFrame({ canvas, grid, target, palette, cell, glyphs });
+    useAsciiFrame({ canvas, grid, target, palette, cell, glyphs, onDraw });
 
     return null;
 }

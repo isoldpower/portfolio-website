@@ -28,6 +28,15 @@ const ru: Translation = {
         note_label: "// NOTE:",
         note: "кролик нарисован символами + $ @",
     },
+    intro: {
+        gloss: "[фр. «кролик»]",
+        stages: {
+            fetching: "загрузка three.js",
+            loading: "загрузка rabbit.glb",
+            rasterizing: "растеризация + $ @",
+            ready: "готово",
+        },
+    },
     locale: {
         en: "English",
         ru: "Русский",

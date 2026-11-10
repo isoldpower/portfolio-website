@@ -1,5 +1,6 @@
 @theme {
     --breakpoint-*: initial;
+    --breakpoint-xs: 30rem;
     --breakpoint-sm: 40rem;
     --breakpoint-md: 50.625rem;
     --breakpoint-lg: 75rem;
@@ -46,10 +47,37 @@
 
     --animate-blink: blink 1s steps(1) infinite;
     --animate-crt-roll: crt-roll 9s steps(120) infinite;
+    --animate-intro-reveal: intro-reveal 520ms var(--ease-snap) backwards;
+    --animate-intro-unhide: intro-unhide 0.5s 14s forwards;
+    --animate-intro-failsafe: intro-failsafe 0.5s 14s forwards;
 
     @keyframes blink {
         50% {
             opacity: 0;
+        }
+    }
+
+    @keyframes intro-reveal {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes intro-unhide {
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes intro-failsafe {
+        to {
+            opacity: 0;
+            visibility: hidden;
         }
     }
 

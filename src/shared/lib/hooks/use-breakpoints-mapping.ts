@@ -2,12 +2,13 @@ import { useMemo } from "react";
 import { useDocumentSize } from "@shared/lib/hooks";
 
 
-type BreakpointKey = "sm" | "md" | "lg";
+type BreakpointKey = "xs" | "sm" | "md" | "lg";
 type BreakpointsMapKey = BreakpointKey | "default";
 
 type BreakpointsRecord = Record<BreakpointKey, number>;
 
 const defaultBreakpoints: BreakpointsRecord = {
+    xs: 480,
     sm: 640,
     md: 810,
     lg: 1200,

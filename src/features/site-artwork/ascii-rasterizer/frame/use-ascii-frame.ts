@@ -20,6 +20,7 @@ interface UseAsciiFrameParams {
     palette: AsciiPalette;
     cell: number;
     glyphs: string;
+    onDraw: (canvas: HTMLCanvasElement) => void;
 }
 
 const useAsciiFrame = ({
@@ -28,7 +29,8 @@ const useAsciiFrame = ({
     target,
     palette,
     cell,
-    glyphs
+    glyphs,
+    onDraw
 }: UseAsciiFrameParams): void => {
     const { scene } = useThree();
     const fitCamera = useCameraFit();
@@ -57,6 +59,7 @@ const useAsciiFrame = ({
         renderSamples(grid, target);
         paintGlyphs(context, grid, target.pixels, layout);
         throttle.markDrawn();
+        onDraw(context.canvas);
     }, RASTER_PRIORITY);
 };
 

@@ -1,15 +1,14 @@
 import { RegisterAnimation } from "@shared/lib/components";
+import { cn } from "@shared/lib/utilities";
 
-import type { AnimationDescriptor } from "@shared/lib/components";
-
-
-const CURSOR_BLINK: AnimationDescriptor = {
-    id: "cursor-blink",
-    className: "animate-blink motion-reduce:animate-none",
-};
 
 function CursorBlink() {
-    return <RegisterAnimation {...CURSOR_BLINK} />;
+    return (
+        <RegisterAnimation
+            id="cursor-blink"
+            className={cn("animate-blink motion-reduce:animate-none")}
+        />
+    );
 }
 
 export { CursorBlink };

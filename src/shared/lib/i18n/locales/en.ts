@@ -25,6 +25,15 @@ const en = {
         note_label: "// NOTE:",
         note: "rabbit drawn in + $ @",
     },
+    intro: {
+        gloss: "[French: Rabbit]",
+        stages: {
+            fetching: "fetching three.js",
+            loading: "loading rabbit.glb",
+            rasterizing: "rasterizing + $ @",
+            ready: "ready",
+        },
+    },
     locale: {
         en: "English",
         ru: "Русский",
