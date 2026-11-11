@@ -1,6 +1,7 @@
-import type { FC, ReactNode } from "react";
-import {cn} from "@shared/lib/utilities";
+import { cn } from "@shared/lib/utilities";
 import { Text } from "@shared/ui-toolkit/typography";
+
+import type { FC, ReactNode } from "react";
 
 
 interface JourneyProjectInfoTitleProps {
@@ -14,7 +15,7 @@ const JourneyProjectInfoTitle: FC<JourneyProjectInfoTitleProps> = ({ children })
             weight="bold"
             tone="highlight"
             className={cn(
-                "my-3.5 text-[1.625rem] leading-[1.15] tracking-[-1px]",
+                "my-2 text-[1.625rem] leading-[1.15] tracking-[-1px] lg:my-3.5",
                 "[text-shadow:0_0_28px_#78a5ff18] md:text-[2.25rem]"
             )}
         >

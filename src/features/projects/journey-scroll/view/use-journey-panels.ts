@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 
+import { PANEL_SHIFT } from "../constants.ts";
 import { useJourney } from "../context/use-journey.ts";
-import { panelRestOffset } from "../geometry/journey-geometry.ts";
 
 import type { JourneyScreenshot, JourneyStop } from "@entities/projects/model";
 
@@ -68,7 +68,7 @@ const useJourneyPanels = (): UseJourneyPanelsReturn => {
         return {
             journeyStop,
             stopIndex,
-            restOffset: panelRestOffset(stopIndex),
+            restOffset: PANEL_SHIFT,
             isLive: journeyState.livePanelIndex === stopIndex,
             showcasePath: `~/projects/${journeyStop.slug.replaceAll("-", "_")}`,
             screenAspectRatio: firstScreenshot ? firstScreenshot.width / firstScreenshot.height : null,

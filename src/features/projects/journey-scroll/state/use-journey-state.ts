@@ -1,10 +1,10 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 
-import { FINISH_FADE, INITIAL_JOURNEY_STATE, LIVE_RANGE, START_MIDPOINT, STOP_RANGE } from "../constants.ts";
+import { FINISH_FADE, INITIAL_JOURNEY_STATE, START_MIDPOINT, STOP_RANGE } from "../constants.ts";
 import {
     cameraDistanceToStop,
     cameraTravelEnd,
-    panelCameraOffset,
+    isPanelLiveAt,
     stopHoldStart,
 } from "../geometry/journey-geometry.ts";
 
@@ -42,7 +42,7 @@ const useJourneyState = (stopCount: number): UseJourneyStateReturn => {
 
     const livePanelIndexAt = useCallback((cameraPosition: number): number | null => {
         return stopIndices.find((stopIndex) => {
-            return Math.abs(panelCameraOffset(cameraPosition, stopIndex)) < LIVE_RANGE;
+            return isPanelLiveAt(cameraPosition, stopIndex);
         }) ?? null;
     }, [stopIndices]);
 

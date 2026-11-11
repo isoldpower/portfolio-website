@@ -1,12 +1,13 @@
-import type { PortfolioJourney, ProjectPreview } from "@entities/projects/model";
-import type { AboutProfile, ExperienceSection } from "@entities/site-artwork/model";
+import type { PortfolioJourney, ProjectCard } from "@entities/projects/model";
+import type { AboutProfile, ContactEntry, ExperienceSection } from "@entities/site-artwork/model";
 
 
 interface HomePageData {
-    projects: ProjectPreview[];
+    projects: ProjectCard[];
     about: AboutProfile | null;
     experience: ExperienceSection | null;
     journey: PortfolioJourney;
+    contacts: ContactEntry[];
 }
 
 export type { HomePageData };

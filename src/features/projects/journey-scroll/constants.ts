@@ -3,7 +3,11 @@ import type { JourneyState, MeadowDecoration, MeadowLandmark } from "./types.ts"
 
 const TRAVEL_LENGTH = 1200;
 const HOLD_LENGTH = 1320;
-const PANEL_TRAVEL = 1600;
+const PANEL_APPROACH = 560;
+const PANEL_DEPART = 420;
+const PANEL_SHIFT = 320;
+const APPROACH_EASE = "power2.out";
+const DEPART_EASE = "power1.in";
 const SCROLL_PER_CAMERA = 5600 / 8760;
 const STAGE_HEIGHT = 760;
 const HEADER_OFFSET = 50;
@@ -33,7 +37,6 @@ const INITIAL_JOURNEY_STATE: JourneyState = {
     livePanelIndex: null,
 };
 const START_MIDPOINT = (START_FADE[0] + START_FADE[1]) / 2;
-const LIVE_RANGE = TRAVEL_LENGTH / 3;
 const STOP_RANGE = TRAVEL_LENGTH / 2;
 
 const MEADOW_REPEAT = 1560;
@@ -62,7 +65,9 @@ const PERCENT = 100;
 const EMPTY_LOCATION = "--";
 
 export {
+    APPROACH_EASE,
     BURIED_CARROT_OFFSET,
+    DEPART_EASE,
     EMPTY_LOCATION,
     FADE_EASE,
     FINISH_FADE,
@@ -71,7 +76,6 @@ export {
     HOP_CYCLE,
     HOP_FRAME,
     INITIAL_JOURNEY_STATE,
-    LIVE_RANGE,
     MEADOW_DECORATIONS,
     MEADOW_FINISH_LANDMARKS,
     MEADOW_REPEAT,
@@ -79,7 +83,9 @@ export {
     MEADOW_VIEW,
     MIN_STAGE_FIT,
     ORDER_DIGITS,
-    PANEL_TRAVEL,
+    PANEL_APPROACH,
+    PANEL_DEPART,
+    PANEL_SHIFT,
     PERCENT,
     RUN_FRAME_COUNT,
     RUN_FRAME_LENGTH,

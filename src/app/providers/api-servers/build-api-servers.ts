@@ -12,6 +12,7 @@ function buildApiServers(envVariables: ImportMetaEnv): ApiServers {
         aboutApi: sanityApi,
         experienceApi: sanityApi,
         journeyApi: sanityApi,
+        contactsApi: sanityApi,
         translationApi: sanityApi,
         financeProjectApi: createFinanceProjectApiClient(envVariables),
     };

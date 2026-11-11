@@ -1,5 +1,4 @@
 import { cn } from "@shared/lib/utilities";
-
 import { PIXEL_GRID_CLASS } from "../constants.ts";
 
 import type { FC, ReactNode } from "react";
@@ -13,7 +12,8 @@ const JourneyShowcasePlaceholder: FC<JourneyShowcasePlaceholderProps> = ({ child
     return (
         <div
             className={cn(
-                "flex aspect-2/1 w-[min(540px,36vw)] flex-col items-center justify-center gap-5 text-center",
+                "flex aspect-2/1 w-full flex-col items-center justify-center gap-3 text-center",
+                "lg:w-[min(540px,36vw)] lg:gap-5",
                 PIXEL_GRID_CLASS
             )}
         >

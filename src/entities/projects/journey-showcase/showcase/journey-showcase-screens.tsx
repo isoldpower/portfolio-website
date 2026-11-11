@@ -16,7 +16,7 @@ const JourneyShowcaseScreens: FC<JourneyShowcaseScreensProps> = ({
     return (
         <div
             className={cn(
-                "relative w-[min(540px,36vw)] overflow-hidden",
+                "relative w-full overflow-hidden lg:w-[min(540px,36vw)]",
                 PIXEL_GRID_CLASS
             )}
             style={{ aspectRatio }}

@@ -14,7 +14,7 @@ type JourneyPanelsObject = FC<JourneyPanelsProps> & {
 
 const JourneyPanels: JourneyPanelsObject = ({ children }) => {
     return (
-        <div data-journey="panels" className="relative mt-6 h-90 opacity-0">
+        <div data-journey="panels" className="relative mt-6 h-110 opacity-0 lg:h-90">
             {children}
         </div>
     );

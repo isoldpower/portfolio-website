@@ -22,7 +22,8 @@ const JourneyPanelsItem: FC<JourneyPanelsItemProps> = ({
             aria-hidden={!isLive}
             inert={!isLive}
             className={cn(
-                "absolute inset-0 grid items-center gap-10 md:grid-cols-[minmax(0,1fr)_auto]",
+                "absolute inset-0 grid content-start gap-4 opacity-0",
+                "lg:grid-cols-[minmax(0,1fr)_auto] lg:content-center lg:items-center lg:gap-10",
                 !isLive && "pointer-events-none"
             )}
             style={{ transform: `translate3d(${String(restOffset)}px, 0, 0)` }}

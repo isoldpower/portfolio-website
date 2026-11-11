@@ -66,6 +66,31 @@ const en = {
         hint_done: "run complete",
         skip: "[[skip_to_projects]]",
     },
+    browser: {
+        label: "[ view_other_projects ]",
+        search_label: "Search",
+        search_placeholder: "Name, description or technology",
+        technology_label: "Technology",
+        technology_all: "All technologies",
+        category_label: "Category",
+        category_all: "All categories",
+        reset: "[ clear_filters ]",
+        status: "Showing {{from}}–{{to}} of {{total}}",
+        status_empty: "No projects match",
+        empty: "No matching projects. Clear the filters to see all projects.",
+        visit: "Visit project",
+        no_preview: "no preview yet",
+        pagination_label: "Project pages",
+        previous: "< prev",
+        next: "next >",
+        page: "Page {{page}}",
+    },
+    contacts: {
+        label: "[ 04_contacts ]",
+    },
+    footer: {
+        copyright: "© {{year}} nikita lapin — built line by line.",
+    },
     intro: {
         gloss: "[French: Rabbit]",
         stages: {

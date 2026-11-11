@@ -1,7 +1,19 @@
 import { useCallback } from "react";
 
-import { FADE_EASE, HOLD_LENGTH, PANEL_TRAVEL, SHOT_MARKERS, SHOT_MIX, SHOT_SHIFT, VIEW_DIM } from "../constants.ts";
-import { panelRestOffset, stopHoldEnd, stopHoldStart } from "../geometry/journey-geometry.ts";
+import {
+    APPROACH_EASE,
+    DEPART_EASE,
+    FADE_EASE,
+    HOLD_LENGTH,
+    PANEL_APPROACH,
+    PANEL_DEPART,
+    PANEL_SHIFT,
+    SHOT_MARKERS,
+    SHOT_MIX,
+    SHOT_SHIFT,
+    VIEW_DIM
+} from "../constants.ts";
+import { stopHoldEnd, stopHoldStart } from "../geometry/journey-geometry.ts";
 
 import type { JourneyTimelineContext, JourneyTweenBuilder } from "../types.ts";
 
@@ -12,16 +24,19 @@ const usePanelTweens = (): UsePanelTweensReturn => {
     const addPanelTravel = useCallback((timelineContext: JourneyTimelineContext, stopIndex: number) => {
         const { timeline, selectElements, travelEnd } = timelineContext;
         const panelElements = selectElements(`[data-journey-panel="${String(stopIndex)}"]`);
-        const restOffset = panelRestOffset(stopIndex);
-        const exitOffset = Math.min(PANEL_TRAVEL, travelEnd - stopHoldEnd(stopIndex));
+        const departDuration = Math.min(PANEL_DEPART, travelEnd - stopHoldEnd(stopIndex));
 
         timeline.fromTo(
             panelElements,
-            { x: restOffset },
-            { x: 0, duration: restOffset },
-            stopHoldStart(stopIndex) - restOffset
+            { x: PANEL_SHIFT, opacity: 0 },
+            { x: 0, opacity: 1, duration: PANEL_APPROACH, ease: APPROACH_EASE },
+            stopHoldStart(stopIndex) - PANEL_APPROACH
         );
-        timeline.to(panelElements, { x: -exitOffset, duration: exitOffset }, stopHoldEnd(stopIndex));
+        timeline.to(
+            panelElements,
+            { x: -PANEL_SHIFT, opacity: 0, duration: departDuration, ease: DEPART_EASE },
+            stopHoldEnd(stopIndex)
+        );
     }, []);
 
     const addScreenshotMix = useCallback((timelineContext: JourneyTimelineContext, stopIndex: number) => {

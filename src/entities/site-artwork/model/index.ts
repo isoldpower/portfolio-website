@@ -6,3 +6,4 @@ export type { SiteSection } from "./site-section.ts";
 export type { HeroRole } from "./hero-role.ts";
 export type { AboutPortrait, AboutProfile, AboutVariable } from "./about-profile.ts";
 export type { ExperienceEntry, ExperienceKind, ExperienceSection } from "./experience-section.ts";
+export type { ContactEntry } from "./contact-entry.ts";

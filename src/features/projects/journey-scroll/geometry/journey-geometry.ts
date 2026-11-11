@@ -1,4 +1,4 @@
-import { HOLD_LENGTH, PANEL_TRAVEL, SCROLL_PER_CAMERA, TRAVEL_LENGTH } from "../constants.ts";
+import { HOLD_LENGTH, PANEL_APPROACH, PANEL_DEPART, SCROLL_PER_CAMERA, TRAVEL_LENGTH } from "../constants.ts";
 
 
 const cameraTravelEnd = (stopCount: number): number => {
@@ -25,16 +25,9 @@ const cameraDistanceToStop = (cameraPosition: number, stopIndex: number): number
     return Math.max(0, stopHoldStart(stopIndex) - cameraPosition, cameraPosition - stopHoldEnd(stopIndex));
 };
 
-const panelCameraOffset = (cameraPosition: number, stopIndex: number): number => {
-    if (cameraPosition < stopHoldStart(stopIndex)) {
-        return stopHoldStart(stopIndex) - cameraPosition;
-    }
-
-    return cameraPosition > stopHoldEnd(stopIndex) ? stopHoldEnd(stopIndex) - cameraPosition : 0;
-};
-
-const panelRestOffset = (stopIndex: number): number => {
-    return Math.min(PANEL_TRAVEL, stopHoldStart(stopIndex));
+const isPanelLiveAt = (cameraPosition: number, stopIndex: number): boolean => {
+    return cameraPosition >= stopHoldStart(stopIndex) - PANEL_APPROACH / 2
+        && cameraPosition <= stopHoldEnd(stopIndex) + PANEL_DEPART / 2;
 };
 
 const checkpointTrackPosition = (stopIndex: number, stopCount: number): number => {
@@ -45,8 +38,7 @@ export {
     cameraDistanceToStop,
     cameraTravelEnd,
     checkpointTrackPosition,
-    panelCameraOffset,
-    panelRestOffset,
+    isPanelLiveAt,
     pinnedScrollDistance,
     stopHoldEnd,
     stopHoldMiddle,

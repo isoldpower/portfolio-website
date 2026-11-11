@@ -69,6 +69,31 @@ const ru: Translation = {
         hint_done: "забег завершён",
         skip: "[[skip_to_projects]]",
     },
+    browser: {
+        label: "[ view_other_projects ]",
+        search_label: "Поиск",
+        search_placeholder: "Название, описание или технология",
+        technology_label: "Технология",
+        technology_all: "Все технологии",
+        category_label: "Категория",
+        category_all: "Все категории",
+        reset: "[ clear_filters ]",
+        status: "Показано {{from}}–{{to}} из {{total}}",
+        status_empty: "Нет подходящих проектов",
+        empty: "Нет подходящих проектов. Сбросьте фильтры, чтобы увидеть все проекты.",
+        visit: "Открыть проект",
+        no_preview: "превью пока нет",
+        pagination_label: "Страницы проектов",
+        previous: "< назад",
+        next: "вперёд >",
+        page: "Страница {{page}}",
+    },
+    contacts: {
+        label: "[ 04_contacts ]",
+    },
+    footer: {
+        copyright: "© {{year}} никита лапин — написано строка за строкой.",
+    },
     intro: {
         gloss: "[фр. «кролик»]",
         stages: {

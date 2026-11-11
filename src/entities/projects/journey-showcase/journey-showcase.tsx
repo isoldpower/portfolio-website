@@ -40,7 +40,8 @@ const JourneyShowcase: JourneyShowcaseObject = ({ children }) => {
     return (
         <figure
             className={cn(
-                "m-0 hidden border border-accent bg-background p-2 shadow-[0_12px_40px_#00000040] md:block",
+                "w-[min(296px,100%)] border border-accent bg-background p-2 shadow-[0_12px_40px_#00000040]",
+                "m-0 sm:w-[min(356px,100%)] lg:w-fit",
                 PIXEL_GRID_CLASS
             )}
         >

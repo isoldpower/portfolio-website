@@ -9,7 +9,7 @@ interface JourneyShowcaseCaptionProps {
 
 const JourneyShowcaseCaption: FC<JourneyShowcaseCaptionProps> = ({ children }) => {
     return (
-        <Text as="figcaption" size="2xs" className="px-1 pt-1 pb-2.5 opacity-70">
+        <Text as="figcaption" size="2xs" className="px-1 pt-1 pb-2.5 opacity-70 max-lg:hidden">
             {children}
         </Text>
     );

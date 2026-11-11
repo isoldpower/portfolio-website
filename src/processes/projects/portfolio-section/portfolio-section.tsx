@@ -4,7 +4,7 @@ import { PortfolioBody } from "@entities/projects/portfolio-body";
 import { JourneyProvider } from "@features/projects/journey-scroll";
 import { SectionHeading } from "@widgets/site-artwork/section-heading";
 
-import { SKIP_TARGET, SKIP_TARGET_ID } from "./constants.ts";
+import { SKIP_TARGET } from "./constants.ts";
 import { PortfolioStage } from "./stage/portfolio-stage.tsx";
 
 import type { PortfolioJourney } from "@entities/projects/model";
@@ -26,7 +26,6 @@ function PortfolioSection({ journey }: PortfolioSectionProps) {
                 <PortfolioBody.Stage>
                     <PortfolioStage />
                 </PortfolioBody.Stage>
-                <PortfolioBody.Anchor id={SKIP_TARGET_ID} />
             </PortfolioBody>
         </JourneyProvider>
     );
