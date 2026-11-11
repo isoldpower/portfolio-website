@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -7,9 +9,9 @@ interface JourneyProjectInfoDistrictProps {
 
 const JourneyProjectInfoDistrict: FC<JourneyProjectInfoDistrictProps> = ({ children }) => {
     return (
-        <p className="m-0 text-2xs tracking-[2px] text-foreground/90">
+        <Text as="p" size="2xs" className="m-0 tracking-[2px] text-foreground/90">
             {children}
-        </p>
+        </Text>
     );
 };
 

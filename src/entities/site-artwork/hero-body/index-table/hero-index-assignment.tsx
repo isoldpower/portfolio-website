@@ -1,3 +1,5 @@
+import { PlainText, Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -9,8 +11,8 @@ interface HeroIndexAssignmentProps {
 const HeroIndexAssignment: FC<HeroIndexAssignmentProps> = ({ name, children }) => {
     return (
         <>
-            <span className="w-18 shrink-0 text-accent max-xs:w-14">{name}</span>
-            <span className="w-5.5 shrink-0 max-xs:w-4">=</span>
+            <Text tone="accent" className="w-18 shrink-0 max-xs:w-14">{name}</Text>
+            <PlainText className="w-5.5 shrink-0 max-xs:w-4">=</PlainText>
             {children}
         </>
     );

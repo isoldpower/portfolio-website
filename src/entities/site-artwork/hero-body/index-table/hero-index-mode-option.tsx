@@ -1,4 +1,4 @@
-import { cn } from "@shared/lib/utilities";
+import { Text } from "@shared/ui-toolkit/typography";
 
 import type { FC, ReactNode } from "react";
 
@@ -10,9 +10,9 @@ interface HeroIndexModeOptionProps {
 
 const HeroIndexModeOption: FC<HeroIndexModeOptionProps> = ({ isActive, children }) => {
     return (
-        <span className={cn(isActive && "font-semibold text-highlight")}>
+        <Text weight={isActive ? "semibold" : undefined} tone={isActive ? "highlight" : "default"}>
             {children}
-        </span>
+        </Text>
     );
 };
 

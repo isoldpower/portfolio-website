@@ -1,3 +1,5 @@
+import { PlainText } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -13,9 +15,9 @@ const JourneyShowcaseViewLabel: FC<JourneyShowcaseViewLabelProps> = ({
     children
 }) => {
     return (
-        <span data-journey-view={marker} className={isDimmed ? "opacity-35" : undefined}>
+        <PlainText data-journey-view={marker} className={isDimmed ? "opacity-35" : undefined}>
             {children}
-        </span>
+        </PlainText>
     );
 };
 

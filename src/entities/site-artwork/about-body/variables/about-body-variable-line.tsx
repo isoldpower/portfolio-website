@@ -1,4 +1,5 @@
 import { cn } from "@shared/lib/utilities";
+import { Text } from "@shared/ui-toolkit/typography";
 
 import type { FC, HTMLAttributes } from "react";
 
@@ -24,9 +25,9 @@ const AboutBodyVariableLine: FC<AboutBodyVariableLineProps> = ({
             )}
             {...props}
         >
-            <span className={cn(isFocused ? "text-accent" : "opacity-70")}>
+            <Text tone={isFocused ? "accent" : "default"} className={cn(!isFocused && "opacity-70")}>
                 {number}
-            </span>
+            </Text>
             {children}
         </div>
     );

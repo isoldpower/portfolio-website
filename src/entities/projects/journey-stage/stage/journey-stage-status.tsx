@@ -1,3 +1,5 @@
+import { PlainText } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -7,9 +9,9 @@ interface JourneyStageStatusProps {
 
 const JourneyStageStatus: FC<JourneyStageStatusProps> = ({ children }) => {
     return (
-        <span aria-live="polite">
+        <PlainText aria-live="polite">
             {children}
-        </span>
+        </PlainText>
     );
 };
 

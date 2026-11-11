@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -7,9 +9,9 @@ interface JourneyShowcaseCaptionProps {
 
 const JourneyShowcaseCaption: FC<JourneyShowcaseCaptionProps> = ({ children }) => {
     return (
-        <figcaption className="px-1 pt-1 pb-2.5 text-2xs opacity-70">
+        <Text as="figcaption" size="2xs" className="px-1 pt-1 pb-2.5 opacity-70">
             {children}
-        </figcaption>
+        </Text>
     );
 };
 

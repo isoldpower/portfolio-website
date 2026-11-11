@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -7,9 +9,9 @@ interface ExperienceEntryMetaProps {
 
 const ExperienceEntryMeta: FC<ExperienceEntryMetaProps> = ({ children }) => {
     return (
-        <span className="text-base text-foreground">
+        <Text size="base" tone="strong">
             {children}
-        </span>
+        </Text>
     );
 };
 

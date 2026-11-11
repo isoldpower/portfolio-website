@@ -2,6 +2,7 @@ import { Fragment } from "react";
 
 import { SUPPORTED_LOCALES } from "@shared/lib/i18n";
 import { cn } from "@shared/lib/utilities";
+import { PlainText } from "@shared/ui-toolkit/typography";
 
 import type { Locale } from "@shared/lib/i18n";
 import type { HTMLAttributes, ReactNode } from "react";
@@ -28,7 +29,7 @@ function LocaleTabs({
         >
             {SUPPORTED_LOCALES.map((locale, index) => (
                 <Fragment key={locale}>
-                    {index > 0 ? <span aria-hidden="true">/</span> : null}
+                    {index > 0 ? <PlainText aria-hidden="true">/</PlainText> : null}
                     {children(locale)}
                 </Fragment>
             ))}

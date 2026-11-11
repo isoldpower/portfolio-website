@@ -1,4 +1,5 @@
 import { cn } from "@shared/lib/utilities";
+import { PlainText, Text } from "@shared/ui-toolkit/typography";
 
 import { ExperienceEntryDescription } from "./entry/experience-entry-description.tsx";
 import { ExperienceEntryHeading } from "./entry/experience-entry-heading.tsx";
@@ -26,10 +27,10 @@ type ExperienceEntryObject = FC<ExperienceEntryProps> & {
 
 const ExperienceEntry: ExperienceEntryObject = ({ isLast, children }) => {
     return (
-        <li className="grid grid-cols-[3ch_minmax(0,1fr)] gap-x-2 font-mono text-md text-foreground">
-            <span aria-hidden="true" className="col-start-1 row-start-1 text-accent/70">
+        <Text as="li" family="mono" size="md" tone="strong" className="grid grid-cols-[3ch_minmax(0,1fr)] gap-x-2">
+            <PlainText aria-hidden="true" className="col-start-1 row-start-1 text-accent/70">
                 {isLast ? "└──" : "├──"}
-            </span>
+            </PlainText>
             <span
                 aria-hidden="true"
                 className={cn(
@@ -38,7 +39,7 @@ const ExperienceEntry: ExperienceEntryObject = ({ isLast, children }) => {
                 )}
             />
             {children}
-        </li>
+        </Text>
     );
 };
 

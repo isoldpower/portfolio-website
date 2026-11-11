@@ -1,5 +1,3 @@
-import { useTranslation } from "react-i18next";
-
 import { JourneyButton } from "@entities/projects/journey-button";
 import { JourneyProjectInfo } from "@entities/projects/journey-project-info";
 import { useLocalize } from "@features/localization/localized-value";
@@ -16,7 +14,6 @@ interface JourneyProjectTextProps {
 }
 
 function JourneyProjectText({ panelView }: JourneyProjectTextProps) {
-    const { t } = useTranslation();
     const localize = useLocalize();
     const { journeyStop } = panelView;
 
@@ -43,7 +40,7 @@ function JourneyProjectText({ panelView }: JourneyProjectTextProps) {
                     <AnimationComposer>
                         <JourneyButtonHover />
                         <JourneyButton>
-                            {t("journey.explore")}
+                            _t(journey.explore)
                         </JourneyButton>
                     </AnimationComposer>
                 </NavigateToProject>

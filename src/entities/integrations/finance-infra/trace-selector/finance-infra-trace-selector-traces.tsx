@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import { useFinanceInfraCanvas } from "../context/use-finance-infra-canvas.ts";
 
 import type { FinanceTraceKind, FinanceTraceSummary } from "@entities/integrations/model";
@@ -15,7 +17,7 @@ const FinanceInfraTraceSelectorTraces: FC<FinanceInfraTraceSelectorTracesProps> 
     const traces = flow.traceGroups[kind];
 
     if (traces.length === 0) {
-        return <span className="text-xs text-subtle">{placeholder}</span>;
+        return <Text size="xs" tone="subtle">{placeholder}</Text>;
     }
 
     return <>{traces.map(children)}</>;

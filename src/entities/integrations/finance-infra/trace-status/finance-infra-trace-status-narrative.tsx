@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import { useFinanceInfraCanvas } from "../context/use-finance-infra-canvas.ts";
 
 import type { FC } from "react";
@@ -11,9 +13,9 @@ const FinanceInfraTraceStatusNarrative: FC = () => {
     }
 
     return (
-        <span className="truncate text-muted" title={flow.narrative}>
+        <Text tone="muted" truncate title={flow.narrative}>
             {flow.narrative}
-        </span>
+        </Text>
     );
 };
 

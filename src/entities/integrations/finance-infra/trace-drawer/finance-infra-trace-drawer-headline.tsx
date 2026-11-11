@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import { useFinanceInfraCanvas } from "../context/use-finance-infra-canvas.ts";
 
 import type { FinanceTraceStatus } from "@entities/integrations/model";
@@ -17,12 +19,12 @@ const FinanceInfraTraceDrawerHeadline: FC = () => {
     const { flow } = useFinanceInfraCanvas();
 
     return (
-        <span className="min-w-0 flex-1 truncate text-foreground">
+        <Text tone="strong" truncate className="min-w-0 flex-1">
             {DRAWER_HEADLINES[flow.status]}
             {flow.status === "tracing" && (
-                <span className="text-muted">{` · ${String(flow.hops.length)} hops`}</span>
+                <Text tone="muted">{` · ${String(flow.hops.length)} hops`}</Text>
             )}
-        </span>
+        </Text>
     );
 };
 

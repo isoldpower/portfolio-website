@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -7,9 +9,9 @@ interface ExperienceEntryTitleProps {
 
 const ExperienceEntryTitle: FC<ExperienceEntryTitleProps> = ({ children }) => {
     return (
-        <span className="text-lg font-semibold text-accent text-shadow-soft">
+        <Text size="lg" weight="semibold" tone="accent" className="text-shadow-soft">
             {children}
-        </span>
+        </Text>
     );
 };
 

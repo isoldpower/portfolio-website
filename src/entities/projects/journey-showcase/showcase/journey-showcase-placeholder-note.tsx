@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -7,9 +9,9 @@ interface JourneyShowcasePlaceholderNoteProps {
 
 const JourneyShowcasePlaceholderNote: FC<JourneyShowcasePlaceholderNoteProps> = ({ children }) => {
     return (
-        <span className="text-2xs opacity-60">
+        <Text size="2xs" className="opacity-60">
             {children}
-        </span>
+        </Text>
     );
 };
 

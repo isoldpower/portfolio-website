@@ -5,7 +5,7 @@ import { textClass } from "../variants";
 
 import type { UseTranslatedChildrenParams } from "@shared/lib/hooks";
 import type { TextClassOptions } from "../variants";
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes, Ref } from "react";
 
 
 type TextElement =
@@ -18,6 +18,8 @@ type TextElement =
     | "small"
     | "time"
     | "code"
+    | "li"
+    | "figcaption"
     | "h1"
     | "h2"
     | "h3"
@@ -26,6 +28,7 @@ type TextElement =
     | "h6";
 
 type TextProps = HTMLAttributes<HTMLElement> & TextClassOptions & {
+    ref?: Ref<HTMLElement>;
     as?: TextElement;
     htmlFor?: string;
     dateTime?: string;

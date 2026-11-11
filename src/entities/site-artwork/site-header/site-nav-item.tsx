@@ -1,5 +1,5 @@
 import { cn } from "@shared/lib/utilities";
-import { Text } from "@shared/ui-toolkit/typography";
+import { PlainText } from "@shared/ui-toolkit/typography";
 
 import type { HTMLAttributes } from "react";
 
@@ -14,17 +14,17 @@ function SiteNavItem({
     ...props
 }: SiteNavItemProps) {
     return (
-        <span
+        <PlainText
             className={cn(
                 "relative block whitespace-nowrap px-1.5 py-1 lg:px-2",
                 className
             )}
             {...props}
         >
-            <span aria-hidden="true" className="hidden lg:inline">[</span>
-            <Text>{children}</Text>
-            <span aria-hidden="true" className="hidden lg:inline">]</span>
-        </span>
+            <PlainText aria-hidden="true" className="hidden lg:inline">[</PlainText>
+            <PlainText>{children}</PlainText>
+            <PlainText aria-hidden="true" className="hidden lg:inline">]</PlainText>
+        </PlainText>
     );
 }
 

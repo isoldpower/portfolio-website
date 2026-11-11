@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -7,9 +9,9 @@ interface JourneyStageHintProps {
 
 const JourneyStageHint: FC<JourneyStageHintProps> = ({ children }) => {
     return (
-        <span className="text-foreground [text-shadow:0_0_8px_rgba(22,26,34,0.9)] max-sm:hidden">
+        <Text tone="strong" className="[text-shadow:0_0_8px_rgba(22,26,34,0.9)] max-sm:hidden">
             {children}
-        </span>
+        </Text>
     );
 };
 

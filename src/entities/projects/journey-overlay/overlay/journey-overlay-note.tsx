@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -7,9 +9,9 @@ interface JourneyOverlayNoteProps {
 
 const JourneyOverlayNote: FC<JourneyOverlayNoteProps> = ({ children }) => {
     return (
-        <p className="m-0 mt-5.5 text-2xs tracking-[2px] opacity-55">
+        <Text as="p" size="2xs" className="m-0 mt-5.5 tracking-[2px] opacity-55">
             {children}
-        </p>
+        </Text>
     );
 };
 

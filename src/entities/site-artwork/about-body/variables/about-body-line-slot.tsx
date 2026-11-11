@@ -1,3 +1,5 @@
+import { PlainText } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -7,9 +9,9 @@ interface AboutBodyLineSlotProps {
 
 const AboutBodyLineSlot: FC<AboutBodyLineSlotProps> = ({ children }) => {
     return (
-        <span className="col-[2/-1]">
+        <PlainText className="col-[2/-1]">
             {children}
-        </span>
+        </PlainText>
     );
 };
 

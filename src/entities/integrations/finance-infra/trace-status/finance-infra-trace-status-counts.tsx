@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import { useFinanceInfraCanvas } from "../context/use-finance-infra-canvas.ts";
 
 import type { FC } from "react";
@@ -11,9 +13,9 @@ const FinanceInfraTraceStatusCounts: FC = () => {
     }
 
     return (
-        <span className="text-muted">
+        <Text tone="muted">
             {` · ${String(flow.spanCount)} spans · ${String(flow.hops.length)} hops`}
-        </span>
+        </Text>
     );
 };
 

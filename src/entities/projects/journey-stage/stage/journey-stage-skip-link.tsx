@@ -1,11 +1,12 @@
 import { cn } from "@shared/lib/utilities";
+import { PlainText } from "@shared/ui-toolkit/typography";
 
 import type { AnchorHTMLAttributes, FC } from "react";
 
 
 type JourneyStageSkipLinkProps = AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const JourneyStageSkipLink: FC<JourneyStageSkipLinkProps> = ({ className, ...props }) => {
+const JourneyStageSkipLink: FC<JourneyStageSkipLinkProps> = ({ className, children, ...props }) => {
     return (
         <a
             className={cn(
@@ -13,7 +14,9 @@ const JourneyStageSkipLink: FC<JourneyStageSkipLinkProps> = ({ className, ...pro
                 className
             )}
             {...props}
-        />
+        >
+            <PlainText>{children}</PlainText>
+        </a>
     );
 };
 

@@ -1,10 +1,11 @@
 import { cn } from "@shared/lib/utilities";
+import { PlainText, Text } from "@shared/ui-toolkit/typography";
 
 import type { FC, HTMLAttributes, Ref } from "react";
 
 
 type IntroNameLineGlossProps = HTMLAttributes<HTMLSpanElement> & {
-    labelRef?: Ref<HTMLSpanElement>;
+    labelRef?: Ref<HTMLElement>;
     slotWidth: number | null;
 };
 
@@ -17,7 +18,7 @@ const IntroNameLineGloss: FC<IntroNameLineGlossProps> = ({
     ...props
 }) => {
     return (
-        <span
+        <PlainText
             style={{ ...style, width: slotWidth ?? "auto" }}
             className={cn(
                 "inline-flex overflow-hidden",
@@ -26,13 +27,16 @@ const IntroNameLineGloss: FC<IntroNameLineGlossProps> = ({
             )}
             {...props}
         >
-            <span
+            <Text
                 ref={labelRef}
-                className="font-mono text-lg tracking-[0.02em] whitespace-pre text-foreground max-xs:text-sm"
+                family="mono"
+                size="lg"
+                tone="strong"
+                className="tracking-[0.02em] whitespace-pre max-xs:text-sm"
             >
                 {children}
-            </span>
-        </span>
+            </Text>
+        </PlainText>
     );
 };
 

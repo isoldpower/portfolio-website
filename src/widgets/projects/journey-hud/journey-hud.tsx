@@ -1,5 +1,3 @@
-import { useTranslation } from "react-i18next";
-
 import { JourneyStage } from "@entities/projects/journey-stage";
 import { SkipLinkHover } from "@features/projects/journey-animations";
 import { useJourney, useJourneyHud } from "@features/projects/journey-scroll";
@@ -8,7 +6,6 @@ import { AnimationComposer } from "@shared/lib/components";
 
 
 function JourneyHud() {
-    const { t } = useTranslation();
     const { skipTargetHref } = useJourney();
     const { statusText, hintText } = useJourneyHud();
 
@@ -16,7 +13,7 @@ function JourneyHud() {
         <>
             <JourneyStage.Header>
                 <JourneyStage.Player>
-                    {t("journey.player")}
+                    _t(journey.player)
                 </JourneyStage.Player>
                 <JourneyStage.Status>
                     {statusText}
@@ -30,7 +27,7 @@ function JourneyHud() {
                     <SkipLinkHover />
                     <FocusOutline />
                     <JourneyStage.SkipLink href={skipTargetHref}>
-                        {t("journey.skip")}
+                        _t(journey.skip)
                     </JourneyStage.SkipLink>
                 </AnimationComposer>
             </JourneyStage.Footer>

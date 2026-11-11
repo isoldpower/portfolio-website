@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import { FinanceInfraTraceStatusBody } from "./trace-status/finance-infra-trace-status-body.tsx";
 import { FinanceInfraTraceStatusCounts } from "./trace-status/finance-infra-trace-status-counts.tsx";
 import { FinanceInfraTraceStatusDot } from "./trace-status/finance-infra-trace-status-dot.tsx";
@@ -22,9 +24,9 @@ type FinanceInfraCanvasTraceStatusObject = FC<FinanceInfraCanvasTraceStatusProps
 };
 
 const FinanceInfraCanvasTraceStatus: FinanceInfraCanvasTraceStatusObject = ({ children }) => (
-    <span className="flex min-h-10 items-start gap-2 text-sm" aria-live="polite">
+    <Text size="sm" className="flex min-h-10 items-start gap-2" aria-live="polite">
         {children}
-    </span>
+    </Text>
 );
 
 FinanceInfraCanvasTraceStatus.Dot = FinanceInfraTraceStatusDot;

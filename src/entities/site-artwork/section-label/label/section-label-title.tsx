@@ -1,4 +1,4 @@
-import { cn } from "@shared/lib/utilities";
+import { PlainText, Text } from "@shared/ui-toolkit/typography";
 
 import type { FC, ReactNode } from "react";
 
@@ -11,21 +11,22 @@ interface SectionLabelTitleProps {
 
 const SectionLabelTitle: FC<SectionLabelTitleProps> = ({ text, typedLength, children }) => {
     return (
-        <h2
+        <Text
+            as="h2"
             aria-label={text}
-            className={cn(
-                "absolute top-0 left-0 m-0 flex items-center",
-                "font-sans text-sm leading-5 font-semibold whitespace-pre text-accent md:text-lg"
-            )}
+            size="sm"
+            weight="semibold"
+            tone="accent"
+            className="absolute top-0 left-0 m-0 flex items-center leading-5 whitespace-pre md:text-lg"
         >
-            <span aria-hidden="true">
+            <PlainText aria-hidden="true">
                 {text.slice(0, typedLength)}
-            </span>
+            </PlainText>
             {children}
-            <span aria-hidden="true" className="text-transparent">
+            <PlainText aria-hidden="true" className="text-transparent">
                 {text.slice(typedLength)}
-            </span>
-        </h2>
+            </PlainText>
+        </Text>
     );
 };
 

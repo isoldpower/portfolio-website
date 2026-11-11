@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FinanceTraceSummary } from "@entities/integrations/model";
 import type { FC } from "react";
 
@@ -14,9 +16,9 @@ interface FinanceInfraTraceSelectorChipMetaProps {
 }
 
 const FinanceInfraTraceSelectorChipMeta: FC<FinanceInfraTraceSelectorChipMetaProps> = ({ trace }) => (
-    <span className="text-subtle">
+    <Text tone="subtle">
         {`${new Date(trace.startedAtMs).toLocaleTimeString([], TIME_FORMAT)} · ${String(trace.spanCount)}`}
-    </span>
+    </Text>
 );
 
 FinanceInfraTraceSelectorChipMeta.displayName = "FinanceInfraTraceSelectorChipMeta";

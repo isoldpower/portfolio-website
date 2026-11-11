@@ -1,4 +1,5 @@
 import { cn } from "@shared/lib/utilities";
+import { PlainText } from "@shared/ui-toolkit/typography";
 
 import type { FC, HTMLAttributes } from "react";
 
@@ -22,9 +23,9 @@ const HeroIndexRow: FC<HeroIndexRowProps> = ({
             )}
             {...props}
         >
-            <span className="opacity-70">
+            <PlainText className="opacity-70">
                 {index}
-            </span>
+            </PlainText>
             <div className="flex min-w-0 items-center whitespace-nowrap">
                 {children}
             </div>

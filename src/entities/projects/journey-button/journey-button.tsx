@@ -1,4 +1,5 @@
 import { cn } from "@shared/lib/utilities";
+import { PlainText } from "@shared/ui-toolkit/typography";
 
 import type { ButtonHTMLAttributes, FC } from "react";
 
@@ -8,7 +9,7 @@ type JourneyButtonProps = ButtonHTMLAttributes<HTMLElement> & {
     href?: string;
 };
 
-const JourneyButton: FC<JourneyButtonProps> = ({ as = "span", className, ...props }) => {
+const JourneyButton: FC<JourneyButtonProps> = ({ as = "span", className, children, ...props }) => {
     const Element = as;
 
     return (
@@ -19,7 +20,9 @@ const JourneyButton: FC<JourneyButtonProps> = ({ as = "span", className, ...prop
                 className
             )}
             {...props}
-        />
+        >
+            <PlainText>{children}</PlainText>
+        </Element>
     );
 };
 

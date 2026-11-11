@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import { useFinanceInfraCanvas } from "../context/use-finance-infra-canvas.ts";
 
 import type { FinanceTraceStatus } from "@entities/integrations/model";
@@ -21,10 +23,10 @@ const FinanceInfraTraceStatusHeadline: FC<FinanceInfraTraceStatusHeadlineProps> 
     const { flow } = useFinanceInfraCanvas();
 
     return (
-        <span className="text-foreground">
+        <Text tone="strong">
             {STATUS_HEADLINES[flow.status]}
             {children}
-        </span>
+        </Text>
     );
 };
 

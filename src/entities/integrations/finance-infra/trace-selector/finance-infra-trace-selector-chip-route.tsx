@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FC } from "react";
 
 
@@ -6,7 +8,7 @@ interface FinanceInfraTraceSelectorChipRouteProps {
 }
 
 const FinanceInfraTraceSelectorChipRoute: FC<FinanceInfraTraceSelectorChipRouteProps> = ({ children }) => (
-    <span className="font-mono">{children}</span>
+    <Text family="mono">{children}</Text>
 );
 
 FinanceInfraTraceSelectorChipRoute.displayName = "FinanceInfraTraceSelectorChipRoute";

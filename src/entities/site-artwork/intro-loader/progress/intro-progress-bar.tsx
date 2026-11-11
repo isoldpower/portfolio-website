@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import { PROGRESS_BAR_CELLS } from "../constants.ts";
 
 import type { FC } from "react";
@@ -11,9 +13,9 @@ const IntroProgressBar: FC<IntroProgressBarProps> = ({ progress }) => {
     const filled = Math.round(progress * PROGRESS_BAR_CELLS);
 
     return (
-        <span className="text-accent">
+        <Text tone="accent">
             {`[${"#".repeat(filled)}${".".repeat(PROGRESS_BAR_CELLS - filled)}]`}
-        </span>
+        </Text>
     );
 };
 

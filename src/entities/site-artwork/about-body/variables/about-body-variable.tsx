@@ -1,3 +1,5 @@
+import { PlainText, Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -10,20 +12,20 @@ interface AboutBodyVariableProps {
 
 const AboutBodyVariable: FC<AboutBodyVariableProps> = ({ type, name, value, children }) => {
     return (
-        <span className="flex flex-wrap gap-x-2 pl-[4ch] md:contents">
-            <span className="-ml-[4ch] flex whitespace-pre md:contents">
-                <span className="pr-2 opacity-70 md:pr-6">
+        <PlainText className="flex flex-wrap gap-x-2 pl-[4ch] md:contents">
+            <PlainText className="-ml-[4ch] flex whitespace-pre md:contents">
+                <PlainText className="pr-2 opacity-70 md:pr-6">
                     {type}
-                </span>
-                <span className="pr-2 text-accent md:pr-6">
+                </PlainText>
+                <Text tone="accent" className="pr-2 md:pr-6">
                     {name}
-                </span>
-                <span aria-hidden="true">=</span>
-            </span>
-            <span className="min-w-0 wrap-break-word">
+                </Text>
+                <PlainText aria-hidden="true">=</PlainText>
+            </PlainText>
+            <PlainText className="min-w-0 wrap-break-word">
                 "{value}"{children}
-            </span>
-        </span>
+            </PlainText>
+        </PlainText>
     );
 };
 

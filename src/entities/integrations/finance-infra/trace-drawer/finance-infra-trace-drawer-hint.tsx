@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FC } from "react";
 
 
@@ -6,7 +8,7 @@ interface FinanceInfraTraceDrawerHintProps {
 }
 
 const FinanceInfraTraceDrawerHint: FC<FinanceInfraTraceDrawerHintProps> = ({ children }) => (
-    <span className="hidden shrink-0 text-muted md:inline">{children}</span>
+    <Text tone="muted" className="hidden shrink-0 md:inline">{children}</Text>
 );
 
 FinanceInfraTraceDrawerHint.displayName = "FinanceInfraTraceDrawerHint";

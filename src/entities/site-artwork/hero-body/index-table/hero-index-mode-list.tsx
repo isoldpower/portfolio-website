@@ -1,4 +1,7 @@
 import { Fragment } from "react";
+
+import { PlainText } from "@shared/ui-toolkit/typography";
+
 import { HERO_ROLES } from "../../model";
 
 import type { HeroRole } from "../../model";
@@ -11,18 +14,18 @@ interface HeroIndexModeListProps {
 
 const HeroIndexModeList: FC<HeroIndexModeListProps> = ({ children }) => {
     return (
-        <span>
+        <PlainText>
             {HERO_ROLES.map((role, index) => {
                 return (
                     <Fragment key={role}>
                         {index > 0 && (
-                            <span aria-hidden="true">{" | "}</span>
+                            <PlainText aria-hidden="true">{" | "}</PlainText>
                         )}
                         {children(role, index)}
                     </Fragment>
                 );
             })}
-        </span>
+        </PlainText>
     );
 };
 

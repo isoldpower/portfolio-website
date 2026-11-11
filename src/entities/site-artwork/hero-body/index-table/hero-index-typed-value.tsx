@@ -1,3 +1,5 @@
+import { PlainText, Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -13,15 +15,17 @@ const HeroIndexTypedValue: FC<HeroIndexTypedValueProps> = ({
     children
 }) => {
     return (
-        <span
+        <Text
             role="text"
             aria-label={label}
-            className="inline-flex items-center font-semibold whitespace-pre text-highlight"
+            weight="semibold"
+            tone="highlight"
+            className="inline-flex items-center whitespace-pre"
         >
-            <span aria-hidden="true">"{text}</span>
+            <PlainText aria-hidden="true">"{text}</PlainText>
             {children}
-            <span aria-hidden="true">"</span>
-        </span>
+            <PlainText aria-hidden="true">"</PlainText>
+        </Text>
     );
 };
 

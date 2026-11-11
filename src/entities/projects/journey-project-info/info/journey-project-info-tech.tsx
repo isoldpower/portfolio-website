@@ -1,3 +1,5 @@
+import { Text } from "@shared/ui-toolkit/typography";
+
 import type { FC, ReactNode } from "react";
 
 
@@ -7,9 +9,9 @@ interface JourneyProjectInfoTechProps {
 
 const JourneyProjectInfoTech: FC<JourneyProjectInfoTechProps> = ({ children }) => {
     return (
-        <li className="border border-accent/35 bg-background px-2 py-1.25 text-2xs">
+        <Text as="li" size="2xs" className="border border-accent/35 bg-background px-2 py-1.25">
             {children}
-        </li>
+        </Text>
     );
 };
 

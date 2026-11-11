@@ -1,3 +1,5 @@
+import { PlainText } from "@shared/ui-toolkit/typography";
+
 import { PERCENT, PERCENT_WIDTH } from "../constants.ts";
 
 import type { FC } from "react";
@@ -11,9 +13,9 @@ const IntroProgressPercent: FC<IntroProgressPercentProps> = ({ progress }) => {
     const percent = Math.round(progress * PERCENT);
 
     return (
-        <span>
+        <PlainText>
             {`${percent.toString().padStart(PERCENT_WIDTH, " ")}%`}
-        </span>
+        </PlainText>
     );
 };
 

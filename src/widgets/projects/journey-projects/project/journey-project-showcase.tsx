@@ -1,5 +1,3 @@
-import { useTranslation } from "react-i18next";
-
 import { JourneyShowcase } from "@entities/projects/journey-showcase";
 import { useLocalize } from "@features/localization/localized-value";
 
@@ -11,7 +9,6 @@ interface JourneyProjectShowcaseProps {
 }
 
 function JourneyProjectShowcase({ panelView }: JourneyProjectShowcaseProps) {
-    const { t } = useTranslation();
     const localize = useLocalize();
     const { journeyStop } = panelView;
 
@@ -25,7 +22,7 @@ function JourneyProjectShowcase({ panelView }: JourneyProjectShowcaseProps) {
                     <JourneyShowcase.PlaceholderTitle>
                         {`[ ${journeyStop.checkpoint} ]`}
                     </JourneyShowcase.PlaceholderTitle>
-                    <JourneyShowcase.PlaceholderNote>{t("journey.no_preview")}</JourneyShowcase.PlaceholderNote>
+                    <JourneyShowcase.PlaceholderNote>_t(journey.no_preview)</JourneyShowcase.PlaceholderNote>
                 </JourneyShowcase.Placeholder>
             )}
             {panelView.screenAspectRatio !== null && (

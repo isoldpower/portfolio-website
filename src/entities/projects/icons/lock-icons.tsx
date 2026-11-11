@@ -1,5 +1,8 @@
-import {LockIcon, UnlockIcon} from "lucide-react";
-import type {FC, ReactNode} from "react";
+import { LockIcon, UnlockIcon } from "lucide-react";
+
+import { PlainText } from "@shared/ui-toolkit/typography";
+
+import type { FC, ReactNode } from "react";
 
 
 interface LabeledLockIconProps {
@@ -8,10 +11,10 @@ interface LabeledLockIconProps {
 
 const LabeledLockIcon: FC<LabeledLockIconProps> = ({ children }) => {
     return (
-        <span className="flex justify-center gap-2">
+        <PlainText className="flex justify-center gap-2">
             <LockIcon />
             {children}
-        </span>
+        </PlainText>
     );
 }
 
@@ -21,10 +24,10 @@ interface LabeledUnlockIconProps {
 
 const LabeledUnlockIcon: FC<LabeledUnlockIconProps> = ({ children }) => {
     return (
-        <span className="flex justify-center gap-2">
+        <PlainText className="flex justify-center gap-2">
             <UnlockIcon />
             {children}
-        </span>
+        </PlainText>
     );
 }
 
