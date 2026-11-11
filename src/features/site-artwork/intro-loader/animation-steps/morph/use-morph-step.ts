@@ -6,7 +6,7 @@ import { useGlossScramble } from "./use-gloss-scramble.ts";
 import { useRabbitSnapshot } from "./use-rabbit-snapshot.ts";
 import { useSnapshotReveal } from "./use-snapshot-reveal.ts";
 
-import type { SceneStep } from "../../types.ts";
+import type { IsAlive, SceneStep } from "../../types.ts";
 
 
 type UseMorphStepReturn = SceneStep;
@@ -18,10 +18,13 @@ const useMorphStep = (): UseMorphStepReturn => {
     const runScramble = useGlossScramble(t("intro.gloss"));
     const runReveal = useSnapshotReveal();
 
-    const runMorph = useCallback(async (rabbitCanvas: HTMLCanvasElement) => {
+    const runMorph = useCallback(async (
+        rabbitCanvas: HTMLCanvasElement,
+        isAlive: IsAlive
+    ) => {
         scene.shot = snapshotRabbit(rabbitCanvas);
-        await runScramble();
-        if (scene.shot && scene.isAlive()) {
+        await runScramble(isAlive);
+        if (scene.shot && isAlive()) {
             await runReveal(scene.shot);
         }
     }, [scene, snapshotRabbit, runScramble, runReveal]);
@@ -31,12 +34,12 @@ const useMorphStep = (): UseMorphStepReturn => {
             getName: () => {
                 return "morph";
             },
-            execute: async () => {
+            execute: async (isAlive) => {
                 if (!scene.rabbitCanvas) {
                     return "skip";
                 }
 
-                await runMorph(scene.rabbitCanvas);
+                await runMorph(scene.rabbitCanvas, isAlive);
                 return "continue";
             },
         };

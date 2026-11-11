@@ -25,6 +25,10 @@ const en = {
         note_label: "// NOTE:",
         note: "rabbit drawn in + $ @",
     },
+    about: {
+        label: "[ 01_about_me ]",
+        note_label: "// NOTE:",
+    },
     intro: {
         gloss: "[French: Rabbit]",
         stages: {

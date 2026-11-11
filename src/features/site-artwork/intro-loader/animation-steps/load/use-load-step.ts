@@ -8,7 +8,7 @@ import { useIntroStage } from "../../stage/use-intro-stage.ts";
 import { useLoadProgress } from "./use-load-progress.ts";
 
 import type { IntroStageLabel } from "@entities/site-artwork/intro-loader";
-import type { SceneStep } from "../../types.ts";
+import type { IsAlive, SceneStep } from "../../types.ts";
 
 
 type UseLoadStepReturn = SceneStep;
@@ -28,23 +28,27 @@ const useLoadStep = (): UseLoadStepReturn => {
         scene.updateView({ progress, stage: stageOf(progress) });
     }, [scene, stageOf]);
 
-    const runLoad = useCallback(async () => {
-        await waitForLoad({ onProgress: reportProgress, isAlive: scene.isAlive });
-        if (!scene.isAlive()) {
+    const runLoad = useCallback(async (isAlive: IsAlive) => {
+        await waitForLoad({ onProgress: reportProgress, isAlive });
+        if (!isAlive()) {
             return;
         }
 
         reportProgress(1);
         await sleep(SETTLE_AFTER_LOAD_MS);
-    }, [scene, waitForLoad, reportProgress]);
+    }, [waitForLoad, reportProgress]);
 
     return useMemo((): SceneStep => {
         return {
             getName: () => {
                 return "load";
             },
-            execute: async () => {
-                await runLoad();
+            execute: async (isAlive) => {
+                await runLoad(isAlive);
+                if (!isAlive()) {
+                    return "abort";
+                }
+
                 scene.rabbitCanvas = store?.getRabbitCanvas() ?? null;
                 return "continue";
             },

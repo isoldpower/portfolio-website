@@ -1,8 +1,8 @@
 import { createRootRouteWithContext } from "@tanstack/react-router";
-
 import { resolveLocale } from "@app/providers/i18n";
 import { RootLayout } from "@app/root-layout.tsx";
 import mainCss from "@app/style/globals.css?url";
+import { loadTranslationOverrides } from "@features/localization/translation-overrides";
 import { TRANSLATION_RESOURCES } from "@shared/lib/i18n";
 
 import type { RouterContext } from "@app/router-context.ts";
@@ -20,11 +20,17 @@ export const Route = createRootRouteWithContext<RouterContext>()({
     beforeLoad: () => ({
         locale: resolveLocale()
     }),
-    head: ({ match }) => ({
+    loader: async ({ context }) => ({
+        translationOverrides: await loadTranslationOverrides({ client: context.apiServers.translationApi })
+    }),
+    staleTime: Infinity,
+    shouldReload: false,
+    head: ({ match, loaderData }) => ({
         meta: [
             { charSet: "utf-8" },
             { name: "viewport", content: "width=device-width, initial-scale=1" },
-            { title: TRANSLATION_RESOURCES[match.context.locale].translation.meta.title },
+            { title: loaderData?.translationOverrides[match.context.locale]?.meta?.title
+                    ?? TRANSLATION_RESOURCES[match.context.locale].translation.meta.title },
         ],
         links: [
             { rel: "preconnect", href: "https://fonts.googleapis.com" },

@@ -1,7 +1,5 @@
 import { useCallback, useMemo } from "react";
-
 import { sleep } from "@shared/lib/utilities";
-
 import {
     BACKGROUND_FADE_DELAY_MS,
     BACKGROUND_FADE_MS,
@@ -71,12 +69,12 @@ const useFlightStep = (): UseFlightStepReturn => {
             getName: () => {
                 return "fly";
             },
-            execute: async () => {
+            execute: async (isAlive) => {
                 if (!scene.rabbitCanvas) {
                     return "skip";
                 }
 
-                await runFlight(scene.shot, scene.rabbitCanvas, scene.isAlive);
+                await runFlight(scene.shot, scene.rabbitCanvas, isAlive);
                 return "continue";
             },
         };

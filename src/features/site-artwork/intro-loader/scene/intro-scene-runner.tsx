@@ -16,8 +16,8 @@ const IntroSceneRunner: FC = () => {
     const steps = useIntroAnimationSteps();
 
     const runSequence: RunSequence = useCallback(async (isAlive, finish) => {
-        scene.begin(isAlive);
-        const outcome = await play(steps);
+        scene.begin();
+        const outcome = await play(steps, isAlive);
 
         if (outcome !== "abort") {
             finish(outcome === "continue");

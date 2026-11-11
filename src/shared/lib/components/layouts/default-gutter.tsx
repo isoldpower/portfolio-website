@@ -18,7 +18,7 @@ const DefaultGutter: FC<DefaultGutterProps> = ({
         ...props,
         children,
         className: cn(
-            'flex flex-col w-full box-content mx-auto max-w-7xl',
+            'flex flex-col box-content mx-auto max-w-7xl',
             'px-margin',
             className
         )

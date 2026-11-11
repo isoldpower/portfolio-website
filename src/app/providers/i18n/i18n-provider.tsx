@@ -9,10 +9,11 @@ import type { FC } from "react";
 
 const InternationalizationProvider: FC<InternationalizationProviderProps> = ({
     children,
-    locale
+    locale,
+    resources
 }) => {
     const [ instance ] = useState(() => {
-        return createInternationalizationInstance(locale);
+        return createInternationalizationInstance(locale, resources);
     });
 
     useEffect(() => {

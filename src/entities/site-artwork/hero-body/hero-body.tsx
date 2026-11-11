@@ -18,7 +18,7 @@ type HeroBodyObject = FC<HeroBodyProps> & {
 const HeroBody: HeroBodyObject = ({ className, ...props }) => {
     return (
         <section
-            className={cn("grid grid-cols-12 gap-x-gutter", className)}
+            className={cn("relative grid grid-cols-12 gap-x-gutter", className)}
             {...props}
         />
     );

@@ -109,7 +109,7 @@ A frame draws when all of these hold:
 
 - the 2D context, grid, target and layout exist;
 - the font has loaded and the colours have been read (`palette.isReady`);
-- the canvas is intersecting the viewport (`IntersectionObserver`);
+- the canvas is intersecting the viewport (`IntersectionObserver`), except for the very first frame, which always draws so the intro can treat the rabbit as ready;
 - at least `1/30 s` has passed since the last draw;
 - with `prefers-reduced-motion`, nothing has been drawn yet. In that case it draws a single still frame and stops.
 

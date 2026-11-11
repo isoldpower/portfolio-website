@@ -4,6 +4,7 @@ import { usePrefersReducedMotion } from "@shared/lib/hooks";
 
 import { SKIP_FADE_MS, SKIP_SCROLL_Y } from "../../constants.ts";
 import { useIntroScene } from "../../scene/use-intro-scene.ts";
+import { useIntroStage } from "../../stage/use-intro-stage.ts";
 
 import type { SceneStep } from "../../types.ts";
 
@@ -12,6 +13,7 @@ type UseSkipStepReturn = SceneStep;
 
 const useSkipStep = (): UseSkipStepReturn => {
     const { scene, refs } = useIntroScene();
+    const store = useIntroStage();
     const isReducedMotion = usePrefersReducedMotion();
 
     const shouldSkip = useCallback((): boolean => {
@@ -30,16 +32,19 @@ const useSkipStep = (): UseSkipStepReturn => {
             getName: () => {
                 return "load";
             },
-            execute: async () => {
-                if (!shouldSkip()) {
+            execute: async (isAlive) => {
+                if (!isAlive()) {
+                    return "abort";
+                } else if (!shouldSkip()) {
                     return "continue";
                 }
 
+                store?.setPhase("done");
                 await fadeOutScreen();
                 return "skip";
             },
         };
-    }, [shouldSkip, fadeOutScreen]);
+    }, [store, shouldSkip, fadeOutScreen]);
 };
 
 export { useSkipStep };

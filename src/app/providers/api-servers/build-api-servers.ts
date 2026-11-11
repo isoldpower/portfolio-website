@@ -5,8 +5,12 @@ import type { ApiServers } from "./types.ts";
 
 
 function buildApiServers(envVariables: ImportMetaEnv): ApiServers {
+    const sanityApi = createSanityApiClient(envVariables);
+
     return {
-        projectApi: createSanityApiClient(envVariables),
+        projectApi: sanityApi,
+        aboutApi: sanityApi,
+        translationApi: sanityApi,
         financeProjectApi: createFinanceProjectApiClient(envVariables),
     };
 }

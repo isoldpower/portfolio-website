@@ -98,7 +98,7 @@ interface SceneView {
 
 interface SceneStep {
     getName: () => SequenceStep;
-    execute: () => Promise<SceneOutcome>;
+    execute: (isAlive: IsAlive) => Promise<SceneOutcome>;
 }
 
 type RunSequence = (isAlive: IsAlive, finish: FinishSequence) => Promise<void>;

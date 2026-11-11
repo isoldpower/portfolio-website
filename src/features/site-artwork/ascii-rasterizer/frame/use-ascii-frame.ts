@@ -1,4 +1,5 @@
 import { useFrame, useThree } from "@react-three/fiber";
+import { useRef } from "react";
 
 import { RASTER_PRIORITY } from "../constants.ts";
 import { useCanvasResolution } from "../canvas/use-canvas-resolution.ts";
@@ -39,27 +40,29 @@ const useAsciiFrame = ({
     const throttle = useFrameThrottle(grid);
     const renderSamples = useSampleRender();
     const paintGlyphs = useGlyphPainter({ palette, glyphs });
+    const hasDrawn = useRef(false);
 
     useCanvasResolution(canvas, grid);
 
     useFrame((_, delta) => {
         throttle.tick(delta);
-
         const context = canvas.current?.getContext("2d");
         if (!context || !grid || !target || !layout) {
             return;
         }
-        if (!palette.isReady || !isVisible.current || !throttle.isDue()) {
-            return;
-        }
-        if (!target.isFitted && !fitCamera(scene, grid, target)) {
-            return;
-        }
 
-        renderSamples(grid, target);
-        paintGlyphs(context, grid, target.pixels, layout);
-        throttle.markDrawn();
-        onDraw(context.canvas);
+        if (
+            (palette.isReady && throttle.isDue()) ||
+            (!hasDrawn.current || isVisible.current) ||
+            (target.isFitted || fitCamera(scene, grid, target))
+        ) {
+            renderSamples(grid, target);
+            paintGlyphs(context, grid, target.pixels, layout);
+            throttle.markDrawn();
+
+            hasDrawn.current = true;
+            onDraw(context.canvas);
+        }
     }, RASTER_PRIORITY);
 };
 

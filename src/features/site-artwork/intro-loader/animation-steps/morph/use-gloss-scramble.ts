@@ -4,9 +4,11 @@ import { SCRAMBLE_BASE_KEEP, SCRAMBLE_GLYPHS, SCRAMBLE_STEPS, SCRAMBLE_STEP_MS }
 import { useIntroScene } from "../../scene/use-intro-scene.ts";
 import { useTicker } from "../../sequence/use-ticker.ts";
 
+import type { IsAlive } from "../../types.ts";
 
 
-type UseGlossScrambleReturn = () => Promise<void>;
+
+type UseGlossScrambleReturn = (isAlive: IsAlive) => Promise<void>;
 
 const useGlossScramble = (text: string): UseGlossScrambleReturn => {
     const { scene } = useIntroScene();
@@ -27,10 +29,10 @@ const useGlossScramble = (text: string): UseGlossScrambleReturn => {
         return SCRAMBLE_STEP_MS;
     }, []);
 
-    return useCallback(() => {
+    return useCallback((isAlive) => {
         return tick({
             count: SCRAMBLE_STEPS,
-            isAlive: scene.isAlive,
+            isAlive,
             onTick: (level) => {
                 scene.updateView({ gloss: scramble(level) });
             },

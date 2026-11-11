@@ -1,14 +1,9 @@
-import type { IsAlive, RabbitSnapshot, SceneView, SequenceStep } from "../types.ts";
+import type { RabbitSnapshot, SceneView, SequenceStep } from "../types.ts";
 
 
 type Listener<Payload> = (payload: Payload) => void;
 
-const isNeverAlive: IsAlive = () => {
-    return false;
-};
-
 class SceneState {
-    isAlive: IsAlive = isNeverAlive;
     rabbitCanvas: HTMLCanvasElement | null = null;
     shot: RabbitSnapshot | null = null;
 
@@ -22,8 +17,7 @@ class SceneState {
         this.#view = view;
     }
 
-    readonly begin = (isAlive: IsAlive): void => {
-        this.isAlive = isAlive;
+    readonly begin = (): void => {
         this.rabbitCanvas = null;
         this.shot = null;
     };
@@ -61,14 +55,20 @@ class SceneState {
         this.updateView({ isFinished: true });
     };
 
-    readonly #listen = <Payload>(listeners: Set<Listener<Payload>>, listener: Listener<Payload>): (() => void) => {
+    readonly #listen = <Payload>(
+        listeners: Set<Listener<Payload>>,
+        listener: Listener<Payload>
+    ): (() => void) => {
         listeners.add(listener);
         return () => {
             listeners.delete(listener);
         };
     };
 
-    readonly #emit = <Payload>(listeners: Set<Listener<Payload>>, payload: Payload): void => {
+    readonly #emit = <Payload>(
+        listeners: Set<Listener<Payload>>,
+        payload: Payload
+    ): void => {
         listeners.forEach((listener) => {
             listener(payload);
         });

@@ -28,6 +28,10 @@ const ru: Translation = {
         note_label: "// NOTE:",
         note: "кролик нарисован символами + $ @",
     },
+    about: {
+        label: "[ 01_about_me ]",
+        note_label: "// NOTE:",
+    },
     intro: {
         gloss: "[фр. «кролик»]",
         stages: {

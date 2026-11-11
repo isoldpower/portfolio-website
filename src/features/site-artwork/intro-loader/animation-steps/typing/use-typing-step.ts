@@ -1,12 +1,10 @@
 import { useCallback, useMemo } from "react";
-
 import { sleep } from "@shared/lib/utilities";
-
 import { TYPE_BASE_MS, TYPE_HOLD_MS, TYPE_JITTER_MS } from "../../constants.ts";
 import { useIntroScene } from "../../scene/use-intro-scene.ts";
 import { useTicker } from "../../sequence/use-ticker.ts";
 
-import type { SceneStep } from "../../types.ts";
+import type { IsAlive, SceneStep } from "../../types.ts";
 
 
 type UseTypingStepReturn = SceneStep;
@@ -24,8 +22,8 @@ const useTypingStep = (): UseTypingStepReturn => {
         scene.updateView({ typed: word.slice(0, length) });
     }, [scene, word]);
 
-    const runTyping = useCallback(async () => {
-        await tick({ count: word.length, isAlive: scene.isAlive, onTick: typeUpTo, delay: keystrokeDelay });
+    const runTyping = useCallback(async (isAlive: IsAlive) => {
+        await tick({ count: word.length, isAlive, onTick: typeUpTo, delay: keystrokeDelay });
         await sleep(TYPE_HOLD_MS);
     }, [scene, tick, word, typeUpTo, keystrokeDelay]);
 
@@ -34,8 +32,8 @@ const useTypingStep = (): UseTypingStepReturn => {
             getName: () => {
                 return "type";
             },
-            execute: async () => {
-                await runTyping();
+            execute: async (isAlive) => {
+                await runTyping(isAlive);
                 return "continue";
             },
         };
