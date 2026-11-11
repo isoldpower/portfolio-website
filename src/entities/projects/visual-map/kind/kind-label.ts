@@ -1,4 +1,4 @@
-import type { ProjectKind } from "../model/types.ts";
+import type { ProjectKind } from "../../model/types.ts";
 
 
 const LABEL_BY_KIND: Record<ProjectKind, string> = {
@@ -7,8 +7,8 @@ const LABEL_BY_KIND: Record<ProjectKind, string> = {
     embedded: "Embedded",
 };
 
-function resolveKindLabel(kind: ProjectKind): string {
+const resolveKindLabel = (kind: ProjectKind): string => {
     return LABEL_BY_KIND[kind];
-}
+};
 
 export { resolveKindLabel };

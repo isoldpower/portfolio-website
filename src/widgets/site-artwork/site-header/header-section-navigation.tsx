@@ -1,7 +1,7 @@
 import { SiteNavItem } from "@entities/site-artwork/site-header";
 import { InsetFocusOutline } from "@features/site-artwork/focus-outline";
-import { NavigateToSection } from "@features/site-artwork/section-navigation";
 import { NavigationHover } from "@features/site-artwork/navigation-hover";
+import { NavigateToSection } from "@features/site-artwork/section-navigation";
 import { AnimationComposer } from "@shared/lib/components";
 
 import type { SiteSection } from "@entities/site-artwork/model";
@@ -20,7 +20,9 @@ function HeaderSectionNavigation({
             <NavigateToSection section={section} className="block">
                 <AnimationComposer>
                     <NavigationHover />
-                    <SiteNavItem section={section} />
+                    <SiteNavItem>
+                        {`_t(navigation.${section})`}
+                    </SiteNavItem>
                 </AnimationComposer>
             </NavigateToSection>
         </AnimationComposer>

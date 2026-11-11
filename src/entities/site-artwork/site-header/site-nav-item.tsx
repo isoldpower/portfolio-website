@@ -1,17 +1,16 @@
 import { cn } from "@shared/lib/utilities";
 import { Text } from "@shared/ui-toolkit/typography";
 
-import type { SiteSection } from "../model";
 import type { HTMLAttributes } from "react";
 
 
 type SiteNavItemProps = Omit<HTMLAttributes<HTMLSpanElement>, "children"> & {
-    section: SiteSection;
+    children: string;
 };
 
 function SiteNavItem({
-    section,
     className,
+    children,
     ...props
 }: SiteNavItemProps) {
     return (
@@ -23,7 +22,7 @@ function SiteNavItem({
             {...props}
         >
             <span aria-hidden="true" className="hidden lg:inline">[</span>
-            <Text>{`_t(navigation.${section})`}</Text>
+            <Text>{children}</Text>
             <span aria-hidden="true" className="hidden lg:inline">]</span>
         </span>
     );

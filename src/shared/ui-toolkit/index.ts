@@ -4,3 +4,4 @@ export * from "./default-fx";
 export * from './terminal';
 export * from "./disclosure";
 export * from "./info-hint";
+export * from "./pixel-sprite";

@@ -50,6 +50,8 @@
     --animate-intro-reveal: intro-reveal 520ms var(--ease-snap) backwards;
     --animate-intro-unhide: intro-unhide 0.5s 14s forwards;
     --animate-intro-failsafe: intro-failsafe 0.5s 14s forwards;
+    --animate-journey-drift: journey-drift 240s steps(896) infinite;
+    --animate-journey-hop: journey-hop 0.6s infinite;
 
     @keyframes blink {
         50% {
@@ -78,6 +80,26 @@
         to {
             opacity: 0;
             visibility: hidden;
+        }
+    }
+
+    @keyframes journey-drift {
+        to {
+            transform: translateX(-1792px);
+        }
+    }
+
+    @keyframes journey-hop {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        25%,
+        75% {
+            transform: translateY(-4px);
+        }
+        50% {
+            transform: translateY(-6px);
         }
     }
 

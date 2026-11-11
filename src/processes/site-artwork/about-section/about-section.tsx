@@ -16,7 +16,7 @@ function AboutSection({ profile }: AboutSectionProps) {
     const { t } = useTranslation();
 
     return (
-        <AboutBody id="about" className="relative z-10 mt-14 md:mt-18">
+        <AboutBody id="about" className="relative z-10 mt-20 md:mt-24">
             <AboutBody.Header>
                 <SectionHeading text={t("about.label")} />
             </AboutBody.Header>

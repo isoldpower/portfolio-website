@@ -1,7 +1,7 @@
 import { Children, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import type { ParseKeys } from "i18next";
+import type { TOptions } from "i18next";
 import type { ReactNode } from "react";
 
 
@@ -25,10 +25,8 @@ const useTranslatedChildren = ({
             return marker;
         }
 
-        const translated: unknown = t(
-            key as ParseKeys,
-            { replace: values, returnObjects: true }
-        );
+        const translateRuntimeKey = t as unknown as (runtimeKey: string, options: TOptions) => unknown;
+        const translated = translateRuntimeKey(key, { replace: values, returnObjects: true });
 
         return typeof translated === "string"
             ? translated

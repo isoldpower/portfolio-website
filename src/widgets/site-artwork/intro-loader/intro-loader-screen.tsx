@@ -1,4 +1,4 @@
-import { IntroNameLine, IntroRabbitSnapshot, IntroScreen } from "@entities/site-artwork/intro-loader";
+import { IntroNameLine, IntroProgress, IntroRabbitSnapshot, IntroScreen } from "@entities/site-artwork/intro-loader";
 import { CursorBlink } from "@features/site-artwork/cursor-blink";
 import {
     GlossFold,
@@ -35,7 +35,11 @@ function IntroLoaderScreen() {
                 </AnimationComposer>
                 <AnimationComposer>
                     <ProgressFade />
-                    <IntroNameLine.ProgressBar progress={view.progress} stage={view.stage} isVisible={view.step === "load"} />
+                    <IntroProgress progress={view.progress} isVisible={view.step === "load"}>
+                        <IntroProgress.Bar progress={view.progress} />
+                        <IntroProgress.Percent progress={view.progress} />
+                        <IntroProgress.Stage stage={view.stage} />
+                    </IntroProgress>
                 </AnimationComposer>
             </IntroNameLine>
             <IntroSceneSnapshot>
