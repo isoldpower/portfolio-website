@@ -9,16 +9,16 @@ type HeadingProps = Omit<TextProps, "family" | "weight" | "tracking" | "uppercas
 
 function Heading({
     as = "h2",
-    size = "2xl",
+    size = "xl",
+    tone = "accent",
     ...props
 }: HeadingProps) {
     return (
         <Text
             as={as}
-            family="display"
             size={size}
-            weight="semibold"
-            tracking="tight"
+            weight="bold"
+            tone={tone}
             {...props}
         />
     );

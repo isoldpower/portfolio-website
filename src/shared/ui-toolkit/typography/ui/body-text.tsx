@@ -10,11 +10,10 @@ type BodyTextProps = Omit<TextProps, "family" | "weight" | "tracking" | "upperca
 function BodyText({
     as = "p",
     size = "base",
-    tone = "muted",
-    leading = "relaxed",
+    tone = "default",
     ...props
 }: BodyTextProps) {
-    return <Text as={as} size={size} tone={tone} leading={leading} {...props} />;
+    return <Text as={as} family="mono" size={size} tone={tone} {...props} />;
 }
 
 export { BodyText };

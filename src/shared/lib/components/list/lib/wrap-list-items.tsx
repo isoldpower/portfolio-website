@@ -1,31 +1,40 @@
-import { Children, isValidElement } from "react";
+import { Children, isValidElement, useCallback } from "react";
 
 import type { ListItemProps, ListItemsOptions } from "../types.ts";
 import type { ReactNode } from "react";
 
 
-function resolveItemProps(
-    itemProps: ListItemsOptions["itemProps"],
-    index: number
-): ListItemProps | undefined {
-    return typeof itemProps === "function" ? itemProps(index) : itemProps;
-}
-
-// Empty children are dropped, existing li children are kept as they are,
-// and each generated li takes over its child's key.
 function wrapListItems({
     children,
     itemProps
 }: ListItemsOptions): ReactNode[] {
+    const resolveItemProps = useCallback((
+        index: number
+    ): ListItemProps | undefined => {
+        return typeof itemProps === "function"
+            ? itemProps(index)
+            : itemProps;
+    }, [itemProps]);
+
+    const resolveItemKey = useCallback((
+        child: ReactNode,
+        index: number
+    ): string => {
+        return isValidElement(child) && child.key !== null
+            ? child.key
+            : `list-item-${index.toString()}`;
+    }, [itemProps]);
+
     return Children.toArray(children).map((child, index) => {
         if (isValidElement(child) && child.type === "li") {
             return child;
         }
 
-        const key = isValidElement(child) && child.key !== null ? child.key : index;
-
         return (
-            <li key={key} {...resolveItemProps(itemProps, index)}>
+            <li
+                key={resolveItemKey(child, index)}
+                {...resolveItemProps(index)}
+            >
                 {child}
             </li>
         );

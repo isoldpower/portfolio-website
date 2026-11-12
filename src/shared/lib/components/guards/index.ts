@@ -3,7 +3,6 @@ export {
     MediaGuard,
     MobileOnly,
     TabletOnly,
-    LaptopOnly,
     DesktopOnly,
     HandheldOnly,
     ComputerOnly

@@ -1,7 +1,7 @@
 import { Children, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import type { ParseKeys } from "i18next";
+import type { TOptions } from "i18next";
 import type { ReactNode } from "react";
 
 
@@ -25,10 +25,8 @@ const useTranslatedChildren = ({
             return marker;
         }
 
-        const translated: unknown = t(
-            key as ParseKeys,
-            { replace: values, returnObjects: true }
-        );
+        const translateRuntimeKey = t as unknown as (runtimeKey: string, options: TOptions) => unknown;
+        const translated = translateRuntimeKey(key, { replace: values, returnObjects: true });
 
         return typeof translated === "string"
             ? translated
@@ -43,9 +41,25 @@ const useTranslatedChildren = ({
         return child.replace(TRANSLATION_MARKER_PATTERN, translateMarker);
     }, [i18n, translateMarker]);
 
+    const mergeTextChildren = useCallback((mergedChildren: ReactNode[], child: ReactNode): ReactNode[] => {
+        const isTextChild = typeof child === "string" || typeof child === "number";
+        const previousChild = mergedChildren.at(-1);
+
+        if (isTextChild && typeof previousChild === "string") {
+            mergedChildren[mergedChildren.length - 1] = previousChild + String(child);
+        } else {
+            mergedChildren.push(isTextChild ? String(child) : child);
+        }
+
+        return mergedChildren;
+    }, []);
+
     return useMemo(() => {
-        return Children.map(children, translateChild);
-    }, [ children, translateChild ]);
+        const mergedChildren = Children.toArray(children).reduce<ReactNode[]>(mergeTextChildren, []);
+        const translatedChildren = mergedChildren.map(translateChild);
+
+        return translatedChildren.length === 1 ? translatedChildren[0] : translatedChildren;
+    }, [children, mergeTextChildren, translateChild]);
 };
 
 export { useTranslatedChildren };

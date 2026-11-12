@@ -1,5 +1,5 @@
-import { FinanceProjectApiContext } from "@features/integration/api";
-import { ProjectApiContext } from "@features/project/api";
+import { FinanceProjectApiContext } from "@features/integrations/api";
+import { ProjectApiContext } from "@features/projects/api";
 
 import type { ApiServers } from "./api-servers";
 import type { FC, ReactNode } from "react";

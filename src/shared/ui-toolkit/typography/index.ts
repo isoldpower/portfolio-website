@@ -1,6 +1,7 @@
 export * from "./variants";
 
 export { Text } from "./ui/text.tsx";
+export { PlainText } from "./ui/plain-text.tsx";
 export { DisplayText } from "./ui/display-text.tsx";
 export { PageTitle } from "./ui/page-title.tsx";
 export { Heading } from "./ui/heading.tsx";
@@ -13,6 +14,7 @@ export { InlineCode } from "./ui/inline-code.tsx";
 export { ErrorText } from "./ui/error-text.tsx";
 
 export type { TextProps, TextElement } from "./ui/text.tsx";
+export type { PlainTextProps } from "./ui/plain-text.tsx";
 export type { DisplayTextProps } from "./ui/display-text.tsx";
 export type { PageTitleProps } from "./ui/page-title.tsx";
 export type { HeadingProps } from "./ui/heading.tsx";

@@ -1,20 +1,36 @@
 @theme {
-    --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
-    --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --font-sans: "Onest", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", Consolas, ui-monospace, monospace;
+    --font-display: "Noto Sans Mono", ui-monospace, monospace;
+    --font-display--font-variation-settings: "wdth" 68;
 
-    --color-background: oklch(1 0 0);
-    --color-foreground: oklch(0.145 0 0);
-    --color-muted: oklch(0.4 0 0);
-    --color-subtle: oklch(0.556 0 0);
-    --color-accent: oklch(0.55 0.2 264);
-    --color-external: oklch(0.62 0.14 235);
-    --color-positive: oklch(0.6 0.15 150);
-    --color-negative: oklch(0.577 0.245 27.325);
-}
+    --text-2xs: 0.625rem;
+    --text-2xs--line-height: 1.4;
+    --text-xs: 0.6875rem;
+    --text-xs--line-height: 1.3;
+    --text-sm: 0.75rem;
+    --text-sm--line-height: 1.4;
+    --text-md: 0.875rem;
+    --text-md--line-height: 1.3;
+    --text-base: 0.9375rem;
+    --text-base--line-height: 1.4;
+    --text-lg: 1rem;
+    --text-lg--line-height: 1.4;
+    --text-xl: 1.125rem;
+    --text-xl--line-height: 1.25;
+    --text-2xl: 1.25rem;
+    --text-2xl--line-height: 1.2;
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: 1.2;
+    --text-4xl: 2.5rem;
+    --text-4xl--line-height: 1.1;
+    --text-5xl: 3.75rem;
+    --text-5xl--line-height: 1.05;
 
-@layer base {
-    body {
-        @apply bg-background text-foreground font-sans antialiased;
-    }
+    --text-hero: 9rem;
+    --text-hero--line-height: 0.74;
+    --text-hero--letter-spacing: -0.01em;
+    --text-hero--font-weight: 520;
+
+    --tracking-arcade: 0.25em;
 }

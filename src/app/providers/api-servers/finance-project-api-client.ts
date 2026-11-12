@@ -1,4 +1,4 @@
-import { FinanceProjectApiClient } from "@features/integration/api";
+import { FinanceProjectApiClient } from "@features/integrations/api";
 import { createAxiosInstance } from "@shared/api";
 
 

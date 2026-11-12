@@ -1,0 +1,1 @@
+export { RabbitScene } from './rabbit-scene.tsx';

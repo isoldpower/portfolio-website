@@ -1,5 +1,8 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { useRouteContext } from "@tanstack/react-router";
+import { useLoaderData, useRouteContext } from "@tanstack/react-router";
+import { useMemo } from "react";
+
+import { mergeTranslationResources } from "@shared/lib/i18n";
 
 import { ApiProvider } from "./api-provider.tsx";
 import { InternationalizationProvider } from "./i18n";
@@ -11,9 +14,13 @@ function WebsiteProviders({
     children
 }: PropsWithChildren<object>) {
     const { apiServers, queryClient, locale } = useRouteContext({ from: "__root__" });
+    const { translationOverrides } = useLoaderData({ from: "__root__" });
+    const resources = useMemo(() => {
+        return mergeTranslationResources(translationOverrides);
+    }, [translationOverrides]);
 
     return (
-        <InternationalizationProvider locale={locale}>
+        <InternationalizationProvider locale={locale} resources={resources}>
             <QueryClientProvider client={queryClient}>
                 <ApiProvider servers={apiServers}>
                     {children}

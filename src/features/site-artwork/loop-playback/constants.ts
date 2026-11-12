@@ -1,0 +1,3 @@
+const VISIBLE_THRESHOLD = 0.05;
+
+export { VISIBLE_THRESHOLD };

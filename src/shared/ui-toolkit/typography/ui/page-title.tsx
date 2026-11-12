@@ -7,15 +7,15 @@ type PageTitleProps = Omit<TextProps, "size" | "family" | "weight" | "tracking" 
 
 function PageTitle({
     as = "h1",
+    tone = "accent",
     ...props
 }: PageTitleProps) {
     return (
         <Text
             as={as}
-            family="display"
-            size="4xl"
-            weight="semibold"
-            tracking="tight"
+            size="3xl"
+            weight="extrabold"
+            tone={tone}
             {...props}
         />
     );

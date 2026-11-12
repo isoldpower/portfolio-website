@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@wterm/dom/css";
+@import "@wterm/dom/css" layer(components);
 
 @import "./typography.css";
+@import "./theme.css";
