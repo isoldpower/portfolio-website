@@ -53,6 +53,7 @@
     --animate-intro-failsafe: intro-failsafe 0.5s 14s forwards;
     --animate-journey-drift: journey-drift 240s steps(896) infinite;
     --animate-journey-hop: journey-hop 0.6s infinite;
+    --animate-callout-bob: callout-bob 2.4s steps(1) infinite;
 
     @keyframes blink {
         50% {
@@ -101,6 +102,22 @@
         }
         50% {
             transform: translateY(-6px);
+        }
+    }
+
+    @keyframes callout-bob {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        25% {
+            transform: translateY(-2px);
+        }
+        50% {
+            transform: translateY(-4px);
+        }
+        75% {
+            transform: translateY(-2px);
         }
     }
 

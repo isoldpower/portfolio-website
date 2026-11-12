@@ -29,6 +29,10 @@ const useExperienceGroups = (
 
     const periodTextOf = useCallback((experienceEntry: ExperienceEntry): string => {
         const startYearText = String(experienceEntry.startYear);
+        if (experienceEntry.endYear === experienceEntry.startYear) {
+            return startYearText;
+        }
+
         const endYearText = experienceEntry.endYear === null
             ? t("experience.present")
             : String(experienceEntry.endYear);

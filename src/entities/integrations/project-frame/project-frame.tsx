@@ -1,16 +1,26 @@
 import { cn } from "@shared/lib/utilities";
+import { ProjectFrameStage } from "./layout/project-frame-stage.tsx";
+import { ProjectFrameLoaderBar } from "./loader/project-frame-loader-bar.tsx";
+import { ProjectFrameLoaderStage } from "./loader/project-frame-loader-stage.tsx";
+import { ProjectFrameLoader } from "./loader/project-frame-loader.tsx";
 
-import type {FC, IframeHTMLAttributes} from "react";
+import type { ProjectFrameStageProps } from "./layout/project-frame-stage.tsx";
+import type { ProjectFrameLoaderBarProps } from "./loader/project-frame-loader-bar.tsx";
+import type { ProjectFrameLoaderStageProps } from "./loader/project-frame-loader-stage.tsx";
+import type { ProjectFrameLoaderProps } from "./loader/project-frame-loader.tsx";
+import type { FC, IframeHTMLAttributes } from "react";
 
 
-interface ProjectFrameProps extends Omit<
-    IframeHTMLAttributes<HTMLIFrameElement>,
-    'width' | 'height' | 'className'
-> {}
+type ProjectFrameProps = Omit<IframeHTMLAttributes<HTMLIFrameElement>, "width" | "height" | "className">;
 
-const ProjectFrame: FC<ProjectFrameProps> = ({
-    ...props
-}) => {
+type ProjectFrameObject = FC<ProjectFrameProps> & {
+    Stage: FC<ProjectFrameStageProps>;
+    Loader: FC<ProjectFrameLoaderProps>;
+    LoaderBar: FC<ProjectFrameLoaderBarProps>;
+    LoaderStage: FC<ProjectFrameLoaderStageProps>;
+};
+
+const ProjectFrame: ProjectFrameObject = (props) => {
     return (
         <iframe
             className={cn(
@@ -20,6 +30,13 @@ const ProjectFrame: FC<ProjectFrameProps> = ({
             {...props}
         />
     );
-}
+};
+
+ProjectFrame.Stage = ProjectFrameStage;
+ProjectFrame.Loader = ProjectFrameLoader;
+ProjectFrame.LoaderBar = ProjectFrameLoaderBar;
+ProjectFrame.LoaderStage = ProjectFrameLoaderStage;
+ProjectFrame.displayName = "ProjectFrame";
 
 export { ProjectFrame };
+export type { ProjectFrameProps };

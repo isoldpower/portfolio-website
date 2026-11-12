@@ -114,3 +114,7 @@ A frame draws when all of these hold:
 - with `prefers-reduced-motion`, nothing has been drawn yet. In that case it draws a single still frame and stops.
 
 Per-frame work allocates no arrays: it is one `forEach` over the precomputed cells and one `reduce` into a single accumulator per cell.
+
+## Cell arrangement
+
+`arrange` (optional) receives each painted cell's resting centre plus the canvas size and writes where the glyph is drawn this frame into a reused `{ x, y }` placement. Without it every glyph sits on its cell. `features/site-artwork/ascii-appear` uses it for the entry animation: glyphs start on a ring and crawl cell by cell into the silhouette.

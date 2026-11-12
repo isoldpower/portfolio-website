@@ -3,6 +3,7 @@ import { listFavoriteProjects, mapPortfolioJourney } from "@features/projects/po
 import { getAboutProfile, mapAboutProfile } from "@features/site-artwork/about-profile";
 import { listContacts, mapContacts } from "@features/site-artwork/contacts";
 import { getExperienceSection, mapExperienceSection } from "@features/site-artwork/experience-section";
+import { preloadRabbitModel } from "@features/site-artwork/rabbit-model";
 
 import type { ProjectApiServers } from "@features/projects/api";
 import type { JourneyApiServers } from "@features/projects/portfolio-journey";
@@ -18,6 +19,8 @@ interface HomeLoaderParams {
 }
 
 async function homePageLoader({ context }: HomeLoaderParams) {
+    preloadRabbitModel();
+
     const [projects, about, experience, journey, contacts] = await Promise.all([
         listProjectCards({ client: context.apiServers.projectApi }),
         getAboutProfile({ client: context.apiServers.aboutApi }),

@@ -23,8 +23,8 @@ const ScrollRail: ScrollRailObject = ({ className, ...props }) => {
         <div
             aria-hidden="true"
             className={cn(
-                "pointer-events-none fixed top-1/2 right-3 hidden -translate-y-1/2 flex-col items-center gap-2.5 select-none",
-                "lg:flex",
+                "pointer-events-none fixed top-1/2 right-3 z-20 hidden -translate-y-1/2",
+                "flex-col items-center gap-2.5 select-none lg:flex",
                 className
             )}
             {...props}

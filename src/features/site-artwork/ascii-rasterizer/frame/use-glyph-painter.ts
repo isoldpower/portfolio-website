@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 
 import {
     COVERAGE_GAMMA,
@@ -11,11 +11,13 @@ import {
 import { useCellSampler } from "./use-cell-sampler.ts";
 
 import type { AsciiCell, AsciiGrid, AsciiLayout, AsciiPalette, CellSample } from "../types.ts";
+import type { CellArranger, CellPlacement } from "@shared/lib/types";
 
 
 interface UseGlyphPainterParams {
     palette: AsciiPalette;
     glyphs: string;
+    arrange?: CellArranger;
 }
 
 type UseGlyphPainterReturn = (
@@ -25,8 +27,9 @@ type UseGlyphPainterReturn = (
     layout: AsciiLayout
 ) => void;
 
-const useGlyphPainter = ({ palette, glyphs }: UseGlyphPainterParams): UseGlyphPainterReturn => {
+const useGlyphPainter = ({ palette, glyphs, arrange }: UseGlyphPainterParams): UseGlyphPainterReturn => {
     const sampleCell = useCellSampler();
+    const glyphPlacementRef = useRef<CellPlacement>({ x: 0, y: 0 });
 
     const shadeLevel = useCallback((shade: number): number => {
         const level = SHADE_THRESHOLDS.findIndex((threshold) => {
@@ -42,7 +45,12 @@ const useGlyphPainter = ({ palette, glyphs }: UseGlyphPainterParams): UseGlyphPa
         );
     }, []);
 
-    const paintCell = useCallback((context: CanvasRenderingContext2D, cell: AsciiCell, { coverage, luminance }: CellSample) => {
+    const paintCell = useCallback((
+        context: CanvasRenderingContext2D,
+        grid: AsciiGrid,
+        cell: AsciiCell,
+        { coverage, luminance }: CellSample
+    ) => {
         const filled = coverage / SAMPLES_PER_CELL;
         if (filled < MIN_COVERAGE) {
             return;
@@ -51,8 +59,12 @@ const useGlyphPainter = ({ palette, glyphs }: UseGlyphPainterParams): UseGlyphPa
         const level = shadeLevel(luminance / coverage);
         context.globalAlpha = glyphOpacity(filled);
         context.fillStyle = palette.colors[level];
-        context.fillText(glyphs[level] ?? FALLBACK_GLYPH, cell.x, cell.y);
-    }, [palette, glyphs, shadeLevel, glyphOpacity]);
+        const glyphPlacement = glyphPlacementRef.current;
+        glyphPlacement.x = cell.x;
+        glyphPlacement.y = cell.y;
+        arrange?.(cell.x, cell.y, grid.width, grid.height, glyphPlacement);
+        context.fillText(glyphs[level] ?? FALLBACK_GLYPH, glyphPlacement.x, glyphPlacement.y);
+    }, [palette, glyphs, arrange, shadeLevel, glyphOpacity]);
 
     const prepareContext = useCallback((context: CanvasRenderingContext2D, { width, height }: AsciiGrid) => {
         context.clearRect(0, 0, width, height);
@@ -64,7 +76,7 @@ const useGlyphPainter = ({ palette, glyphs }: UseGlyphPainterParams): UseGlyphPa
     return useCallback((context, grid, pixels, { cells, sampleOffsets }) => {
         prepareContext(context, grid);
         cells.forEach((cell) => {
-            paintCell(context, cell, sampleCell(pixels, cell, sampleOffsets));
+            paintCell(context, grid, cell, sampleCell(pixels, cell, sampleOffsets));
         });
 
         context.globalAlpha = 1;

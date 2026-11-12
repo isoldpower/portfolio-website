@@ -1,10 +1,11 @@
 import { useCallback } from "react";
-import { AnimationComposer } from "@shared/lib/components";
+
 import { AboutBody } from "@entities/site-artwork/about-body";
 import { useLocalize } from "@features/localization/localized-value";
 import { CursorBlink } from "@features/site-artwork/cursor-blink";
-import { ScrollRise } from "@features/site-artwork/scroll-reveal";
 import { useRelativeLines } from "@features/site-artwork/relative-line-numbers";
+import { ScrollRise } from "@features/site-artwork/scroll-reveal";
+import { AnimationComposer } from "@shared/lib/components";
 
 import type { AboutProfile } from "@entities/site-artwork/model";
 
@@ -25,7 +26,7 @@ function AboutPanel({ profile }: AboutPanelProps) {
         isFocused: focusedLine === line,
         onMouseEnter: () => { focusLine(line); },
         onClick: () => { focusLine(line); },
-    }), []);
+    }), [distanceTo, focusedLine, focusLine]);
 
     return (
         <>

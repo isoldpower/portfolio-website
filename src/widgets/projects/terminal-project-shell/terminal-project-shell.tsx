@@ -1,9 +1,13 @@
 import { useId } from "react";
-import { LockScreen, useProjectSources } from "@features/projects/wasm-fetching";
-import { StyledTerminal, useTerminalAdapter } from "@shared/ui-toolkit/terminal";
+
+import { ProjectFrame } from "@entities/integrations/project-frame";
 import { LabeledLockIcon, LabeledUnlockIcon } from "@entities/projects/icons";
-import { MobileOnly } from "@shared/lib/components";
+import { LoaderFade, useLoadingProgress } from "@features/integrations/frame-loading";
+import { useTerminalStartup } from "@features/projects/terminal-startup";
+import { LockScreen, useProjectSources } from "@features/projects/wasm-fetching";
+import { AnimationComposer, MobileOnly } from "@shared/lib/components";
 import { cn } from "@shared/lib/utilities";
+import { StyledTerminal, useTerminalAdapter } from "@shared/ui-toolkit/terminal";
 
 import type { TerminalProject } from "@entities/projects/model";
 import type { FC } from "react";
@@ -17,8 +21,13 @@ const TerminalProjectShell: FC<TerminalProjectShellProps> = ({
     project
 }) => {
     const shellId = useId();
-    const sources = useProjectSources(project);
-    const terminalBindings = useTerminalAdapter("ftxui", sources);
+    const projectSources = useProjectSources(project);
+    const adapterBindings = useTerminalAdapter("ftxui", projectSources);
+    const terminalStartup = useTerminalStartup(adapterBindings);
+    const terminalLoading = useLoadingProgress({
+        key: projectSources.wasmSource,
+        isLoaded: terminalStartup.hasStarted,
+    });
 
     return (
         <div
@@ -44,8 +53,19 @@ const TerminalProjectShell: FC<TerminalProjectShellProps> = ({
                 autoFocus
                 terminalRuntime="ftxui"
                 className="min-h-0 h-full flex-1"
-                {...terminalBindings}
+                {...terminalStartup.bindings}
             />
+            {!terminalLoading.isSettled && (
+                <AnimationComposer>
+                    <LoaderFade />
+                    <ProjectFrame.Loader progress={terminalLoading.progress} isHidden={terminalLoading.isHidden}>
+                        <ProjectFrame.LoaderBar progress={terminalLoading.progress} />
+                        <ProjectFrame.LoaderStage values={{ host: project.wasmArtifact }}>
+                            _t(project.frame.{terminalLoading.stage})
+                        </ProjectFrame.LoaderStage>
+                    </ProjectFrame.Loader>
+                </AnimationComposer>
+            )}
         </div>
     );
 }

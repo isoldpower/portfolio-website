@@ -13,6 +13,7 @@ const ru: Translation = {
         about: "обо мне",
         experience: "опыт",
         portfolio: "портфолио",
+        "project-browser": "проекты",
         contacts: "контакты",
     },
     hero: {
@@ -28,6 +29,8 @@ const ru: Translation = {
         get_in_touch: "[[get_in_touch]]",
         note_label: "// NOTE:",
         note: "кролик нарисован символами + $ @",
+        pet_title: "Погладь меня.",
+        pet_hint: "Я умею шевелить ушами",
     },
     about: {
         label: "[ 01_about_me ]",
@@ -118,6 +121,11 @@ const ru: Translation = {
         pager_label: "Другие проекты",
         previous_aria: "Предыдущий проект: {{title}}",
         next_aria: "Следующий проект: {{title}}",
+        frame: {
+            waiting: "ожидание демо-сессии",
+            loading: "загрузка {{host}}",
+            ready: "готово",
+        },
     },
     intro: {
         gloss: "[фр. «кролик»]",

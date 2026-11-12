@@ -1,9 +1,9 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 
-import { RASTER_PRIORITY } from "../constants.ts";
 import { useCanvasResolution } from "../canvas/use-canvas-resolution.ts";
 import { useCanvasVisibility } from "../canvas/use-canvas-visibility.ts";
+import { RASTER_PRIORITY } from "../constants.ts";
 import { useAsciiLayout } from "../grid/use-ascii-layout.ts";
 import { useCameraFit } from "../target/use-camera-fit.ts";
 import { useFrameThrottle } from "./use-frame-throttle.ts";
@@ -11,6 +11,7 @@ import { useGlyphPainter } from "./use-glyph-painter.ts";
 import { useSampleRender } from "./use-sample-render.ts";
 
 import type { AsciiGrid, AsciiPalette, AsciiTarget } from "../types.ts";
+import type { CellArranger } from "@shared/lib/types";
 import type { RefObject } from "react";
 
 
@@ -22,6 +23,7 @@ interface UseAsciiFrameParams {
     cell: number;
     glyphs: string;
     onDraw: (canvas: HTMLCanvasElement) => void;
+    arrange?: CellArranger;
 }
 
 const useAsciiFrame = ({
@@ -31,7 +33,8 @@ const useAsciiFrame = ({
     palette,
     cell,
     glyphs,
-    onDraw
+    onDraw,
+    arrange
 }: UseAsciiFrameParams): void => {
     const { scene } = useThree();
     const fitCamera = useCameraFit();
@@ -39,7 +42,7 @@ const useAsciiFrame = ({
     const layout = useAsciiLayout(grid, cell);
     const throttle = useFrameThrottle(grid);
     const renderSamples = useSampleRender();
-    const paintGlyphs = useGlyphPainter({ palette, glyphs });
+    const paintGlyphs = useGlyphPainter({ palette, glyphs, arrange });
     const hasDrawn = useRef(false);
 
     useCanvasResolution(canvas, grid);

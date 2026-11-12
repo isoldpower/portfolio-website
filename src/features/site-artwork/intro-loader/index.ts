@@ -1,5 +1,6 @@
 export { IntroStageProvider } from "./stage/intro-stage-provider.tsx";
 export { useRabbitReporter } from "./stage/use-rabbit-reporter.ts";
+export { useIntroSnapshot } from "./stage/use-intro-snapshot.ts";
 export { IntroSceneProvider } from "./scene/intro-scene-provider.tsx";
 export { IntroScenePlaying } from "./scene/intro-scene-playing.tsx";
 export { IntroSceneStep } from "./scene/intro-scene-step.tsx";
@@ -25,4 +26,17 @@ export type { UseIntroSceneReturn } from "./scene/use-intro-scene.ts";
 export type { UseSceneViewReturn } from "./scene/use-scene-view.ts";
 export type { UseIntroTargetReturn } from "./use-intro-target.ts";
 export type { IntroRevealProps } from "./animations/intro-reveal.tsx";
-export type { IntroSceneValue, SceneOutcome, SceneStep, SceneView, IntroPhase, IntroSnapshot, IntroTargetRole, IntroSequenceRefs, ParticleGroup, RabbitSnapshot, SequenceStep, SnapshotView } from "./types.ts";
+export type {
+    IntroPhase,
+    IntroSceneValue,
+    IntroSequenceRefs,
+    IntroSnapshot,
+    IntroTargetRole,
+    ParticleGroup,
+    RabbitSnapshot,
+    SceneOutcome,
+    SceneStep,
+    SceneView,
+    SequenceStep,
+    SnapshotView
+} from "./types.ts";

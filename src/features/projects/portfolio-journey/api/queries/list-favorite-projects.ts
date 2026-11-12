@@ -15,7 +15,7 @@ const FAVORITE_PROJECTS_QUERY = `*[
     _id,
     title,
     "slug": slug.current,
-    "repo_tech": source_repos[]->tech_stack[]->title,
+    "repo_tech": source_repos[]->{ "titles": tech_stack[]->title },
     "extra_tech": extra_tech[]->title,
     "journey": journey {
         scenery,

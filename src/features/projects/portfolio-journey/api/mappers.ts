@@ -1,7 +1,7 @@
 import { JOURNEY_THEMES } from "@entities/projects/model";
 import { proxiedImageUrl } from "@shared/lib/utilities";
 
-import { MAX_JOURNEY_SCREENSHOTS } from "../constants.ts";
+import { MAX_JOURNEY_SCREENSHOTS, MAX_JOURNEY_TECH } from "../constants.ts";
 
 import type { FavoriteProjectDto, FavoriteProjectsDto, JourneyScreenshotDto } from "./types.ts";
 import type { JourneyScreenshot, JourneyStop, JourneyTheme, PortfolioJourney } from "@entities/projects/model";
@@ -33,13 +33,28 @@ const mapScreenshots = (screenshotDtos: JourneyScreenshotDto[] | null): JourneyS
         .slice(0, MAX_JOURNEY_SCREENSHOTS);
 };
 
+const interleaveRepoTech = (projectDto: FavoriteProjectDto): (string | null)[] => {
+    const techTitlesPerRepo = (projectDto.repo_tech ?? []).map((repoTechDto) => {
+        return repoTechDto.titles ?? [];
+    });
+    const longestTechListLength = Math.max(0, ...techTitlesPerRepo.map((repoTechTitles) => {
+        return repoTechTitles.length;
+    }));
+
+    return Array.from({ length: longestTechListLength }, (_, techIndex) => {
+        return techTitlesPerRepo.map((repoTechTitles) => {
+            return repoTechTitles[techIndex] ?? null;
+        });
+    }).flat();
+};
+
 const uniqueTechTitles = (projectDto: FavoriteProjectDto): string[] => {
-    const techTitles = [...(projectDto.repo_tech ?? []), ...(projectDto.extra_tech ?? [])];
+    const techTitles = [...interleaveRepoTech(projectDto), ...(projectDto.extra_tech ?? [])];
     const presentTechTitles = techTitles.filter((techTitle): techTitle is string => {
         return Boolean(techTitle);
     });
 
-    return [...new Set(presentTechTitles)];
+    return [...new Set(presentTechTitles)].slice(0, MAX_JOURNEY_TECH);
 };
 
 const mapFavoriteProject = (projectDto: FavoriteProjectDto): JourneyStop | null => {

@@ -10,6 +10,7 @@ const en = {
         about: "about",
         experience: "experience",
         portfolio: "portfolio",
+        "project-browser": "projects",
         contacts: "contacts",
     },
     hero: {
@@ -25,6 +26,8 @@ const en = {
         get_in_touch: "[[get_in_touch]]",
         note_label: "// NOTE:",
         note: "rabbit drawn in + $ @",
+        pet_title: "Pet me.",
+        pet_hint: "I can move my ears",
     },
     about: {
         label: "[ 01_about_me ]",
@@ -115,6 +118,11 @@ const en = {
         pager_label: "More projects",
         previous_aria: "Previous project: {{title}}",
         next_aria: "Next project: {{title}}",
+        frame: {
+            waiting: "waiting for demo session",
+            loading: "loading {{host}}",
+            ready: "ready",
+        },
     },
     intro: {
         gloss: "[French: Rabbit]",

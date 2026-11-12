@@ -21,7 +21,7 @@ interface FavoriteProjectDto {
     _id: string;
     title: string;
     slug: string | null;
-    repo_tech: (string | null)[] | null;
+    repo_tech: { titles: (string | null)[] | null }[] | null;
     extra_tech: (string | null)[] | null;
     journey: {
         scenery: string | null;

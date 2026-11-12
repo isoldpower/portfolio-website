@@ -35,6 +35,19 @@ interface CellSample {
 type UseParticleSamplerReturn = (group: ParticleGroup) => FlightGroup;
 
 const useParticleSampler = (): UseParticleSamplerReturn => {
+    const halveToward = useCallback((raster: HTMLCanvasElement, columns: number): HTMLCanvasElement => {
+        let current = raster;
+        while (current.width / 2 >= columns * 2) {
+            const halved = document.createElement("canvas");
+            halved.width = Math.ceil(current.width / 2);
+            halved.height = Math.ceil(current.height / 2);
+            halved.getContext("2d")?.drawImage(current, 0, 0, halved.width, halved.height);
+            current = halved;
+        }
+
+        return current;
+    }, []);
+
     const thumbnailOf = useCallback(({ raster, step }: ParticleGroup): Thumbnail | null => {
         const columns = Math.max(1, Math.round(raster.width / step));
         const rows = Math.max(1, Math.round(raster.height / step));
@@ -48,14 +61,14 @@ const useParticleSampler = (): UseParticleSamplerReturn => {
         }
 
         context.imageSmoothingEnabled = true;
-        context.drawImage(raster, 0, 0, columns, rows);
+        context.drawImage(halveToward(raster, columns), 0, 0, columns, rows);
 
         return {
             columns,
             rows,
             pixels: context.getImageData(0, 0, columns, rows).data
         };
-    }, []);
+    }, [halveToward]);
 
     const levelAt = useCallback((pixels: Uint8ClampedArray, offset: number): number => {
         const [red, green, blue] = PARTICLE_LUMINANCE_WEIGHTS;

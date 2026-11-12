@@ -21,7 +21,9 @@ const ShowcaseTerminalProject: FC<ShowcaseTerminalProjectProps> = ({
     return (
         <>
             <ProjectLiveBar>
-                <ProjectLiveBar.Address label="_t(project.terminal_label)" address={release.address} />
+                <ProjectLiveBar.Address label="_t(project.terminal_label)">
+                    {release.address}
+                </ProjectLiveBar.Address>
                 <AnimationComposer>
                     <FocusOutline />
                     <JourneyButtonHover />

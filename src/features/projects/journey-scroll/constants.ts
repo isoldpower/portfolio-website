@@ -8,12 +8,12 @@ const PANEL_DEPART = 420;
 const PANEL_SHIFT = 320;
 const APPROACH_EASE = "power2.out";
 const DEPART_EASE = "power1.in";
-const SCROLL_PER_CAMERA = 5600 / 8760;
+const SCROLL_PER_CAMERA = 0.36;
 const STAGE_HEIGHT = 760;
 const HEADER_OFFSET = 50;
 const MIN_STAGE_FIT = 0.5;
 
-const RUN_FRAME_LENGTH = 28;
+const RUN_FRAME_LENGTH = 43;
 const RUN_FRAME_COUNT = 6;
 const RUN_FRAME_WIDTH = 96;
 const RUN_IDLE_MS = 280;

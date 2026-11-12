@@ -1,5 +1,7 @@
 import { HeroBody } from "@entities/site-artwork/hero-body";
 import { HeroTitle } from "@entities/site-artwork/hero-title";
+import { PetCallout } from "@entities/site-artwork/pet-callout";
+import { CalloutBob } from "@features/site-artwork/callout-bob";
 import { IntroHandoff, IntroReveal, useIntroTarget } from "@features/site-artwork/intro-loader";
 import { ScrollSink } from "@features/site-artwork/scroll-reveal";
 import { AnimationComposer } from "@shared/lib/components";
@@ -16,6 +18,16 @@ function HeroSection() {
                 <ScrollSink />
                 <HeroBody.ArtworkColumn>
                     <RabbitScene />
+                    <AnimationComposer>
+                        <IntroReveal order={3} />
+                        <PetCallout>
+                            <AnimationComposer>
+                                <CalloutBob />
+                                <PetCallout.Label title="_t(hero.pet_title)" hint="_t(hero.pet_hint)" />
+                            </AnimationComposer>
+                            <PetCallout.Leader />
+                        </PetCallout>
+                    </AnimationComposer>
                 </HeroBody.ArtworkColumn>
             </AnimationComposer>
             <HeroBody.TextColumn>
