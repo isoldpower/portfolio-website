@@ -1,5 +1,7 @@
 import { ExperienceBody } from "@entities/site-artwork/experience-body";
 import { useLoopPlayback } from "@features/site-artwork/loop-playback";
+import { ScrollScan } from "@features/site-artwork/scroll-reveal";
+import { AnimationComposer } from "@shared/lib/components";
 
 
 interface ExperienceVideoProps {
@@ -10,7 +12,10 @@ function ExperienceVideo({ src }: ExperienceVideoProps) {
     const playbackRef = useLoopPlayback();
 
     return (
-        <ExperienceBody.Video ref={playbackRef} src={src} />
+        <AnimationComposer>
+            <ScrollScan />
+            <ExperienceBody.Video ref={playbackRef} src={src} />
+        </AnimationComposer>
     );
 }
 

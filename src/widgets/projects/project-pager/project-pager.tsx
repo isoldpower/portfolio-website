@@ -32,7 +32,7 @@ function ProjectPager({ neighbors }: ProjectPagerProps) {
                         )}
                     >
                         <ProjectPage.PagerLabel direction={forward ? "next" : "previous"}>
-                            {forward ? "_t(project.previous)" : "_t(project.next)"}
+                            {forward ? "_t(project.next)" : "_t(project.previous)"}
                         </ProjectPage.PagerLabel>
                     </span>
                 </AnimationComposer>

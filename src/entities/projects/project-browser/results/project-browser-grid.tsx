@@ -1,13 +1,15 @@
-import type { FC, ReactNode } from "react";
+import { cn } from "@shared/lib/utilities";
+
+import type { FC, HTMLAttributes, ReactNode } from "react";
 
 
-interface ProjectBrowserGridProps {
+type ProjectBrowserGridProps = HTMLAttributes<HTMLElement> & {
     children: ReactNode;
-}
+};
 
-const ProjectBrowserGrid: FC<ProjectBrowserGridProps> = ({ children }) => {
+const ProjectBrowserGrid: FC<ProjectBrowserGridProps> = ({ className, children, ...props }) => {
     return (
-        <ul className="m-0 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className={cn("m-0 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3", className)} {...props}>
             {children}
         </ul>
     );

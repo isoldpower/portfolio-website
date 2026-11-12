@@ -2,6 +2,7 @@ const SITE_SECTIONS = [
     "about",
     "experience",
     "portfolio",
+    "project-browser",
     "contacts"
 ] as const;
 
