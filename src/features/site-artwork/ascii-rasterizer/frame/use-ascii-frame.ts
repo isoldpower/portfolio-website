@@ -51,17 +51,18 @@ const useAsciiFrame = ({
             return;
         }
 
-        if (
-            (palette.isReady && throttle.isDue()) ||
-            (!hasDrawn.current || isVisible.current) ||
-            (target.isFitted || fitCamera(scene, grid, target))
-        ) {
-            renderSamples(grid, target);
-            paintGlyphs(context, grid, target.pixels, layout);
-            throttle.markDrawn();
+        const isFrameDue = palette.isReady && throttle.isDue();
+        const isPaintAllowed = !hasDrawn.current || isVisible.current;
+        if (isFrameDue && isPaintAllowed) {
+            const isCameraFitted = target.isFitted || fitCamera(scene, grid, target);
+            if (isCameraFitted) {
+                renderSamples(grid, target);
+                paintGlyphs(context, grid, target.pixels, layout);
+                throttle.markDrawn();
 
-            hasDrawn.current = true;
-            onDraw(context.canvas);
+                hasDrawn.current = true;
+                onDraw(context.canvas);
+            }
         }
     }, RASTER_PRIORITY);
 };

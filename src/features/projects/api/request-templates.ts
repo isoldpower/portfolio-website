@@ -32,7 +32,10 @@ const kindSpecificFields = [
     }`,
     `kind == "embedded" => {
         "video": video.asset->{ playbackId, data { aspect_ratio } },
-        photos
+        photos,
+        "photo_assets": photos[]{ "url": asset->url, "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height },
+        "article": { "en": article.en.code, "ru": article.ru.code },
+        "videos": videos[]{ key, "asset": video.asset->{ playbackId, data { aspect_ratio } } }
     }`,
 ];
 

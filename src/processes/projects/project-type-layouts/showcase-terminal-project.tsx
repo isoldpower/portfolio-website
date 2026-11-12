@@ -1,3 +1,8 @@
+import { ProjectLiveBar } from "@entities/projects/project-live-bar";
+import { JourneyButtonHover } from "@features/projects/journey-animations";
+import { useProjectRelease } from "@features/projects/wasm-fetching";
+import { FocusOutline } from "@features/site-artwork/focus-outline";
+import { AnimationComposer } from "@shared/lib/components";
 import { TerminalProjectShell } from "@widgets/projects/terminal-project-shell";
 
 import type { FC } from "react";
@@ -11,11 +16,25 @@ interface ShowcaseTerminalProjectProps {
 const ShowcaseTerminalProject: FC<ShowcaseTerminalProjectProps> = ({
     project
 }) => {
+    const release = useProjectRelease(project);
+
     return (
-        <div className="flex flex-col gap-2">
-            Terminal Project: {project.title}
+        <>
+            <ProjectLiveBar>
+                <ProjectLiveBar.Address label="_t(project.terminal_label)" address={release.address} />
+                <AnimationComposer>
+                    <FocusOutline />
+                    <JourneyButtonHover />
+                    <ProjectLiveBar.Action href={release.href}>
+                        _t(project.terminal_cta)
+                    </ProjectLiveBar.Action>
+                </AnimationComposer>
+            </ProjectLiveBar>
             <TerminalProjectShell project={project} />
-        </div>
+            <ProjectLiveBar.Note>
+                _t(project.terminal_note)
+            </ProjectLiveBar.Note>
+        </>
     );
 }
 

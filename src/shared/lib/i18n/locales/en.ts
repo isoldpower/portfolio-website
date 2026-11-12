@@ -6,6 +6,7 @@ const en = {
         projects_list: "Projects"
     },
     navigation: {
+        home: "home",
         about: "about",
         experience: "experience",
         portfolio: "portfolio",
@@ -90,6 +91,30 @@ const en = {
     },
     footer: {
         copyright: "© {{year}} nikita lapin — built line by line.",
+    },
+    project: {
+        kicker: "[ project ]",
+        roles: "Roles",
+        context: "Context",
+        reflection: "Reflection",
+        sources: "Source code",
+        sources_aria: "Open repository {{title}}",
+        intro: {
+            terminal: "This is a terminal, you can test this project here.",
+            web: "This is the live build, you can try this project here.",
+            embedded: "This is the device in action, see how this project works.",
+        },
+        previous: "previous",
+        next: "next",
+        live_label: "live build",
+        live_cta: "Open live website",
+        terminal_label: "wasm build",
+        terminal_cta: "View release",
+        terminal_note: "Click the terminal to play — keyboard and mouse go straight to the program",
+        article_empty: "No write-up for this project yet.",
+        pager_label: "More projects",
+        previous_aria: "Previous project: {{title}}",
+        next_aria: "Next project: {{title}}",
     },
     intro: {
         gloss: "[French: Rabbit]",

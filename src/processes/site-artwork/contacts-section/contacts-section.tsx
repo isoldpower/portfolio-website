@@ -15,7 +15,7 @@ function ContactsSection({ contacts }: ContactsSectionProps) {
     const { t } = useTranslation();
 
     return (
-        <ContactsBody id="contacts" className="mt-20 md:mt-24">
+        <ContactsBody id="contacts" className="my-20 md:my-24">
             <ContactsBody.Header>
                 <SectionHeading text={t("contacts.label")} />
             </ContactsBody.Header>

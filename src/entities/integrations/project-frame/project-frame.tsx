@@ -1,3 +1,5 @@
+import { cn } from "@shared/lib/utilities";
+
 import type {FC, IframeHTMLAttributes} from "react";
 
 
@@ -11,9 +13,10 @@ const ProjectFrame: FC<ProjectFrameProps> = ({
 }) => {
     return (
         <iframe
-            width="100%"
-            height="800px"
-            className="border-4 border-gray-700"
+            className={cn(
+                "block h-[calc(100dvh-var(--spacing-header)-var(--spacing-footer)-14rem)]",
+                "min-h-96 w-full border border-accent bg-background"
+            )}
             {...props}
         />
     );

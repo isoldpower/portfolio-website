@@ -1,3 +1,5 @@
+import { proxiedImageUrl } from "@shared/lib/utilities";
+
 import type {
     EmbeddedProjectDto,
     ProjectDetailsDto,
@@ -60,6 +62,11 @@ function mapProjectBase(dto: ProjectDetailsDto) {
     return {
         ...mapProjectPreview(dto),
         sourceRepos: (dto.source_repos ?? []).map(mapSourceRepo),
+        story: {
+            roles: dto.roles ?? {},
+            context: dto.context ?? {},
+            reflection: dto.reflection ?? {},
+        },
     };
 }
 
@@ -91,6 +98,19 @@ function mapEmbeddedProject(dto: EmbeddedProjectDto): EmbeddedProject {
         kind: "embedded",
         video: dto.video === null ? null : mapVideo(dto.video),
         photos: dto.photos ?? [],
+        photoAssets: (dto.photo_assets ?? []).flatMap((photo) => {
+            return photo.url && photo.width && photo.height
+                ? [{
+                    src: proxiedImageUrl(`${photo.url}?w=1280&auto=format`),
+                    width: photo.width,
+                    height: photo.height
+                }]
+                : [];
+        }),
+        article: dto.article ?? {},
+        articleVideos: Object.fromEntries((dto.videos ?? []).flatMap((entry) => {
+            return entry.key && entry.asset ? [[entry.key, mapVideo(entry.asset)]] : [];
+        })),
     };
 }
 

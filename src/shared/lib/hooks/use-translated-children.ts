@@ -41,9 +41,25 @@ const useTranslatedChildren = ({
         return child.replace(TRANSLATION_MARKER_PATTERN, translateMarker);
     }, [i18n, translateMarker]);
 
+    const mergeTextChildren = useCallback((mergedChildren: ReactNode[], child: ReactNode): ReactNode[] => {
+        const isTextChild = typeof child === "string" || typeof child === "number";
+        const previousChild = mergedChildren.at(-1);
+
+        if (isTextChild && typeof previousChild === "string") {
+            mergedChildren[mergedChildren.length - 1] = previousChild + String(child);
+        } else {
+            mergedChildren.push(isTextChild ? String(child) : child);
+        }
+
+        return mergedChildren;
+    }, []);
+
     return useMemo(() => {
-        return Children.map(children, translateChild);
-    }, [ children, translateChild ]);
+        const mergedChildren = Children.toArray(children).reduce<ReactNode[]>(mergeTextChildren, []);
+        const translatedChildren = mergedChildren.map(translateChild);
+
+        return translatedChildren.length === 1 ? translatedChildren[0] : translatedChildren;
+    }, [children, mergeTextChildren, translateChild]);
 };
 
 export { useTranslatedChildren };

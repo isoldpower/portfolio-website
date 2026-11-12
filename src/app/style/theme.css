@@ -32,6 +32,7 @@
     --spacing-gutter: var(--media-gutter);
     --spacing-margin: var(--media-margin);
     --spacing-header: 50px;
+    --spacing-footer: 42px;
 
     --text-shadow-hero: -1px 1px 0 #333dad, -2px 2px 0 #333dad, -3px 3px 0 #333dad, -4px 4px 0 #333dad, -5px 5px 0 #333dad, -6px 6px 0 #333dad, 0 0 24px rgba(102, 153, 255, 0.45);
     --text-shadow-glow: 0 0 8px #6699ff;
@@ -163,4 +164,35 @@
             scroll-behavior: auto !important;
         }
     }
+}
+
+@utility terminal-theme {
+    --term-bg: var(--color-background);
+    --term-fg: var(--color-foreground);
+    --term-cursor: var(--color-accent);
+    --term-selection-bg: color-mix(in srgb, var(--color-accent) 35%, transparent);
+    --term-font-family: "IBM Plex Mono", "Noto Sans Mono", "Menlo", monospace;
+    --term-font-size: 13px;
+    --term-line-height: 1.25;
+
+    --term-color-0: #0f131a;
+    --term-color-1: var(--color-negative);
+    --term-color-2: var(--color-positive);
+    --term-color-3: #d9b46c;
+    --term-color-4: var(--color-accent);
+    --term-color-5: #b48cff;
+    --term-color-6: #5fc8e0;
+    --term-color-7: var(--color-foreground);
+    --term-color-8: #4a5874;
+    --term-color-9: oklch(0.8 0.14 25);
+    --term-color-10: oklch(0.87 0.11 165);
+    --term-color-11: #f0d08a;
+    --term-color-12: var(--color-highlight);
+    --term-color-13: #cbaaff;
+    --term-color-14: #8fdcef;
+    --term-color-15: #dbe4f7;
+
+    --term-search-match: color-mix(in srgb, var(--color-accent) 25%, transparent);
+    --term-search-active: color-mix(in srgb, var(--color-highlight) 45%, transparent);
+    --term-search-border: var(--color-highlight);
 }

@@ -1,4 +1,5 @@
 import type { SanityImageSource } from "@sanity/image-url";
+import type { LocalizedValue } from "@shared/lib/i18n";
 
 
 type ProjectKind = "terminal" | "web" | "embedded";
@@ -28,9 +29,26 @@ interface ProjectPreview {
     extraTech: ProjectTechnology[];
 }
 
+interface ProjectStory {
+    roles: LocalizedValue;
+    context: LocalizedValue;
+    reflection: LocalizedValue;
+}
+
 type ProjectBase = ProjectPreview & {
     sourceRepos: ProjectSourceRepo[];
+    story: ProjectStory;
 };
+
+interface ProjectLink {
+    slug: string;
+    title: string;
+}
+
+interface ProjectNeighbors {
+    previous: ProjectLink | null;
+    next: ProjectLink | null;
+}
 
 type TerminalProject = ProjectBase & {
     kind: "terminal";
@@ -53,10 +71,19 @@ interface ProjectVideo {
     aspectRatio: string | null;
 }
 
+interface ProjectPhoto {
+    src: string;
+    width: number;
+    height: number;
+}
+
 type EmbeddedProject = ProjectBase & {
     kind: "embedded";
     video: ProjectVideo | null;
     photos: SanityImageSource[];
+    photoAssets: ProjectPhoto[];
+    article: LocalizedValue;
+    articleVideos: Record<string, ProjectVideo>;
 };
 
 type ProjectDetails = TerminalProject | WebProject | EmbeddedProject;
@@ -71,5 +98,9 @@ export type {
     WebProject,
     ProjectVideo,
     EmbeddedProject,
-    ProjectDetails
+    ProjectDetails,
+    ProjectLink,
+    ProjectPhoto,
+    ProjectNeighbors,
+    ProjectStory
 };

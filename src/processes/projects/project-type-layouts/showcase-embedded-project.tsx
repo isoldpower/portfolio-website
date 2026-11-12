@@ -1,3 +1,5 @@
+import { ProjectArticle } from "@widgets/projects/project-article";
+
 import type { FC } from "react";
 import type { EmbeddedProject } from "@entities/projects/model";
 
@@ -10,7 +12,7 @@ const ShowcaseEmbeddedProject: FC<ShowcaseEmbeddedProjectProps> = ({
     project
 }) => {
     return (
-        <div>Embedded Project: {project.title}</div>
+        <ProjectArticle project={project} />
     );
 }
 

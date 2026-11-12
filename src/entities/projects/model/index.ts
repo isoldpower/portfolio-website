@@ -10,7 +10,11 @@ export type {
     WebProject,
     ProjectVideo,
     EmbeddedProject,
-    ProjectDetails
+    ProjectDetails,
+    ProjectLink,
+    ProjectPhoto,
+    ProjectNeighbors,
+    ProjectStory
 } from "./types.ts";
 export type { JourneyScreenshot, JourneyStop, JourneyTheme, PortfolioJourney } from "./portfolio-journey.ts";
 export type { ProjectCard, ProjectCardImage } from "./project-card.ts";

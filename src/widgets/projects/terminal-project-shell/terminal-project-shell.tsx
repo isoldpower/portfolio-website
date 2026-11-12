@@ -1,12 +1,12 @@
 import { useId } from "react";
-
 import { LockScreen, useProjectSources } from "@features/projects/wasm-fetching";
 import { StyledTerminal, useTerminalAdapter } from "@shared/ui-toolkit/terminal";
 import { LabeledLockIcon, LabeledUnlockIcon } from "@entities/projects/icons";
+import { MobileOnly } from "@shared/lib/components";
+import { cn } from "@shared/lib/utilities";
 
 import type { TerminalProject } from "@entities/projects/model";
 import type { FC } from "react";
-import {MobileOnly} from "@shared/lib/components";
 
 
 interface TerminalProjectShellProps {
@@ -21,9 +21,18 @@ const TerminalProjectShell: FC<TerminalProjectShellProps> = ({
     const terminalBindings = useTerminalAdapter("ftxui", sources);
 
     return (
-        <div id={shellId} className="relative h-dvh flex flex-col gap-2 py-2">
+        <div
+            id={shellId}
+            className={cn(
+                "relative flex h-[calc(100dvh-var(--spacing-header)-var(--spacing-footer)-15rem)]",
+                "min-h-112 flex-col gap-2"
+            )}
+        >
             <MobileOnly>
-                <LockScreen focusTargetId={shellId} className="sticky top-0 p-2 border bg-white z-10">
+                <LockScreen
+                    focusTargetId={shellId}
+                    className="sticky top-0 z-10 border border-accent bg-background p-2 text-accent"
+                >
                     {(locked) => locked
                         ? <LabeledLockIcon>Unlock</LabeledLockIcon>
                         : <LabeledUnlockIcon>Lock</LabeledUnlockIcon>

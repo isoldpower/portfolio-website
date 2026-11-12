@@ -1,7 +1,7 @@
 import { DefaultGutter } from "@shared/lib/components";
-
 import { SiteFooterCopyright } from "./footer/site-footer-copyright.tsx";
 import { SiteFooterCursor } from "./footer/site-footer-cursor.tsx";
+import { cn } from "@shared/lib/utilities";
 
 import type { SiteFooterCopyrightProps } from "./footer/site-footer-copyright.tsx";
 import type { SiteFooterCursorProps } from "./footer/site-footer-cursor.tsx";
@@ -19,7 +19,12 @@ type SiteFooterObject = FC<SiteFooterProps> & {
 
 const SiteFooter: SiteFooterObject = ({ children }) => {
     return (
-        <footer className="relative layer-content mt-24 border-t border-accent bg-background">
+        <footer
+            className={cn(
+                "relative layer-content flex flex-col justify-center",
+                "border-t border-accent bg-background lg:h-footer"
+            )}
+        >
             <DefaultGutter className="py-3">
                 {children}
             </DefaultGutter>

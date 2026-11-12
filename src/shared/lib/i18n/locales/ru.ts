@@ -9,6 +9,7 @@ const ru: Translation = {
         projects_list: "Список Проектов"
     },
     navigation: {
+        home: "на главную",
         about: "обо мне",
         experience: "опыт",
         portfolio: "портфолио",
@@ -93,6 +94,30 @@ const ru: Translation = {
     },
     footer: {
         copyright: "© {{year}} никита лапин — написано строка за строкой.",
+    },
+    project: {
+        kicker: "[ проект ]",
+        roles: "Роли",
+        context: "Контекст",
+        reflection: "Выводы",
+        sources: "Исходный код",
+        sources_aria: "Открыть репозиторий {{title}}",
+        intro: {
+            terminal: "Это терминал, здесь можно опробовать проект.",
+            web: "Это рабочая версия, здесь можно опробовать проект.",
+            embedded: "Это устройство в работе, посмотрите, как устроен проект.",
+        },
+        previous: "назад",
+        next: "дальше",
+        live_label: "рабочая версия",
+        live_cta: "Открыть сайт",
+        terminal_label: "сборка wasm",
+        terminal_cta: "Открыть релиз",
+        terminal_note: "Нажмите на терминал, чтобы начать — клавиатура и мышь передаются прямо в программу",
+        article_empty: "Описание этого проекта пока не готово.",
+        pager_label: "Другие проекты",
+        previous_aria: "Предыдущий проект: {{title}}",
+        next_aria: "Следующий проект: {{title}}",
     },
     intro: {
         gloss: "[фр. «кролик»]",

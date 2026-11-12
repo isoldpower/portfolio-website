@@ -1,33 +1,26 @@
 import { BranchByType } from "@features/projects/project-branching";
+import { ProjectPageLayout } from "@processes/projects/project-page-layout";
+import { WEB_INTEGRATIONS } from "./integrations-list.ts";
 import { ProvidersWrapper } from "./wrappers/providers-wrapper.tsx";
 import { useBranchingSchema } from "./wrappers/use-branching-schema.tsx";
-import { WEB_INTEGRATIONS } from "./integrations-list.ts";
 
-import type { ClientLayoutPage } from "@shared/lib/types";
 import type { ProjectPageData } from "./types.ts";
+import type { ClientLayoutPage } from "@shared/lib/types";
 
 
 const ProjectPage: ClientLayoutPage<ProjectPageData> = ({
     project,
+    neighbors,
 }) => {
     const branching = useBranchingSchema();
 
     return (
         <ProvidersWrapper project={project} integrations={WEB_INTEGRATIONS}>
-            <div className="flex flex-row">
-                <aside className="flex-1/4 border-r-2 h-dvh sticky left-0 top-0 bottom-0 border-gray-300">
-                    This is sidebar
-                </aside>
-                <section className="flex-3/4 min-w-0 p-4">
-                    <BranchByType
-                        project={project}
-                        schema={branching}
-                    />
-                </section>
-            </div>
+            <ProjectPageLayout project={project} neighbors={neighbors}>
+                <BranchByType project={project} schema={branching} />
+            </ProjectPageLayout>
         </ProvidersWrapper>
     );
-}
-
+};
 
 export { ProjectPage };

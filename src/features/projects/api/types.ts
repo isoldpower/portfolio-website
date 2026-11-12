@@ -1,3 +1,4 @@
+import type { LocalizedValue } from "@shared/lib/i18n";
 import type { SanityClient } from "@sanity/client";
 import type { SanityImageSource } from "@sanity/image-url";
 
@@ -41,6 +42,9 @@ interface ProjectPreviewDto {
 
 type ProjectBaseDto = ProjectPreviewDto & {
     source_repos: ProjectSourceRepoDto[] | null;
+    roles: LocalizedValue | null;
+    context: LocalizedValue | null;
+    reflection: LocalizedValue | null;
 };
 
 type TerminalProjectDto = ProjectBaseDto & {
@@ -66,10 +70,24 @@ interface ProjectVideoDto {
     } | null;
 }
 
+interface ProjectPhotoAssetDto {
+    url: string | null;
+    width: number | null;
+    height: number | null;
+}
+
+interface ArticleVideoDto {
+    key: string | null;
+    asset: ProjectVideoDto | null;
+}
+
 type EmbeddedProjectDto = ProjectBaseDto & {
     kind: "embedded";
     video: ProjectVideoDto | null;
     photos: SanityImageSource[] | null;
+    photo_assets: ProjectPhotoAssetDto[] | null;
+    article: LocalizedValue | null;
+    videos: ArticleVideoDto[] | null;
 };
 
 type ProjectDetailsDto = TerminalProjectDto | WebProjectDto | EmbeddedProjectDto;
@@ -87,5 +105,7 @@ export type {
     WebProjectDto,
     ProjectVideoDto,
     EmbeddedProjectDto,
+    ProjectPhotoAssetDto,
+    ArticleVideoDto,
     ProjectDetailsDto
 };

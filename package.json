@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@mux/mux-player-react": "^3.14.1",
     "@react-three/fiber": "^9.8.2",
     "@sanity/client": "^8.9.0",
     "@sanity/image-url": "^2.1.1",
@@ -33,6 +34,8 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-i18next": "^17.1.13",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.4.0",
     "three": "^0.187.0"
   },

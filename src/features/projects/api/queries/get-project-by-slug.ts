@@ -22,6 +22,9 @@ const getProjectBySlug = async ({
     const requestedFields = [
         ...commonProjectFields,
         `"source_repos": source_repos[]->${sourceRepoProjection}`,
+        "roles",
+        "context",
+        "reflection",
         ...kindSpecificFields,
     ];
 
