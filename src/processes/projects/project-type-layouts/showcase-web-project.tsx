@@ -26,7 +26,7 @@ const ShowcaseWebProject: FC<ShowcaseWebProjectProps> = ({
         }
     }, [project.deployUrl]);
     const integratedProps = useMemo(() => ({
-        [DEMO_SESSION_FRAME_PARAM]: demoSession ?? "",
+        [DEMO_SESSION_FRAME_PARAM]: !!demoSession,
     }), [demoSession]);
 
     return (
